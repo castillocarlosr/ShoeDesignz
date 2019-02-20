@@ -23,7 +23,7 @@ namespace ShoeDesignz
             var builder = new ConfigurationBuilder().AddEnvironmentVariables();
             builder.AddUserSecrets<Startup>();
             Configuration = builder.Build();
-            Configuration = configuration;
+            //Configuration = configuration;
         }
 
         public void ConfigureServices(IServiceCollection services)
