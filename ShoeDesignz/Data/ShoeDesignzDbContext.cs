@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using ShoeDesignz.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,5 +13,7 @@ namespace ShoeDesignz.Data
         {
 
         }
+
+        public DbSet<Inventory> Shoes { get; set; }
     }
 }
