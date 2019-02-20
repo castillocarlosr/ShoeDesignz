@@ -5,18 +5,25 @@ using System.Threading.Tasks;
 
 namespace ShoeDesignz.Models.Interfaces
 {
-    interface IInventory
+    public interface IInventory
     {
         //Create
         Task CreateInventory(Inventory inventory);
 
-        //Read
-        Task<Inventory> GetInventory(int id);
+        //Read one Item
+        Task<Inventory> GetInventoryByID(int id);
 
+        //Read Item by Gender  Maybe use an ENUM
+        Task<Inventory> GetInventoryByGender(int id);
+
+        //Read all items
+        Task<Inventory> GetInventoryAll(int id);
+
+        //Read all items
         Task<IEnumerable<Inventory>> GetInventories();
 
-        //Edit
-        Task EditInventory(Inventory inventory);
+        //Update
+        Task UpdateInventory(Inventory inventory);
 
         //Delete
         Task DeleteInventory(int id);
