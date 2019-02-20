@@ -1,0 +1,25 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+    <link rel="stylesheet" href="~/style.css" />
+</head>
+<body>
+    <section class="header-top">
+        <div class="social">
+            <a asp-page=""><i class="material-icons">home</i></a>
+            <a href=""><i class="material-icons">search</i></a>
+            <a asp-page=""><i class="material-icons">add_box</i></a>
+            <a href=""><i class="material-icons">favorite_border</i></a>
+            <a href=""><i class="material-icons">account_circle</i></a>
+        </div>
+    
+    </section>
+    <header></header>
+    <div>
+        @RenderBody()
+    </div>
+</body>
+</html>
