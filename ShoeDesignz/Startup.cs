@@ -29,11 +29,11 @@ namespace ShoeDesignz
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
-            services.AddDbContext<ShoeDesignzDbContext>(options =>
-             options.UseSqlServer(Configuration["ConnectionStrings:ProductionConnection"]));
+            //services.AddDbContext<ShoeDesignzDbContext>(options =>
+             //options.UseSqlServer(Configuration["ConnectionStrings:ProductionConnection"]));
 
-            //services.AddDbContext<HotelManagementDbContext>(options =>
-            //options.UseSqlServer(Configuration["ConnectionStrings:DefaultConnection"]));
+            services.AddDbContext<ShoeDesignzDbContext>(options =>
+            options.UseSqlServer(Configuration["ConnectionStrings:DefaultConnection"]));
 
         }
 
