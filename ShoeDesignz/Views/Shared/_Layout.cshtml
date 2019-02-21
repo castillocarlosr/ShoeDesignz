@@ -3,20 +3,20 @@
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>@ViewBag.Title</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
-    <link rel="stylesheet" href="~/style.css" />
+    <link rel="stylesheet" href="~/Site.css" />
 </head>
-<body>
-    <section class="header-top">
-        <div class="social">
-            <a asp-page=""><i class="material-icons">home</i></a>
-            <a href=""><i class="material-icons">search</i></a>
-            <a asp-page=""><i class="material-icons">add_box</i></a>
-            <a href=""><i class="material-icons">favorite_border</i></a>
-            <a href=""><i class="material-icons">account_circle</i></a>
+<body>   
+    <header>
+        <div class="jumbotron jumbotron-fluid">
+            
+                <h1>This is the header, lets add some content for shoes! </h1>
+                <a asp-controller="Account" asp-action="Register">Register</a>
+            
         </div>
-    
-    </section>
+    </header> 
+   
     <header></header>
     <div>
         @RenderBody()
