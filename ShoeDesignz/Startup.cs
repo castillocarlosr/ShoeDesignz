@@ -5,10 +5,12 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using ShoeDesignz.Data;
+using ShoeDesignz.Models;
 
 namespace ShoeDesignz
 {
@@ -29,8 +31,18 @@ namespace ShoeDesignz
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
-            services.AddDbContext<ShoeDesignzDbContext>(options =>
-             options.UseSqlServer(Configuration["ConnectionStrings:ProductionConnection"]));
+            services.AddIdentity<ApplicationUser, IdentityRole>()
+                   .AddEntityFrameworkStores<ApplicationDbContext>()
+                   .AddDefaultTokenProviders();
+
+            services.AddDbContext<ApplicationDbContext>(options =>
+           options.UseSqlServer(Configuration.GetConnectionString("IdentityDefaultConnection")));
+
+            services.AddDbContext<ApplicationDbContext>(options =>
+   options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+
+            //services.AddDbContext<ShoeDesignzDbContext>(options =>
+            // options.UseSqlServer(Configuration["ConnectionStrings:DefaultConnection"]));
 
             //services.AddDbContext<HotelManagementDbContext>(options =>
             //options.UseSqlServer(Configuration["ConnectionStrings:DefaultConnection"]));
@@ -40,6 +52,8 @@ namespace ShoeDesignz
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
+            app.UseAuthentication();
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();

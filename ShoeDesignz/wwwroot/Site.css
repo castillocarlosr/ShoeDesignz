@@ -1,27 +1,7 @@
-﻿.header-top {
-    background: grey;
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    height: 50px;
+﻿.jumbotron-fluid {
+    padding-right: 0;
+    padding-left: 0;
+    border-radius: 0;
+    height: 12vw;
 }
-
-    .header-top a {
-        box-sizing: border-box;
-        width: 20%;
-        display: inline-block;
-        margin-left: -4px;
-        text-align: center;
-        padding: 1vw;
-        border-top: 1px solid black;
-    }
-
-.social a {
-    color: black;
-    font-size: 25px;
-}
-
-    .social a:hover {
-        color: red;
-    }
+    
