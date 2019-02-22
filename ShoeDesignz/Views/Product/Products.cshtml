@@ -1,0 +1,19 @@
+﻿@model IEnumerable<ShoeDesignz.Models.Inventory>
+
+@{
+    ViewData["Title"] = "Products";
+    Layout = "_Layout";
+    var products = this.ViewContext.RouteData.Values["id"];
+}
+
+<h1>Products</h1>
+Here all products will show
+
+<div>
+    @foreach (var item in Model)
+    {
+        <div class="py-3">
+            <h1> @item.Name</h1>
+        </div>
+    }
+</div>

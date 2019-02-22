@@ -4,4 +4,7 @@
     border-radius: 0;
     height: 12vw;
 }
-    
+
+.monospaced {
+    font-family: 'Ubuntu Mono', monospaced;
+}
