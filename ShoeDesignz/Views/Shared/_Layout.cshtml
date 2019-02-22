@@ -1,4 +1,8 @@
-﻿<!DOCTYPE html>
+﻿@using Microsoft.AspNetCore.Identity;
+@using ShoeDesignz.Models;
+@inject SignInManager<ApplicationUser> SignInManager
+
+<!DOCTYPE html>
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
@@ -10,14 +14,26 @@
 <body>   
     <header>
         <div class="jumbotron jumbotron-fluid">
-            
-                <h1>This is the header, lets add some content for shoes! </h1>
-                <a asp-controller="Account" asp-action="Register">Register</a>
-            
+
+            <h1>This is the header, lets add some content for shoes! </h1>
+            <a asp-controller="Account" asp-action="Register">Register</a>
+            <a asp-controller="Account" asp-action="Login">Login</a>
+
         </div>
     </header> 
    
-    <header></header>
+    <section>
+        @if (SignInManager.IsSignedIn(User))
+        {
+            <span>Welcome @User.Claims.First(m => m.Type == "FullName").Value</span>
+        }
+        else
+        {
+            <p>YOU ARE NOT LOGGED IN</p>
+         
+
+        }
+    </section>
     <div>
         @RenderBody()
     </div>
