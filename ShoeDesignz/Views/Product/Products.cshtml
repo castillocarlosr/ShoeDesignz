@@ -9,11 +9,71 @@
 <h1>Products</h1>
 Here all products will show
 
-<div>
-    @foreach (var item in Model)
-    {
-        <div class="py-3">
-            <h1> @item.Name</h1>
+@foreach (var item in Model)
+{
+    <div class="row">
+        <div class="column">
+            <div class="card" style="width: 18rem;">
+                <img src="~/Images/Image from iOS.jpg" class="card-img-top" alt="...">
+                
+            </div>
         </div>
-    }
-</div>
+   <div class="column">
+       <ul class="list-group list-group-flush">
+           <li class="list-group-item"><h1>@item.Name</h1></li>
+           <li class="list-group-item"><h2>Sku: @item.Sku</h2></li>
+           <li class="list-group-item"><h2>Description: @item.Description</h2></li>
+           <li class="list-group-item"><h2>Price: @item.Price</h2></li>
+       </ul>
+   </div>
+      
+    </div>
+
+}
+
+@*<div>
+        <div class="row">
+
+            @foreach (var item in Model)
+            {
+                <div class="col-s12-m3">
+                    <div class="card">
+                        <img src="~/Images/Image from iOS.jpg"
+                             alt="Converse old shoe"
+                             class="image-responsive" />
+                        <h1>@item.Name</h1>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>*@
+
+@*@foreach (var item in Model)
+    {
+        <div class="container" id="product-section">
+            <div class="row">
+                <div>
+                    <div class="col-md-6">
+                        <img src="~/Images/Image from iOS.jpg"
+                             alt="Converse old shoe"
+                             class="image-responsive" />
+                    </div>
+                    <div class="col-md-6">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <h1>@item.Name</h1>
+                            </div>
+                        </div><!-- end row-->
+
+                        <div class="row">
+                            <div class="col-md-12">
+                                <span class="label label-primary">Vintage</span>
+                                <span class="monospaced">@item.Sku</span>
+                            </div>
+                        </div><!-- end row -->
+                    </div>
+                    <!-- end container -->
+                </div>
+            </div><!-- end row -->
+        </div>
+    }*@

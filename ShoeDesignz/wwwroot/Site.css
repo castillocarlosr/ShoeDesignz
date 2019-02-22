@@ -8,3 +8,7 @@
 .monospaced {
     font-family: 'Ubuntu Mono', monospaced;
 }
+
+img.image-responsive {
+    width: 25vw;
+}
