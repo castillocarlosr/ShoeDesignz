@@ -21,5 +21,8 @@ namespace ShoeDesignz.Controllers
         {
             return View();
         }
+
+        //public IActionResult Login() => View();
+        //public IActionResult Logout() => View();
     }
 }

@@ -11,6 +11,12 @@ namespace ShoeDesignz.Models.Handlers
     {
         private string _eduEmail;
 
+        //public string _eduEmail { get; private set; }
+
+        public EduEmailRequirement()
+        {
+        }
+
         public EduEmailRequirement(string eduEmail)
         {
             _eduEmail = eduEmail;
