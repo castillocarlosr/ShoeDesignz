@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -11,6 +12,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using ShoeDesignz.Data;
 using ShoeDesignz.Models;
+using ShoeDesignz.Models.Handlers;
 
 namespace ShoeDesignz
 {
@@ -47,6 +49,19 @@ namespace ShoeDesignz
             //services.AddDbContext<HotelManagementDbContext>(options =>
             //options.UseSqlServer(Configuration["ConnectionStrings:DefaultConnection"]));
 
+
+
+
+
+
+
+            services.AddAuthorization(options =>
+            {
+                options.AddPolicy("EduEmail", policy => policy.Requirements.Add(new EduEmailRequirement()));
+                //options.AddPolicy("EduEmail", policy => policy.Requirements.Add(new EduEmailRequirement(".edu")));
+            });
+
+            services.AddScoped<IAuthorizationHandler, EduEmailRequirement>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
