@@ -15,7 +15,6 @@ namespace ShoeDesignz.Models.Handlers
 
         public RiskTaker()
         {
-
         }
 
         public RiskTaker(string riskTaker)

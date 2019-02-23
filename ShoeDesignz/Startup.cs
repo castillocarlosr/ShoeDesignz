@@ -50,11 +50,6 @@ namespace ShoeDesignz
             //options.UseSqlServer(Configuration["ConnectionStrings:DefaultConnection"]));
 
 
-
-
-
-
-
             services.AddAuthorization(options =>
             {
                 options.AddPolicy("EduEmail", policy => policy.Requirements.Add(new EduEmailRequirement()));
@@ -68,7 +63,7 @@ namespace ShoeDesignz
                 //options.AddPolicy("RiskTaker", policy => policy.Requirements.Add(new RiskTaker()));
                 options.AddPolicy("RiskTaker", policy => policy.Requirements.Add(new RiskTaker("true")));
             });
-
+            
             services.AddScoped<IAuthorizationHandler, RiskTaker>();
         }
 
