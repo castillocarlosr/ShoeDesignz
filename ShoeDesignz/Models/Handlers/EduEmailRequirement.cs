@@ -29,7 +29,7 @@ namespace ShoeDesignz.Models.Handlers
                 return Task.CompletedTask;
             }
 
-            var emailEdu = context.User.FindFirst(e => e.Type == ClaimTypes.Email).Value);
+            var emailEdu = context.User.FindFirst(e => e.Type == ClaimTypes.Email).Value;
 
             if (emailEdu.Contains(".edu"))
             {

@@ -37,22 +37,17 @@ namespace ShoeDesignz
                    .AddEntityFrameworkStores<ApplicationDbContext>()
                    .AddDefaultTokenProviders();
 
-            services.AddDbContext<ApplicationDbContext>(options =>
+           services.AddDbContext<ApplicationDbContext>(options =>
            options.UseSqlServer(Configuration.GetConnectionString("IdentityDefaultConnection")));
 
-            services.AddDbContext<ApplicationDbContext>(options =>
-   options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+            //services.AddDbContext<ApplicationDbContext>(options =>
+            //options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
-            //services.AddDbContext<ShoeDesignzDbContext>(options =>
-            // options.UseSqlServer(Configuration["ConnectionStrings:DefaultConnection"]));
+            services.AddDbContext<ShoeDesignzDbContext>(options =>
+            options.UseSqlServer(Configuration["ConnectionStrings:DefaultConnection"]));
 
             //services.AddDbContext<HotelManagementDbContext>(options =>
             //options.UseSqlServer(Configuration["ConnectionStrings:DefaultConnection"]));
-
-
-
-
-
 
 
             services.AddAuthorization(options =>
@@ -62,6 +57,14 @@ namespace ShoeDesignz
             });
 
             services.AddScoped<IAuthorizationHandler, EduEmailRequirement>();
+
+            services.AddAuthorization(options =>
+            {
+                //options.AddPolicy("RiskTaker", policy => policy.Requirements.Add(new RiskTaker()));
+                options.AddPolicy("RiskTaker", policy => policy.Requirements.Add(new RiskTaker("true")));
+            });
+            
+            services.AddScoped<IAuthorizationHandler, RiskTaker>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
