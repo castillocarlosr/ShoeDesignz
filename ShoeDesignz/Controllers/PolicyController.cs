@@ -22,6 +22,12 @@ namespace ShoeDesignz.Controllers
             return View();
         }
 
+        [Authorize]
+        public IActionResult RiskTaker()
+        {
+            return View();
+        }
+
         //public IActionResult Login() => View();
         //public IActionResult Logout() => View();
     }
