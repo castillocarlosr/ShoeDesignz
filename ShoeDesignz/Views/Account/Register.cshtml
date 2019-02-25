@@ -1,73 +1,55 @@
 ﻿@model ShoeDesignz.Models.ViewModels.RegisterUser
+@using Microsoft.AspNetCore.Identity;
+@using ShoeDesignz.Models;
+@inject SignInManager<ApplicationUser> SignInManager
+
 @{
     ViewData["Title"] = "Register";
     Layout = "_Layout";
 }
 
-<div class="jumbotron">
-    <form method="post">
-        <h1 class="display-4">Hello, world!</h1>
-       
-        <hr class="my-4">
-        <label asp-for="FirstName"></label>
-        <input asp-for="FirstName" />
-        <span asp-validation-for="FirstName"></span>
-        <label asp-for="LastName"></label>
-        <input asp-for="LastName" />
-        <span asp-validation-for="LastName"></span>
 
-        <label asp-for="Birthday"></label>
-        <input type="date" asp-for="Birthday" />
-        <span asp-validation-for="Birthday"></span>
+<section>
+    @if (!SignInManager.IsSignedIn(User))
+    {
+        <div class="jumbotron">
+            <form method="post">
+                <h1 class="display-4">Hello, world!</h1>
 
-        <label asp-for="Email"></label>
-        <input asp-for="Email" />
-        <span asp-validation-for="Email"></span>
+                <hr class="my-4">
+                <label asp-for="FirstName"></label>
+                <input asp-for="FirstName" />
+                <span asp-validation-for="FirstName"></span>
+                <label asp-for="LastName"></label>
+                <input asp-for="LastName" />
+                <span asp-validation-for="LastName"></span>
 
-        <label asp-for="Password"></label>
-        <input asp-for="Password" />
-        <span asp-validation-for="Password"></span>
+                <label asp-for="Birthday"></label>
+                <input type="date" asp-for="Birthday" />
+                <span asp-validation-for="Birthday"></span>
 
-        <label asp-for="ConfirmPassword"></label>
-        <input asp-for="ConfirmPassword" />
-        <span asp-validation-for="ConfirmPassword"></span>
+                <label asp-for="Email"></label>
+                <input asp-for="Email" />
+                <span asp-validation-for="Email"></span>
 
-        <button type="submit" class="btn btn-primary">Register</button>
+                <label asp-for="Password"></label>
+                <input asp-for="Password" />
+                <span asp-validation-for="Password"></span>
 
-    </form>
-</div>
-   
-        @*<div class="container">
+                <label asp-for="ConfirmPassword"></label>
+                <input asp-for="ConfirmPassword" />
+                <span asp-validation-for="ConfirmPassword"></span>
 
-            <h1>Register</h1>
+                <button type="submit" class="btn btn-primary">Register</button>
 
-            <label for="firstname"><b>First Name</b></label>
-            <input type="text" placeholder="Enter First Name" name="firstname" required>
-
-            <label for="lastname"><b>Last Name</b></label>
-            <input type="text" placeholder="Enter Last Name" name="lstname" required>
-
-            <label for="birthday"><b>Birthdate</b></label>
-            <input type="Date" placeholder="Enter Birthday" name="birthday" required>
-
-            <label for="email"><b>Email</b></label>
-            <input type="text" placeholder="Enter Email" name="email" required>
-
-            <label for="psw"><b>Password</b></label>
-            <input type="password" placeholder="Enter Password" name="psw" required>
-
-            <label for="psw-repeat"><b>Repeat Password</b></label>
-            <input type="password" placeholder="Repeat Password" name="psw-repeat" required>
-            <hr>
-
-            <p>By creating an account you agree to our <a href="#">Terms & Privacy</a>.</p>
-            <button type="submit" class="registerbtn">Register</button>
+            </form>
         </div>
-
-        <div class="container signin">
-            <p>Already have an account? <a href="#">Sign in</a>.</p>
-        </div>*@
-
+    }
+    else
+    {
+        <h1>No need to register! you are already registered!!!!</h1>
+    }
+    </section>
 
 
 

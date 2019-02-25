@@ -1,23 +1,38 @@
 ﻿@model ShoeDesignz.Models.ViewModels.LoginUser
-
-<div class="jumbotron">
-    <form method="post">
-        <h1 class="display-4">Login</h1>
-        <hr class="my-4">
-        <div asp-validation-summary="All"></div>
-
-        <label asp-for="Email"></label>
-        <input asp-for="Email" />
-        <span asp-validation-for="Email"></span>
+@using Microsoft.AspNetCore.Identity;
+@using ShoeDesignz.Models;
+@inject SignInManager<ApplicationUser> SignInManager
 
 
-        <label asp-for="Password"></label>
-        <input asp-for="Password" />
-        <span asp-validation-for="Password"></span>
+<section>
+    @if (!SignInManager.IsSignedIn(User))
+    {
+        <div class="jumbotron">
+            <form method="post">
+                <h1 class="display-4">Login</h1>
+                <hr class="my-4">
+                <div asp-validation-summary="All"></div>
+
+                <label asp-for="Email"></label>
+                <input asp-for="Email" />
+                <span asp-validation-for="Email"></span>
 
 
+                <label asp-for="Password"></label>
+                <input asp-for="Password" />
+                <span asp-validation-for="Password"></span>
 
-        <button type="submit" class="btn btn-primary">Login</button>
-    </form>
-</div>
+                <button type="submit" class="btn btn-primary">Login</button>
+            </form>
+        </div>
+    }
+    else
+    {
+        <span>Hello @User.Claims.First(m => m.Type == "FullName").Value</span>
+        <p>YOU ARE already LOGGED IN</p>
+        <a asp-controller="Product" asp-action="Products">View Products</a>
 
+    }
+
+
+</section>
