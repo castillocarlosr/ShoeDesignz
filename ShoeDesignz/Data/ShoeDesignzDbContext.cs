@@ -1,9 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using ShoeDesignz.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using static ShoeDesignz.Models.Inventory;
 
 namespace ShoeDesignz.Data

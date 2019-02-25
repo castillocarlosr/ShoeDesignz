@@ -13,6 +13,8 @@ using Microsoft.Extensions.DependencyInjection;
 using ShoeDesignz.Data;
 using ShoeDesignz.Models;
 using ShoeDesignz.Models.Handlers;
+using ShoeDesignz.Models.Interfaces;
+using ShoeDesignz.Models.Services;
 
 namespace ShoeDesignz
 {
@@ -37,8 +39,12 @@ namespace ShoeDesignz
                    .AddEntityFrameworkStores<ApplicationDbContext>()
                    .AddDefaultTokenProviders();
 
+           // services.AddDbContext<ApplicationDbContext>(options =>
+            //options.UseSqlServer(Configuration.GetConnectionString("IdentityDefaultConnection")));
+
            services.AddDbContext<ApplicationDbContext>(options =>
            options.UseSqlServer(Configuration.GetConnectionString("IdentityDefaultConnection")));
+           //options.UseSqlServer(Configuration.GetConnectionString("DefaultConnectionString")));
 
             //services.AddDbContext<ApplicationDbContext>(options =>
             //options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
@@ -46,8 +52,8 @@ namespace ShoeDesignz
             services.AddDbContext<ShoeDesignzDbContext>(options =>
             options.UseSqlServer(Configuration["ConnectionStrings:DefaultConnection"]));
 
-            //services.AddDbContext<HotelManagementDbContext>(options =>
-            //options.UseSqlServer(Configuration["ConnectionStrings:DefaultConnection"]));
+           
+            //services.AddScoped<IInventory, InventoryManagementServices>();
 
 
             services.AddAuthorization(options =>
@@ -65,6 +71,7 @@ namespace ShoeDesignz
             });
             
             services.AddScoped<IAuthorizationHandler, RiskTaker>();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -78,6 +85,7 @@ namespace ShoeDesignz
             }
 
             app.UseStaticFiles();
+           
 
             app.UseMvc(route =>
             {

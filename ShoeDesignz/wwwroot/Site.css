@@ -4,4 +4,14 @@
     border-radius: 0;
     height: 12vw;
 }
-    
+
+.monospaced {
+    font-family: 'Ubuntu Mono', monospaced;
+}
+
+img.image-responsive {
+    width: 25vw;
+}
+.row {
+    padding-bottom: 12vw;
+}
