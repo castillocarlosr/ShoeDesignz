@@ -1,5 +1,9 @@
 ﻿@model IEnumerable<ShoeDesignz.Models.Inventory>
 
+@using Microsoft.AspNetCore.Identity;
+@using ShoeDesignz.Models;
+@inject SignInManager<ApplicationUser> SignInManager
+
 @{
     ViewData["Title"] = "Products";
     Layout = "_Layout";
@@ -8,6 +12,13 @@
 
 <h1>Products</h1>
 Here all products will show
+<div>
+    <nav>
+        <a class="btn btn-primary btn-lg" role="button" asp-controller="Policy" asp-action="Index">Student edu Discount</a>
+        <customErrors mode="On" redirectMode="ResponseRewrite">
+        <error statusCode="404" redirect="Error404" />
+    </nav>
+</div>
 
 @foreach (var item in Model)
 {
@@ -23,7 +34,7 @@ Here all products will show
                 <ul class="list-group list-group-flush">
                     <li class="list-group-item"><h1>@item.Name</h1></li>
                     <li class="list-group-item"><h2>Sku: @item.Sku</h2></li>
-                    
+
                     <li class="list-group-item"><h2>Price: @item.Price</h2></li>
                 </ul>
                 <ul class="nav nav-tabs" id="myTab" role="tablist">
@@ -43,7 +54,7 @@ Here all products will show
                     <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">...</div>
                 </div>
             </div>
-    </div>
+        </div>
     </section>
 
 }
