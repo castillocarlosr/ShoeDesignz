@@ -22,8 +22,6 @@
                 <input asp-for="Password" />
                 <span asp-validation-for="Password"></span>
 
-
-
                 <button type="submit" class="btn btn-primary">Login</button>
             </form>
         </div>
@@ -32,6 +30,7 @@
     {
         <span>Hello @User.Claims.First(m => m.Type == "FullName").Value</span>
         <p>YOU ARE already LOGGED IN</p>
+        <a asp-controller="Product" asp-action="Products">View Products</a>
 
     }
 
