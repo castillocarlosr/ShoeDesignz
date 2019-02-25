@@ -1,4 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Filters;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -35,6 +37,12 @@ namespace ShoeDesignz.Models.Handlers
             {
                 context.Succeed(requirement);
             }
+            //else
+            //{
+                //new RedirectToActionResult("Error404", "Account", "Error");
+                //var noDiscount = context.Resource as AuthorizationFilterContext;
+                //noDiscount.Result = new RedirectToActionResult("Error404", "Product", "Error404");
+            //}
 
             return Task.CompletedTask;
         }
