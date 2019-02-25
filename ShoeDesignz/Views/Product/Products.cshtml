@@ -11,23 +11,40 @@ Here all products will show
 
 @foreach (var item in Model)
 {
-    <div class="row">
-        <div class="column">
-            <div class="card" style="width: 18rem;">
-                <img src="~/Images/Image from iOS.jpg" class="card-img-top" alt="...">
-                
+    <section class="outter-box">
+        <div class="row">
+            <div class="column">
+                <div class="card" style="width: 18rem;">
+                    <img src="~/Images/Image from iOS.jpg" class="card-img-top" alt="...">
+
+                </div>
             </div>
-        </div>
-   <div class="column">
-       <ul class="list-group list-group-flush">
-           <li class="list-group-item"><h1>@item.Name</h1></li>
-           <li class="list-group-item"><h2>Sku: @item.Sku</h2></li>
-           <li class="list-group-item"><h2>Description: @item.Description</h2></li>
-           <li class="list-group-item"><h2>Price: @item.Price</h2></li>
-       </ul>
-   </div>
-      
+            <div class="column">
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item"><h1>@item.Name</h1></li>
+                    <li class="list-group-item"><h2>Sku: @item.Sku</h2></li>
+                    
+                    <li class="list-group-item"><h2>Price: @item.Price</h2></li>
+                </ul>
+                <ul class="nav nav-tabs" id="myTab" role="tablist">
+                    <li class="nav-item">
+                        <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Details</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Profile</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">Contact</a>
+                    </li>
+                </ul>
+                <div class="tab-content" id="myTabContent">
+                    <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">@item.Description</div>
+                    <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">...</div>
+                    <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">...</div>
+                </div>
+            </div>
     </div>
+    </section>
 
 }
 
