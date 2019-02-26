@@ -41,7 +41,7 @@ Contact information:  comming soon......
 
 # Authors
 * [Carlos Castillo](https://github.com/castillocarlosr)
-* [Regan Dufort](https://github.com/castillocarlosr)
+* [Regan Dufort](https://github.com/bigrig72)
 
 #### Links for Microsft Docs  (a lot of fun technical stuff)
 - [ASP.NET Core](https://github.com/aspnet/Home)
