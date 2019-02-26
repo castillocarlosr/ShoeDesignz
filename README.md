@@ -2,7 +2,7 @@
 ```
 Deployed on Azure
 ```
-[Shoez Design]()
+[Shoez Design](shoedesignz.azurewebsites.net)
 
 # Project e-Commerce ShoeDesignzzzzz by Carlos & Regan
 #### you'll love it
@@ -26,8 +26,7 @@ A working progress.
 
 # Getting Started
 Click on the link below to:
-
-
+shoedesignz.azurewebsites.net
 
 You may also view at the source code in the folders above.
 
@@ -41,7 +40,7 @@ TODO: Explain how other users and developers can contribute to make your code be
 * [Carlos Castillo](https://github.com/castillocarlosr)
 * [Regan Dufort](https://github.com/castillocarlosr)
 
-#### Links for Microsft Docs
+#### Links for Microsft Docs  (a lot of fun technical stuff)
 - [ASP.NET Core](https://github.com/aspnet/Home)
 - [Visual Studio Code](https://github.com/Microsoft/vscode)
 - [Chakra Core](https://github.com/Microsoft/ChakraCore)
