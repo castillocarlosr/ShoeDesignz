@@ -35,7 +35,9 @@ You may also view at the source code in the folders above.
 xUnit tests coming......
 
 # Contribute
-TODO: Explain how other users and developers can contribute to make your code better. 
+Other user and developers are free to offer contribution and help.  You may fork the repo. 
+Make sure to comment all your contribution.
+Contact information:  comming soon......
 
 # Authors
 * [Carlos Castillo](https://github.com/castillocarlosr)
