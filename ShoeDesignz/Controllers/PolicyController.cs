@@ -16,6 +16,11 @@ namespace ShoeDesignz.Controllers
             return View();
         }
 
+        public IActionResult EduEmail()
+        {
+            return View();
+        }
+
         //[Authorize]
         //public IActionResult Education()
         //{
