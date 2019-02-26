@@ -33,8 +33,5 @@ namespace ShoeDesignz.Controllers
             var product = GetAllProducts(shoeID);
             return View("Products", product);
         }
-
-        
-
     }
 }
