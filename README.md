@@ -25,7 +25,8 @@ A working progress.
 - Coming Soon: The user will be able to make a simulated purchase with a simulated example credit card. 
 
 # Getting Started
-Click on the link below to:
+Click on the link below to visit our e-commerce ShoeDesignZ:
+
 shoedesignz.azurewebsites.net
 
 You may also view at the source code in the folders above.
