@@ -49,10 +49,13 @@ namespace ShoeDesignz
             //services.AddDbContext<ApplicationDbContext>(options =>
             //options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
-            services.AddDbContext<ShoeDesignzDbContext>(options =>
-            options.UseSqlServer(Configuration["ConnectionStrings:DefaultConnection"]));
+            //services.AddDbContext<ShoeDesignzDbContext>(options =>
+            //options.UseSqlServer(Configuration["ConnectionStrings:DefaultConnection"]));
 
-           
+            services.AddDbContext<ShoeDesignzDbContext>(options =>
+            options.UseSqlServer(Configuration["ConnectionStrings:ProductionConnection"]));
+
+
             //services.AddScoped<IInventory, InventoryManagementServices>();
 
 
