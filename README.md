@@ -4,7 +4,7 @@ Deployed on Azure
 ```
 [Shoez Design](shoedesignz.azurewebsites.net)
 
-# Project e-Commerce ShoeDesignzzzzz by Carlos & Regan
+# Project e-Commerce ShoeDesignz by Carlos & Regan
 #### you'll love it
 
 ## Introduction
