@@ -9,8 +9,8 @@ using ShoeDesignz.Data;
 namespace ShoeDesignz.Migrations
 {
     [DbContext(typeof(ShoeDesignzDbContext))]
-    [Migration("20190223011127_feb22")]
-    partial class feb22
+    [Migration("20190227184117_DiscountPrice2")]
+    partial class DiscountPrice2
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -27,6 +27,8 @@ namespace ShoeDesignz.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("Description");
+
+                    b.Property<decimal>("DiscountPrice");
 
                     b.Property<int>("Gender");
 
@@ -47,6 +49,7 @@ namespace ShoeDesignz.Migrations
                         {
                             ID = 1,
                             Description = "These are awesome",
+                            DiscountPrice = 42.00m,
                             Gender = 1,
                             Image = "https://via.placeholder.com/450",
                             Name = "Adidas",
@@ -57,6 +60,7 @@ namespace ShoeDesignz.Migrations
                         {
                             ID = 2,
                             Description = "These are GREAT!  I love them more than pizza!!!!",
+                            DiscountPrice = 25.00m,
                             Gender = 2,
                             Image = "https://via.placeholder.com/350",
                             Name = "Nike",
@@ -67,6 +71,7 @@ namespace ShoeDesignz.Migrations
                         {
                             ID = 3,
                             Description = "These are ok.",
+                            DiscountPrice = 5.00m,
                             Gender = 2,
                             Image = "https://via.placeholder.com/250",
                             Name = "Skech3rs",
@@ -77,6 +82,7 @@ namespace ShoeDesignz.Migrations
                         {
                             ID = 4,
                             Description = "Cool Coool Coool",
+                            DiscountPrice = 5.00m,
                             Gender = 0,
                             Image = "https://via.placeholder.com/150",
                             Name = "Jordans",
@@ -87,6 +93,7 @@ namespace ShoeDesignz.Migrations
                         {
                             ID = 5,
                             Description = "Total Rip OFF!",
+                            DiscountPrice = 50.00m,
                             Gender = 1,
                             Image = "https://via.placeholder.com/450",
                             Name = "Fake",

@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace ShoeDesignz.Migrations
 {
-    public partial class newdb2 : Migration
+    public partial class DiscountPrice2 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -16,6 +16,7 @@ namespace ShoeDesignz.Migrations
                     Name = table.Column<string>(nullable: true),
                     Sku = table.Column<int>(nullable: false),
                     Price = table.Column<decimal>(nullable: false),
+                    DiscountPrice = table.Column<decimal>(nullable: false),
                     Description = table.Column<string>(nullable: true),
                     Gender = table.Column<int>(nullable: false),
                     Image = table.Column<string>(nullable: true)
@@ -27,14 +28,14 @@ namespace ShoeDesignz.Migrations
 
             migrationBuilder.InsertData(
                 table: "Shoes",
-                columns: new[] { "ID", "Description", "Gender", "Image", "Name", "Price", "Sku" },
+                columns: new[] { "ID", "Description", "DiscountPrice", "Gender", "Image", "Name", "Price", "Sku" },
                 values: new object[,]
                 {
-                    { 1, "These are awesome", 1, "https://via.placeholder.com/450", "Adidas", 234.56m, 123478901 },
-                    { 2, "These are GREAT!  I love them more than pizza!!!!", 2, "https://via.placeholder.com/350", "Nike", 222.22m, 9876543 },
-                    { 3, "These are ok.", 2, "https://via.placeholder.com/250", "Skech3rs", 33.33m, 144458901 },
-                    { 4, "Cool Coool Coool", 0, "https://via.placeholder.com/150", "Jordans", 44.44m, 123472221 },
-                    { 5, "Total Rip OFF!", 1, "https://via.placeholder.com/450", "Fake", 555.55m, 123471111 }
+                    { 1, "These are awesome", 42.00m, 1, "https://via.placeholder.com/450", "Adidas", 234.56m, 123478901 },
+                    { 2, "These are GREAT!  I love them more than pizza!!!!", 25.00m, 2, "https://via.placeholder.com/350", "Nike", 222.22m, 9876543 },
+                    { 3, "These are ok.", 5.00m, 2, "https://via.placeholder.com/250", "Skech3rs", 33.33m, 144458901 },
+                    { 4, "Cool Coool Coool", 5.00m, 0, "https://via.placeholder.com/150", "Jordans", 44.44m, 123472221 },
+                    { 5, "Total Rip OFF!", 50.00m, 1, "https://via.placeholder.com/450", "Fake", 555.55m, 123471111 }
                 });
         }
 
