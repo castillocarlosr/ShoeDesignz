@@ -69,6 +69,60 @@ namespace ShoeDesignz.Data
                     Gender = Genders.Female,
                     Description = "Total Rip OFF!",
                     Image = "https://via.placeholder.com/450"
+                }, new Inventory
+                {
+                    ID = 6,
+                    Name = "ShoeSix",
+                    Sku = 1066666,
+                    Price = 234.56m,
+                    DiscountPrice = 42.00m,
+                    Gender = Genders.Female,
+                    Description = "These are awesome",
+                    Image = "https://via.placeholder.com/450"
+                },
+                new Inventory
+                {
+                    ID = 7,
+                    Name = "ShoeSeven",
+                    Sku = 10777777,
+                    Price = 222.22m,
+                    DiscountPrice = 25.00m,
+                    Gender = Genders.Neutral,
+                    Description = "These are GREAT!  I love them more than pizza!!!!",
+                    Image = "https://via.placeholder.com/350"
+                },
+                new Inventory
+                {
+                    ID = 8,
+                    Name = "Shoe8",
+                    Sku = 11088881,
+                    Price = 33.33m,
+                    DiscountPrice = 5.00m,
+                    Gender = Genders.Neutral,
+                    Description = "These are ok.",
+                    Image = "https://via.placeholder.com/250"
+                },
+                new Inventory
+                {
+                    ID = 9,
+                    Name = "ShoeNine",
+                    Sku = 11099999,
+                    Price = 44.44m,
+                    DiscountPrice = 5.00m,
+                    Gender = Genders.Male,
+                    Description = "Cool Coool Coool",
+                    Image = "https://via.placeholder.com/150"
+                },
+                new Inventory
+                {
+                    ID = 10,
+                    Name = "ShoeTen",
+                    Sku = 101010101,
+                    Price = 555.55m,
+                    DiscountPrice = 50.00m,
+                    Gender = Genders.Female,
+                    Description = "Total Rip OFF!",
+                    Image = "https://via.placeholder.com/450"
                 }
                 );
         }
