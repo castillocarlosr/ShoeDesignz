@@ -41,16 +41,16 @@ namespace ShoeDesignz
            services.AddDbContext<ApplicationDbContext>(options =>
            options.UseSqlServer(Configuration["ConnectionStrings:IdentityDefaultConnection"]));
 
-            services.AddDbContext<ShoeDesignzDbContext>(options =>
-            options.UseSqlServer(Configuration["ConnectionStrings:ProductionConnection"]));
-
             //services.AddDbContext<ShoeDesignzDbContext>(options =>
             //options.UseSqlServer(Configuration["ConnectionStrings:ProductionConnection"]));
 
+            services.AddDbContext<ShoeDesignzDbContext>(options =>
+            options.UseSqlServer(Configuration["ConnectionStrings:DefaultConnection"]));
 
-            //services.AddScoped<IInventory, InventoryManagementServices>();
 
+            services.AddScoped<IInventory, InventoryManagementServices>();
 
+            
             services.AddAuthorization(options =>
             {
                 options.AddPolicy("EduEmail", policy => policy.Requirements.Add(new EduEmailRequirement()));
