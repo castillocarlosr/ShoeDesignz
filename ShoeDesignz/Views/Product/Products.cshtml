@@ -1,4 +1,7 @@
-﻿@model IEnumerable<ShoeDesignz.Models.Inventory>
+﻿@model List<ShoeDesignz.Models.Inventory>
+@using ShoeDesignz.Models;
+@using Microsoft.AspNetCore.Identity;
+@inject SignInManager<ApplicationUser> SignInManager
 
 @using Microsoft.AspNetCore.Identity;
 @using ShoeDesignz.Models;
@@ -8,7 +11,26 @@
     ViewData["Title"] = "Products";
     Layout = "_Layout";
     var products = this.ViewContext.RouteData.Values["id"];
+
 }
+
+<header>
+    <div class="jumbotron jumbotron-fluid">
+
+        @if (!SignInManager.IsSignedIn(User))
+        {
+            <a asp-controller="Account" asp-action="Register">Register</a>
+            <a asp-controller="Account" asp-action="Login">Login</a>
+        }
+        else
+        {
+            <a asp-controller="Cart" asp-action="Products">View Cart</a>
+            <a asp-controller="Product" asp-action="Products">View Products</a>
+        }
+
+    </div>
+</header>
+
 
 <h1>Products</h1>
 Here all products will show
@@ -19,6 +41,9 @@ Here all products will show
         <error statusCode="404" redirect="Error404" />
     </nav>
 </div>
+
+
+
 
 @foreach (var item in Model)
 {
@@ -36,6 +61,8 @@ Here all products will show
                     <li class="list-group-item"><h2>Sku: @item.Sku</h2></li>
 
                     <li class="list-group-item"><h2>Price: @item.Price</h2></li>
+                    <li><a asp-controller="Product" asp-route-id="@item.ID" asp-action="Details">View Details</a></li>
+
                 </ul>
                 <ul class="nav nav-tabs" id="myTab" role="tablist">
                     <li class="nav-item">

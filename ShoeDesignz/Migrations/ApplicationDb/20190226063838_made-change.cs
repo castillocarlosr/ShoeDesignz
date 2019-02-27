@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace ShoeDesignz.Migrations.ApplicationDb
 {
-    public partial class newdb3 : Migration
+    public partial class madechange : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

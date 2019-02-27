@@ -29,7 +29,6 @@ namespace ShoeDesignz
             var builder = new ConfigurationBuilder().AddEnvironmentVariables();
             builder.AddUserSecrets<Startup>();
             Configuration = builder.Build();
-            Configuration = configuration;
         }
 
         public void ConfigureServices(IServiceCollection services)
@@ -39,18 +38,11 @@ namespace ShoeDesignz
                    .AddEntityFrameworkStores<ApplicationDbContext>()
                    .AddDefaultTokenProviders();
 
-           // services.AddDbContext<ApplicationDbContext>(options =>
-            //options.UseSqlServer(Configuration.GetConnectionString("IdentityDefaultConnection")));
-
            services.AddDbContext<ApplicationDbContext>(options =>
-           options.UseSqlServer(Configuration.GetConnectionString("IdentityDefaultConnection")));
-           //options.UseSqlServer(Configuration.GetConnectionString("DefaultConnectionString")));
-
-            //services.AddDbContext<ApplicationDbContext>(options =>
-            //options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+           options.UseSqlServer(Configuration["ConnectionStrings:IdentityDefaultConnection"]));
 
             services.AddDbContext<ShoeDesignzDbContext>(options =>
-            options.UseSqlServer(Configuration["ConnectionStrings:DefaultConnection"]));
+            options.UseSqlServer(Configuration["ConnectionStrings:ProductionConnection"]));
 
             //services.AddDbContext<ShoeDesignzDbContext>(options =>
             //options.UseSqlServer(Configuration["ConnectionStrings:ProductionConnection"]));
@@ -88,7 +80,7 @@ namespace ShoeDesignz
             }
 
             app.UseStaticFiles();
-           
+        
 
             app.UseMvc(route =>
             {

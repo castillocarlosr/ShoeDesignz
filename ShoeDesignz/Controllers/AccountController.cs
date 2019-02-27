@@ -40,29 +40,25 @@ namespace ShoeDesignz.Controllers
 
 
                 var result = await _userManager.CreateAsync(user, rvm.Password);
-
                 if (result.Succeeded)
                 {
-
                     Claim fullNameClaim = new Claim("FullName", $"{user.FirstName} {user.LastName}");
 
                     Claim birthdayClaim = new Claim(ClaimTypes.DateOfBirth, new DateTime(user.Birthday.Year, user.Birthday.Month, user.Birthday.Day).ToString("u"),
                     ClaimValueTypes.DateTime);
 
                     Claim emailClaim = new Claim(ClaimTypes.Email, user.Email, ClaimTypes.Email);
-
                     List<Claim> claims = new List<Claim> { fullNameClaim, birthdayClaim, emailClaim };
 
                     await _userManager.AddClaimsAsync(user, claims);
                     await _signInManager.SignInAsync(user, isPersistent: false);
-                    return RedirectToAction("Index", "Home");
+                    return RedirectToAction("Products", "Product");
                 }
             }
 
             return View(rvm);
         }
         [HttpGet]
-
         public IActionResult Login() => View();
 
         [HttpPost]
@@ -74,19 +70,19 @@ namespace ShoeDesignz.Controllers
 
                 if (result.Succeeded)
                 {
-                    return RedirectToAction("Index", "Home");
+                    return RedirectToAction("Products", "Product");
                 }
             }
+
             ModelState.TryAddModelError(string.Empty, "Invalid Login Attempt");
 
-            return View(lvm);
+            return View(lvm);          
         }
 
         public IActionResult AccessDenied()
         {
             return View();
         }
-
 
     }
 }
