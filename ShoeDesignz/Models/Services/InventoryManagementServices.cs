@@ -19,17 +19,18 @@ namespace ShoeDesignz.Models.Services
        
         // Get all shoes 
         public async Task<List<Inventory>> GetInventories()
-        {         
-            inventory.DiscountPrice = inventory.Price / 4;
-            _context.Shoes.Add(inventory);
-            await _context.SaveChangesAsync();
+        {
+            //inventory.DiscountPrice = inventory.Price / 4;
+            //_context.Shoes.Add(inventory);
+            //await _context.SaveChangesAsync();
+            return await _context.Shoes.ToListAsync();
         }
-
+        /*
         public async Task<IEnumerable<Inventory>> GetInventories()
         {
                 return await _context.Shoes.ToListAsync();            
         }
-
+        */
    
         public async Task UpdateInventory(Inventory inventory)
         {
