@@ -20,6 +20,7 @@ namespace ShoeDesignz.Models.Services
 
         public async Task CreateInventory(Inventory inventory)
         {
+            inventory.DiscountPrice = inventory.Price / 4;
             _context.Shoes.Add(inventory);
             await _context.SaveChangesAsync();
         }
@@ -46,6 +47,7 @@ namespace ShoeDesignz.Models.Services
 
         public async Task UpdateInventory(Inventory inventory)
         {
+            inventory.DiscountPrice = inventory.Price / 4;
             _context.Shoes.Update(inventory);
             await _context.SaveChangesAsync();
         }
