@@ -1,8 +1,27 @@
-﻿
+﻿@using ShoeDesignz.Models;
+@using Microsoft.AspNetCore.Identity;
+@inject SignInManager<ApplicationUser> SignInManager
 @{
     ViewData["Title"] = "Index";
     Layout = "_Layout";
 }
 
+
 <h1>I am home!!!!</h1>
 
+<header>
+    <div class="jumbotron jumbotron-fluid">
+
+        @if (!SignInManager.IsSignedIn(User))
+        {
+            <a asp-controller="Account" asp-action="Register">Register</a>
+            <a asp-controller="Account" asp-action="Login">Login</a>
+        }
+        else
+        {
+            <a asp-controller="Cart" asp-action="Products">View Cart</a>
+            <a asp-controller="Product" asp-action="Products">View Products</a>
+        }
+
+    </div>
+</header>

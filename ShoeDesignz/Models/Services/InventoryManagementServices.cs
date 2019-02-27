@@ -10,40 +10,20 @@ namespace ShoeDesignz.Models.Services
 {
     public class InventoryManagementServices : IInventory
     {
-        public ShoeDesignzDbContext _context { get; }
+        private ShoeDesignzDbContext _context { get; }
 
         public InventoryManagementServices(ShoeDesignzDbContext context)
         {
             _context = context;
         }
-
-
-        public async Task CreateInventory(Inventory inventory)
-        {
-            _context.Shoes.Add(inventory);
-            await _context.SaveChangesAsync();
+       
+        // Get all shoes 
+        public async Task<List<Inventory>> GetInventories()
+        {         
+                return await _context.Shoes.ToListAsync();            
         }
 
-        public async Task<IEnumerable<Inventory>> GetInventories()
-        {
-            return await _context.Shoes.ToListAsync();
-        }
-
-        public async Task<Inventory> GetInventoryByID(int id)
-        {
-            return await _context.Shoes.FirstOrDefaultAsync(s => s.ID == id);
-        }
-
-        public Task<Inventory> GetInventoryAll(int id)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<Inventory> GetInventoryByGender(int id)
-        {
-            throw new NotImplementedException();
-        }       
-
+   
         public async Task UpdateInventory(Inventory inventory)
         {
             _context.Shoes.Update(inventory);
@@ -55,6 +35,16 @@ namespace ShoeDesignz.Models.Services
             Inventory inventory = _context.Shoes.FirstOrDefault(shoe => shoe.ID == id);
             _context.Shoes.Remove(inventory);
             await _context.SaveChangesAsync();
+        }
+
+        public async Task<Inventory> GetInventoryByID(int id)
+        {
+            return await _context.Shoes.FirstOrDefaultAsync(e => e.ID == id);
+        }
+
+        private bool ShoeExists(int id)
+        {
+            return _context.Shoes.Any(e => e.ID == id);
         }
     }
 }

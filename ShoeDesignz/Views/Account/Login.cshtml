@@ -3,16 +3,57 @@
 @using ShoeDesignz.Models;
 @inject SignInManager<ApplicationUser> SignInManager
 
+@{
+    ViewData["Title"] = "Login";
+    Layout = "_Layout";
+}
 
-<section>
+<section class="Outter">
     @if (!SignInManager.IsSignedIn(User))
     {
-        <div class="jumbotron">
+        <div class="container">
+                <div class="d-flex justify-content-center h-100">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3>Sign In</h3>
+                            <div class="d-flex justify-content-end social_icon">
+                                <span><i class="fab fa-facebook-square"></i></span>
+                                <span><i class="fab fa-google-plus-square"></i></span>
+                                <span><i class="fab fa-twitter-square"></i></span>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <form method="post">
+                                <div class="form-group">
+                                    <label for="email">Email address:</label>
+                                    <input type="email" class="form-control" id="email">
+                                </div>
+                                <div class="form-group">
+                                    <label for="pwd">Password:</label>
+                                    <input type="password" class="form-control" id="pwd">
+                                </div>
+                                <div class="checkbox">
+                                    <label><input type="checkbox"> Remember me</label>
+                                </div>
+                                <div class="form-group">
+                                    <button type="submit" class="btn float-right login_btn">Submit</button>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="card-footer">
+                            <div class="d-flex justify-content-center links">
+                                Don't have an account? <a asp-controller="Account" asp-action="Register">Register</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        @*<div class="jumbotron">
             <form method="post">
                 <h1 class="display-4">Login</h1>
                 <hr class="my-4">
                 <div asp-validation-summary="All"></div>
-
                 <label asp-for="Email"></label>
                 <input asp-for="Email" />
                 <span asp-validation-for="Email"></span>
@@ -24,8 +65,10 @@
 
                 <button type="submit" class="btn btn-primary">Login</button>
             </form>
-        </div>
+
+        </div>*@
     }
+
     else
     {
         <span>Hello @User.Claims.First(m => m.Type == "FullName").Value</span>
@@ -33,6 +76,5 @@
         <a asp-controller="Product" asp-action="Products">View Products</a>
 
     }
-
 
 </section>

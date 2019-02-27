@@ -1,38 +1,31 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using ShoeDesignz.Data;
+﻿using Microsoft.AspNetCore.Mvc;
 using ShoeDesignz.Models;
 using ShoeDesignz.Models.Interfaces;
+using System.Threading.Tasks;
 
 namespace ShoeDesignz.Controllers
 {
     public class ProductController : Controller
     {
-        private readonly ShoeDesignzDbContext _context;
+        private readonly IInventory _context;
 
-        public ProductController(ShoeDesignzDbContext context)
+        public ProductController(IInventory context)
         {
             _context = context;
         }
 
-
-        public List<Inventory> GetAllProducts(int productID)
-        {
-            return _context.Shoes.ToList();
-        }
-
-
         // Get Shoes 
-
-        public IActionResult Products(int shoeID)
+        [HttpGet]
+        public async Task<IActionResult> Products()
         {
-
-            var product = GetAllProducts(shoeID);
+            var product = await _context.GetInventories();
             return View("Products", product);
         }
 
+        public async Task<IActionResult> Details(int id)
+        {
+            Inventory product = await _context.GetInventoryByID(id);
+            return View("Details", product);
+        }
     }
 }
