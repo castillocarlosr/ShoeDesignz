@@ -69,11 +69,12 @@ namespace ShoeDesignz.Data
                     Gender = Genders.Female,
                     Description = "Total Rip OFF!",
                     Image = "https://via.placeholder.com/450"
-                }, new Inventory
+                },
+                new Inventory
                 {
                     ID = 6,
-                    Name = "ShoeSix",
-                    Sku = 1066666,
+                    Name = "Shoe6",
+                    Sku = 123478901,
                     Price = 234.56m,
                     DiscountPrice = 42.00m,
                     Gender = Genders.Female,
@@ -83,8 +84,8 @@ namespace ShoeDesignz.Data
                 new Inventory
                 {
                     ID = 7,
-                    Name = "ShoeSeven",
-                    Sku = 10777777,
+                    Name = "Shoe7",
+                    Sku = 9876543,
                     Price = 222.22m,
                     DiscountPrice = 25.00m,
                     Gender = Genders.Neutral,
@@ -95,7 +96,7 @@ namespace ShoeDesignz.Data
                 {
                     ID = 8,
                     Name = "Shoe8",
-                    Sku = 11088881,
+                    Sku = 144458901,
                     Price = 33.33m,
                     DiscountPrice = 5.00m,
                     Gender = Genders.Neutral,
@@ -105,8 +106,8 @@ namespace ShoeDesignz.Data
                 new Inventory
                 {
                     ID = 9,
-                    Name = "ShoeNine",
-                    Sku = 11099999,
+                    Name = "SHoe9",
+                    Sku = 123472221,
                     Price = 44.44m,
                     DiscountPrice = 5.00m,
                     Gender = Genders.Male,
@@ -117,7 +118,7 @@ namespace ShoeDesignz.Data
                 {
                     ID = 10,
                     Name = "ShoeTen",
-                    Sku = 101010101,
+                    Sku = 123471111,
                     Price = 555.55m,
                     DiscountPrice = 50.00m,
                     Gender = Genders.Female,

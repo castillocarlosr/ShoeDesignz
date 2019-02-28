@@ -105,9 +105,9 @@ namespace ShoeDesignz.Migrations
                             DiscountPrice = 42.00m,
                             Gender = 1,
                             Image = "https://via.placeholder.com/450",
-                            Name = "ShoeSix",
+                            Name = "Shoe6",
                             Price = 234.56m,
-                            Sku = 1066666
+                            Sku = 123478901
                         },
                         new
                         {
@@ -116,9 +116,9 @@ namespace ShoeDesignz.Migrations
                             DiscountPrice = 25.00m,
                             Gender = 2,
                             Image = "https://via.placeholder.com/350",
-                            Name = "ShoeSeven",
+                            Name = "Shoe7",
                             Price = 222.22m,
-                            Sku = 10777777
+                            Sku = 9876543
                         },
                         new
                         {
@@ -129,7 +129,7 @@ namespace ShoeDesignz.Migrations
                             Image = "https://via.placeholder.com/250",
                             Name = "Shoe8",
                             Price = 33.33m,
-                            Sku = 11088881
+                            Sku = 144458901
                         },
                         new
                         {
@@ -138,9 +138,9 @@ namespace ShoeDesignz.Migrations
                             DiscountPrice = 5.00m,
                             Gender = 0,
                             Image = "https://via.placeholder.com/150",
-                            Name = "ShoeNine",
+                            Name = "SHoe9",
                             Price = 44.44m,
-                            Sku = 11099999
+                            Sku = 123472221
                         },
                         new
                         {
@@ -151,7 +151,7 @@ namespace ShoeDesignz.Migrations
                             Image = "https://via.placeholder.com/450",
                             Name = "ShoeTen",
                             Price = 555.55m,
-                            Sku = 101010101
+                            Sku = 123471111
                         });
                 });
 #pragma warning restore 612, 618

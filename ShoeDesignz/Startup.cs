@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -36,6 +37,8 @@ namespace ShoeDesignz
            services.AddDbContext<ApplicationDbContext>(options =>
            options.UseSqlServer(Configuration["ConnectionStrings:IdentityDefaultConnection"]));
 
+            //services.AddDbContext<ApplicationDbContext>(options =>
+            //options.UseSqlServer(Configuration["ConnectionStrings:IdentityProductionConnection"]));
             //services.AddDbContext<ShoeDesignzDbContext>(options =>
             //options.UseSqlServer(Configuration["ConnectionStrings:ProductionConnection"]));
 
@@ -61,6 +64,7 @@ namespace ShoeDesignz
             });
             
             services.AddScoped<IAuthorizationHandler, RiskTaker>();
+            services.AddScoped<IEmailSender, EmailSender>();
 
         }
 
