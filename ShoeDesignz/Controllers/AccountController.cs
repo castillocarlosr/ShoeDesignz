@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using ShoeDesignz.Models;
 using ShoeDesignz.Models.ViewModels;
@@ -13,11 +14,13 @@ namespace ShoeDesignz.Controllers
     {
         private UserManager<ApplicationUser> _userManager;
         private SignInManager<ApplicationUser> _signInManager;
+        private IEmailSender _emailSender;
 
-        public AccountController(UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager)
+        public AccountController(UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager, IEmailSender emailSender)
         {
             _userManager = userManager;
             _signInManager = signInManager;
+            _emailSender = emailSender;
         }
 
         [HttpGet]
@@ -52,6 +55,12 @@ namespace ShoeDesignz.Controllers
 
                     await _userManager.AddClaimsAsync(user, claims);
                     await _signInManager.SignInAsync(user, isPersistent: false);
+
+                    //Email edge
+                    await _emailSender.SendEmailAsync(rvm.Email, "Thank you for Loggin In!", "<p>Thanks for being here</p>");
+                    var ourUser = await _userManager.FindByEmailAsync(rvm.Email);
+                    string id = ourUser.Id;
+
                     return RedirectToAction("Products", "Product");
                 }
             }
@@ -70,6 +79,14 @@ namespace ShoeDesignz.Controllers
 
                 if (result.Succeeded)
                 {
+                    //Send the user an email
+                    //Get the user email
+                    //await _emailSender.SendEmailAsync(lvm.Email, "Thank you for Loggin In!", "<p>Thanks for being here</p>");
+
+                    //How do i get a users ID.  follow below.........
+                    //var ourUser = await _userManager.FindByEmailAsync(lvm.Email);
+                    //string id = ourUser.Id;
+
                     return RedirectToAction("Products", "Product");
                 }
             }
@@ -77,6 +94,12 @@ namespace ShoeDesignz.Controllers
             ModelState.TryAddModelError(string.Empty, "Invalid Login Attempt");
 
             return View(lvm);          
+        }
+
+        public async Task<IActionResult> Logout()
+        {
+            await _signInManager.SignOutAsync();
+            return RedirectToAction("Index", "Home");
         }
 
         public IActionResult AccessDenied()
