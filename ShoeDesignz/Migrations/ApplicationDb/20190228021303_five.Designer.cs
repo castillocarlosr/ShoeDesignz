@@ -10,8 +10,8 @@ using ShoeDesignz.Data;
 namespace ShoeDesignz.Migrations.ApplicationDb
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20190223011252_secodfeb22")]
-    partial class secodfeb22
+    [Migration("20190228021303_five")]
+    partial class five
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
