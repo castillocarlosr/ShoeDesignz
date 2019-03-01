@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.UI;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -63,8 +64,19 @@ namespace ShoeDesignz
                 options.AddPolicy("RiskTaker", policy => policy.Requirements.Add(new RiskTaker("true")));
             });
             
-            services.AddScoped<IAuthorizationHandler, RiskTaker>();
+            //services.AddScoped<IAuthorizationHandler, RiskTaker>();
             services.AddScoped<IEmailSender, EmailSender>();
+
+            //Services for twitter Login
+            services.AddDefaultIdentity<IdentityUser>()
+                .AddDefaultUI(UIFramework.Bootstrap4)
+                .AddEntityFrameworkStores<ApplicationDbContext>();
+
+            services.AddAuthentication().AddTwitter(twitterOptions =>
+            {
+                twitterOptions.ConsumerKey = Configuration["Authentication:Twitter:ConsumerKey"];
+                twitterOptions.ConsumerSecret = Configuration["Authentication:Twitter:ConsumerSecret"];
+            });
 
         }
 

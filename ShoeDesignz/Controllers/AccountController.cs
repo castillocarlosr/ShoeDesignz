@@ -106,6 +106,81 @@ namespace ShoeDesignz.Controllers
         {
             return View();
         }
+        //********************twitter setup below**************//
+        [HttpPost]
+        public IActionResult ExternalLogin(string provider)
+        {
+            var redirectURL = Url.Action(nameof(ExternalLoginCallBack), "Account");
+            var properties = _signInManager.ConfigureExternalAuthenticationProperties(provider, redirectURL);
+            return Challenge(properties, provider);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> ExternalLoginCallBack(string error = null)
+        {
+            if(error != null)
+            {
+                TempData["Error"] = "Error with the Provider";
+                return RedirectToAction("Login");
+            }
+
+            var info = await _signInManager.GetExternalLoginInfoAsync();
+
+            if(info == null)
+            {
+                return RedirectToAction(nameof(Login));
+            }
+
+            var result = await _signInManager.ExternalLoginSignInAsync(info.LoginProvider, info.ProviderKey, isPersistent: false, bypassTwoFactor: true);
+
+            if (result.Succeeded)
+            {
+                return RedirectToAction("Products", "Product");
+            }
+
+            var email = info.Principal.FindFirstValue(ClaimTypes.Email);
+
+            return View("ExternalLogin", new ExternalLoginViewModel { Email = email });
+        }
+
+        public async Task<IActionResult> ExternalLoginConfirmation(ExternalLoginViewModel elvm)
+        {
+            if (ModelState.IsValid)
+            {
+                var info = await _signInManager.GetExternalLoginInfoAsync();
+                if(info == null)
+                {
+                    TempData["Error"] = "Error loggin in!";
+                }
+
+                var user = new ApplicationUser
+                {
+                    UserName = elvm.Email,
+                    Email = elvm.Email,
+                    FirstName = elvm.FirstName,
+                    LastName = elvm.LastName,
+                    //Birthday = elvm.Birthday  If we can great.  If not, no big deal.
+                };
+
+                var result = await _userManager.CreateAsync(user);
+
+                if (result.Succeeded)
+                {
+                    Claim fullNameFromClaim = new Claim("FullName", $"{user.FirstName}{user.LastName}");
+                    await _userManager.AddClaimAsync(user, fullNameFromClaim);
+
+                    result = await _userManager.AddLoginAsync(user, info);
+
+                    if (result.Succeeded)
+                    {
+                        await _signInManager.SignInAsync(user, isPersistent: false);
+
+                        return RedirectToAction("Products", "Product");
+                    }
+                }
+            }
+            return View(elvm);
+        }
 
     }
 }
