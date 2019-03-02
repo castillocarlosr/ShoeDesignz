@@ -10,8 +10,8 @@
 
 
 <section>
-    @if (!SignInManager.IsSignedIn(User))
-    {
+    @*@if (!SignInManager.IsSignedIn(User))
+    {*@
         <div class="jumbotron">
             <form method="post">
                 <h1 class="display-4">Hello, world!</h1>
@@ -44,11 +44,11 @@
 
             </form>
         </div>
-    }
+    @*}
     else
     {
         <h1>No need to register! you are already registered!!!!</h1>
-    }
+    }*@
     </section>
 
 

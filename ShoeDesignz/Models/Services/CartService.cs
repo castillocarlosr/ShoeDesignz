@@ -1,4 +1,5 @@
-﻿using ShoeDesignz.Data;
+﻿using Microsoft.EntityFrameworkCore;
+using ShoeDesignz.Data;
 using ShoeDesignz.Models.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -14,14 +15,12 @@ namespace ShoeDesignz.Models.Services
         {
             _context = context;
         }
-        public Task<CartItems> AddCartItem(int id)
+   
+        public async Task DeleteCartItem(int id)
         {
-            throw new NotImplementedException();
-        }
-
-        public Task DeleteCartItem(int id)
-        {
-            throw new NotImplementedException();
+            CartItems DeleteCartItem = await _context.CartItems.FirstOrDefaultAsync(c => c.ProductID == id);
+            _context.CartItems.Remove(DeleteCartItem);
+            await _context.SaveChangesAsync();
         }
 
         public Task<List<CartItems>> SendOrder()
@@ -29,9 +28,15 @@ namespace ShoeDesignz.Models.Services
             throw new NotImplementedException();
         }
 
-        public Task UpdateCart(CartItems CartItems)
+        public async Task UpdateCart(CartItems CartItems)
         {
-            throw new NotImplementedException();
+            _context.CartItems.Update(CartItems);
+            await _context.SaveChangesAsync();
+          
+        }
+        private bool CartItemExists(int id)
+        {
+            return _context.Shoes.Any(e => e.ID == id);
         }
     }
 }

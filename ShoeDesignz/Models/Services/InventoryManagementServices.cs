@@ -16,21 +16,16 @@ namespace ShoeDesignz.Models.Services
         {
             _context = context;
         }
-       
+
+   
+
         // Get all shoes 
         public async Task<List<Inventory>> GetInventories()
         {
-            //inventory.DiscountPrice = inventory.Price / 4;
-            //_context.Shoes.Add(inventory);
-            //await _context.SaveChangesAsync();
+          
             return await _context.Shoes.ToListAsync();
         }
-        /*
-        public async Task<IEnumerable<Inventory>> GetInventories()
-        {
-                return await _context.Shoes.ToListAsync();            
-        }
-        */
+     
    
         public async Task UpdateInventory(Inventory inventory)
         {
@@ -54,6 +49,12 @@ namespace ShoeDesignz.Models.Services
         private bool ShoeExists(int id)
         {
             return _context.Shoes.Any(e => e.ID == id);
+        }
+
+        public async Task AddCartItem(CartItems CartItem)
+        {
+            _context.CartItems.Add(CartItem);
+             await _context.SaveChangesAsync();
         }
     }
 }

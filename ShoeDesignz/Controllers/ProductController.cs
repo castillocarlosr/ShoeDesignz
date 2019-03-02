@@ -29,5 +29,15 @@ namespace ShoeDesignz.Controllers
             Inventory product = await _context.GetInventoryByID(id);
             return View("Details", product);
         }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task <IActionResult> Buy(int id, [Bind("ID,Name")] CartItems product)
+        {
+            await _context.AddCartItem(product);
+   
+         return RedirectToAction("Index", "Cart");
+  
+        }
     }
 }

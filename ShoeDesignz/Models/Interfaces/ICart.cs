@@ -7,8 +7,6 @@ namespace ShoeDesignz.Models.Interfaces
 {
    public interface ICart
     {
-        // Add item to the cart
-        Task<CartItems> AddCartItem(int id);
 
         // Update quantity in cart
         Task UpdateCart(CartItems CartItems);

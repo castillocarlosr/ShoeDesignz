@@ -42,6 +42,8 @@ namespace ShoeDesignz.Controllers
                 var result = await _userManager.CreateAsync(user, rvm.Password);
                 if (result.Succeeded)
                 {
+                    Cart cart = new Cart();
+                    cart.UserID = user.Email;
                     Claim fullNameClaim = new Claim("FullName", $"{user.FirstName} {user.LastName}");
 
                     Claim birthdayClaim = new Claim(ClaimTypes.DateOfBirth, new DateTime(user.Birthday.Year, user.Birthday.Month, user.Birthday.Day).ToString("u"),
@@ -70,6 +72,8 @@ namespace ShoeDesignz.Controllers
 
                 if (result.Succeeded)
                 {
+                  
+                    
                     return RedirectToAction("Products", "Product");
                 }
             }
