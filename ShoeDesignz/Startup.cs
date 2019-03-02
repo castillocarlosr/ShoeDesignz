@@ -58,12 +58,13 @@ namespace ShoeDesignz
 
             services.AddScoped<IAuthorizationHandler, EduEmailRequirement>();
 
-            services.AddAuthorization(options =>
-            {
-                //options.AddPolicy("RiskTaker", policy => policy.Requirements.Add(new RiskTaker()));
-                options.AddPolicy("RiskTaker", policy => policy.Requirements.Add(new RiskTaker("true")));
-            });
+            //services.AddAuthorization(options =>
+            //{
+            //    //options.AddPolicy("RiskTaker", policy => policy.Requirements.Add(new RiskTaker()));
+            //    options.AddPolicy("RiskTaker", policy => policy.Requirements.Add(new RiskTaker("true")));
+            //});
             
+            //Not implemented.  May not get to it.
             //services.AddScoped<IAuthorizationHandler, RiskTaker>();
             services.AddScoped<IEmailSender, EmailSender>();
 

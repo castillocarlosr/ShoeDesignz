@@ -74,7 +74,7 @@ namespace ShoeDesignz.Data
                 {
                     ID = 6,
                     Name = "Shoe6",
-                    Sku = 123478901,
+                    Sku = 12347801,
                     Price = 234.56m,
                     DiscountPrice = 42.00m,
                     Gender = Genders.Female,
