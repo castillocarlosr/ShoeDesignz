@@ -73,7 +73,10 @@ namespace ShoeDesignz.Data
                 );
         }
 
-
         public DbSet<Inventory> Shoes { get; set; }
+        public DbSet<Cart> Cart { get; set; }
+        public DbSet<CartItems> CartItems { get; set; }
+        public DbSet<Order> Order { get; set; }
+        public DbSet<OrderItems> OrderItems { get; set; }
     }
 }
