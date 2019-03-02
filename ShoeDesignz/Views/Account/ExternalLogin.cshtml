@@ -1,0 +1,23 @@
+﻿@model ShoeDesignz.Models.ViewModels.LoginUser
+@{ 
+    ViewData["Title"] = "ExternalLogin";
+}
+
+<h3>External Login(Twitter)</h3>
+
+<form asp-action="ExternalLoginConfirmation" method="post">
+
+    <label asp-for="Email">Email</label>
+    <input asp-for="Email" />
+    <!--
+    <label asp-for="FirstName">FirstName</label>
+    <input asp-for="FirstName" />
+
+    <label asp-for="LastName">LastName</label>
+    <input asp-for="LastName" />
+    -->
+    <label asp-for="Password">Password</label>
+    <input asp-for="Password" />
+
+    <button type="submit">Register</button>
+</form>
