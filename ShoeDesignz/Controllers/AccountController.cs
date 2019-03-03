@@ -69,6 +69,10 @@ namespace ShoeDesignz.Controllers
         }
         [HttpGet]
         public IActionResult Login() => View();
+        public IActionResult Login2()
+        {
+            return View();
+        }
 
         [HttpPost]
         public async Task<IActionResult> Login(LoginUser lvm)
@@ -106,7 +110,7 @@ namespace ShoeDesignz.Controllers
         {
             return View();
         }
-        //********************twitter setup below**************//
+        //********************External Log In setup below**************//
         [HttpPost]
         public IActionResult ExternalLogin(string provider)
         {

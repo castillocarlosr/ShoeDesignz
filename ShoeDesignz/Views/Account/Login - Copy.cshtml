@@ -8,6 +8,38 @@
     Layout = "_Layout";
 }
 
+FB.getLoginStatus(function(response) {
+    statusChangeCallback(response);
+});
+
+<fb:login-button scope="public_profile,email"
+                 onlogin="checkLoginState();">
+</fb:login-button>
+
+<!--
+<script>
+    window.fbAsyncInit = function () {
+        FB.init({
+            appId: '{your-app-id}',
+            cookie: true,
+            xfbml: true,
+            version: '{api-version}'
+        });
+
+        FB.AppEvents.logPageView();
+
+    };
+
+    (function (d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) { return; }
+        js = d.createElement(s); js.id = id;
+        js.src = "https://connect.facebook.net/en_US/sdk.js";
+        fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+</script>
+-->
+
 <section class="Outter">
     @if (!SignInManager.IsSignedIn(User))
     {
@@ -21,7 +53,7 @@
                             <span><i class="fab fa-google-plus-square"></i></span>
                             <!--<span><i class="fab fa-twitter-square"></i></span>-->
                             <a asp-controller="Account" asp-action="Twitter"><span><i class="fab fa-twitter-square"></i></span></a>
-                            <div class="g-signin2" data-onsuccess="onSignIn"></div>
+                            <!--<div class="g-signin2" data-onsuccess="onSignIn"></div>-->
                         </div>
                     </div>
                     <div class="card-body">
@@ -50,28 +82,7 @@
                 </div>
             </div>
         </div>
-
-        @*<div class="jumbotron">
-                <form method="post">
-                    <h1 class="display-4">Login</h1>
-                    <hr class="my-4">
-                    <div asp-validation-summary="All"></div>
-                    <label asp-for="Email"></label>
-                    <input asp-for="Email" />
-                    <span asp-validation-for="Email"></span>
-
-
-                    <label asp-for="Password"></label>
-                    <input asp-for="Password" />
-                    <span asp-validation-for="Password"></span>
-
-                    <button type="submit" class="btn btn-primary">Login</button>
-                </form>
-
-            </div>*@
-
     }
-
     else
     {
         <span>Hello @User.Claims.First(m => m.Type == "FullName").Value</span>
@@ -79,5 +90,4 @@
         <a asp-controller="Product" asp-action="Products">View Products</a>
 
     }
-
 </section>
