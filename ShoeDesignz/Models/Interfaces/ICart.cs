@@ -16,5 +16,7 @@ namespace ShoeDesignz.Models.Interfaces
 
         // Complete an order
         Task<List<CartItems>> SendOrder();
+
+        Task <Cart>GetCartForUser(string email);
     }
 }

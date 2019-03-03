@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using ShoeDesignz.Models;
+using ShoeDesignz.Models.Interfaces;
 using ShoeDesignz.Models.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -13,11 +14,13 @@ namespace ShoeDesignz.Controllers
     {
         private UserManager<ApplicationUser> _userManager;
         private SignInManager<ApplicationUser> _signInManager;
+        private readonly ICart _context;
 
-        public AccountController(UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager)
+        public AccountController(ICart context, UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager)
         {
             _userManager = userManager;
             _signInManager = signInManager;
+            _context = context;
         }
 
         [HttpGet]
@@ -38,12 +41,13 @@ namespace ShoeDesignz.Controllers
                     Birthday = rvm.Birthday
                 };
 
-
                 var result = await _userManager.CreateAsync(user, rvm.Password);
                 if (result.Succeeded)
                 {
-                    Cart cart = new Cart();
-                    cart.UserID = user.Email;
+                    await _context.GetCartForUser(user.Email);
+                    
+                
+
                     Claim fullNameClaim = new Claim("FullName", $"{user.FirstName} {user.LastName}");
 
                     Claim birthdayClaim = new Claim(ClaimTypes.DateOfBirth, new DateTime(user.Birthday.Year, user.Birthday.Month, user.Birthday.Day).ToString("u"),
@@ -70,16 +74,12 @@ namespace ShoeDesignz.Controllers
             {
                 var result = await _signInManager.PasswordSignInAsync(lvm.Email, lvm.Password, false, false);
 
-                if (result.Succeeded)
-                {
-                  
+                if (result.Succeeded)                {                 
                     
                     return RedirectToAction("Products", "Product");
                 }
             }
-
             ModelState.TryAddModelError(string.Empty, "Invalid Login Attempt");
-
             return View(lvm);          
         }
 

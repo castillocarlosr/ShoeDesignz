@@ -13,6 +13,9 @@ namespace ShoeDesignz.Models.Interfaces
         //Read one Item
         Task<Inventory> GetInventoryByID(int id);
 
+        Task<Cart> GetCart(string username);
+
+
         //Read all items
         Task<List<Inventory>> GetInventories();
 

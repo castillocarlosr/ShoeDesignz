@@ -15,9 +15,7 @@ namespace ShoeDesignz.Models.Services
         public InventoryManagementServices(ShoeDesignzDbContext context)
         {
             _context = context;
-        }
-
-   
+        }   
 
         // Get all shoes 
         public async Task<List<Inventory>> GetInventories()
@@ -45,6 +43,12 @@ namespace ShoeDesignz.Models.Services
         {
             return await _context.Shoes.FirstOrDefaultAsync(e => e.ID == id);
         }
+        public async Task <Cart> GetCart(string username)
+        {
+            Cart cart = await _context.Cart.FirstOrDefaultAsync(e => e.UserID == username);
+            cart.CartItems = await _context.CartItems.Where(c => c.CartID == cart.ID).Include("Inventory").ToListAsync();
+            return cart;
+        }
 
         private bool ShoeExists(int id)
         {
@@ -56,5 +60,7 @@ namespace ShoeDesignz.Models.Services
             _context.CartItems.Add(CartItem);
              await _context.SaveChangesAsync();
         }
+
+ 
     }
 }

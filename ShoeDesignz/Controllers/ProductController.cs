@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using ShoeDesignz.Models;
 using ShoeDesignz.Models.Interfaces;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Identity;
 
 namespace ShoeDesignz.Controllers
 {
@@ -30,13 +31,19 @@ namespace ShoeDesignz.Controllers
             return View("Details", product);
         }
 
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task <IActionResult> Buy(int id, [Bind("ID,Name")] CartItems product)
+        [HttpGet]          
+        public async Task <IActionResult> Buy(int id)
         {
+            string stringEmail = User.Identity.Name;
+            Cart cart = await _context.GetCart(stringEmail);
+
+            CartItems product = new CartItems();
+            product.InventoryID = id;
+            product.Quantity = 1;
+            product.CartID = cart.ID;
             await _context.AddCartItem(product);
    
-         return RedirectToAction("Index", "Cart");
+         return RedirectToAction("Index", "Cart", product);
   
         }
     }
