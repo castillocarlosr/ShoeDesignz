@@ -8,53 +8,70 @@
     Layout = "_Layout";
 }
 
+<script src="https://apis.google.com/js/platform.js" async defer></script>
+@if (!SignInManager.IsSignedIn(User))
+{
 <section class="Outter">
-   @if (!SignInManager.IsSignedIn(User))
-    {
-        <div class="container">
-            <div class="d-flex justify-content-center h-100">
-                <div class="card">
-                    <div class="card-header">
-                        <h3>Sign In</h3>
-                        <div class="d-flex justify-content-end social_icon">
-                            <span><i class="fab fa-facebook-square"></i></span>
-                            <span><i class="fab fa-google-plus-square"></i></span>
-                            <span><i class="fab fa-twitter-square"></i></span>
-                            <span><i class="fab fa fa-rebel"></i></span>
-                        </div>
-                    </div>
-                    <div class="card-body">
-                        <form method="post">
-                            <div class="form-group">
-                                <label for="email">Email address:</label>
-                                <input type="email" class="form-control" id="email">
-                            </div>
-                            <div class="form-group">
-                                <label for="pwd">Password:</label>
-                                <input type="password" class="form-control" id="pwd">
-                            </div>
-                            <div class="checkbox">
-                                <label><input type="checkbox"> Remember me</label>
-                            </div>
-                            <div class="form-group">
-                                <button type="submit" class="btn float-right login_btn">Submit</button>
-                            </div>
-                        </form>
-                    </div>
-                    <div class="card-footer">
-                        <div class="d-flex justify-content-center links">
-                            Don't have an account? <a asp-controller="Account" asp-action="Register">Register</a>
-                        </div>
+    <div class="container">
+        <div class="d-flex justify-content-center h-100">
+            <div class="card">
+                <div class="card-header">
+                    <h3>Sign In</h3>
+                    <div>
+
                     </div>
                 </div>
+                <div class="card-body">
+                    <form method="post">
+                        <div class="form-group">
+                            <label for="email">Email address:</label>
+                            <input type="email" class="form-control" id="email">
+                        </div>
+                        <div class="form-group">
+                            <label for="pwd">Password:</label>
+                            <input type="password" class="form-control" id="pwd">
+                        </div>
+                        <div class="checkbox">
+                            <label><input type="checkbox"> Remember me</label>
+                        </div>
+                        <div class="form-group">
+                            <button type="submit" class="btn float-right login_btn">Submit</button>
+                        </div>
+                    </form>
+                </div>
+                <div class="card-footer">
+                    <div class="d-flex justify-content-center links">
+                        Don't have an account? <a asp-controller="Account" asp-action="Register">Register</a>
+                    </div>
+                </div>
+                @{
+                    var loginProviders = (await SignInManager.GetExternalAuthenticationSchemesAsync()).ToList();
+
+                    if (loginProviders.Count > 0)
+                    {
+                        <h1>You may login using the following external login</h1>
+                        <form asp-action="ExternalLogin" method="post">
+                            @foreach (var provider in loginProviders)
+                            {
+                                <button type="submit" name="provider" value="@provider.Name" title="Log in using @provider.DisplayName"> @provider.Name</button>
+                            }
+                            <div class="g-signin2" data-onsuccess="onSignIn"></div>
+                        </form>
+                        <!--<form asp-action="ExternalLogin" method="post"></form>-->
+                        <form asp-controller="Product" asp-action="Products" method="post"></form>
+                    }
+                }
             </div>
         </div>
-    }
-    else
-    {
-        <span>Hello @User.Claims.First(m => m.Type == "FullName").Value</span>
-        <p>YOU ARE already LOGGED IN</p>
-        <a asp-controller="Product" asp-action="Products">View Products</a>
-
-    }
+    </div>
+    
 </section>
+}
+else
+{
+<section class="Outter">
+    <span>Hello @User.Claims.First(m => m.Type == "FullName").Value</span>
+    <p>YOU ARE already LOGGED IN</p>
+    <a asp-controller="Product" asp-action="Products">View Products</a>
+</section>
+}
