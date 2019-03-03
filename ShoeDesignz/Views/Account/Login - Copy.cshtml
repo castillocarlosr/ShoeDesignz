@@ -4,12 +4,44 @@
 @inject SignInManager<ApplicationUser> SignInManager
 
 @{
-    ViewData["Title"] = "Login2";
+    ViewData["Title"] = "Login";
     Layout = "_Layout";
 }
 
+FB.getLoginStatus(function(response) {
+    statusChangeCallback(response);
+});
+
+<fb:login-button scope="public_profile,email"
+                 onlogin="checkLoginState();">
+</fb:login-button>
+
+<!--
+<script>
+    window.fbAsyncInit = function () {
+        FB.init({
+            appId: '{your-app-id}',
+            cookie: true,
+            xfbml: true,
+            version: '{api-version}'
+        });
+
+        FB.AppEvents.logPageView();
+
+    };
+
+    (function (d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) { return; }
+        js = d.createElement(s); js.id = id;
+        js.src = "https://connect.facebook.net/en_US/sdk.js";
+        fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+</script>
+-->
+
 <section class="Outter">
-   @if (!SignInManager.IsSignedIn(User))
+    @if (!SignInManager.IsSignedIn(User))
     {
         <div class="container">
             <div class="d-flex justify-content-center h-100">
@@ -19,8 +51,9 @@
                         <div class="d-flex justify-content-end social_icon">
                             <span><i class="fab fa-facebook-square"></i></span>
                             <span><i class="fab fa-google-plus-square"></i></span>
-                            <span><i class="fab fa-twitter-square"></i></span>
-                            <span><i class="fab fa fa-rebel"></i></span>
+                            <!--<span><i class="fab fa-twitter-square"></i></span>-->
+                            <a asp-controller="Account" asp-action="Twitter"><span><i class="fab fa-twitter-square"></i></span></a>
+                            <!--<div class="g-signin2" data-onsuccess="onSignIn"></div>-->
                         </div>
                     </div>
                     <div class="card-body">

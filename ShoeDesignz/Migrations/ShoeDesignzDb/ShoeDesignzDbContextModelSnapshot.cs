@@ -2,17 +2,15 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
-using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ShoeDesignz.Data;
 
-namespace ShoeDesignz.Migrations
+namespace ShoeDesignz.Migrations.ShoeDesignzDb
 {
     [DbContext(typeof(ShoeDesignzDbContext))]
-    [Migration("20190228011929_thhree")]
-    partial class thhree
+    partial class ShoeDesignzDbContextModelSnapshot : ModelSnapshot
     {
-        protected override void BuildTargetModel(ModelBuilder modelBuilder)
+        protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -109,7 +107,7 @@ namespace ShoeDesignz.Migrations
                             Image = "https://via.placeholder.com/450",
                             Name = "Shoe6",
                             Price = 234.56m,
-                            Sku = 123478901
+                            Sku = 12347801
                         },
                         new
                         {

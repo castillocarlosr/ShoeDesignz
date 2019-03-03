@@ -53,46 +53,48 @@ namespace ShoeDesignz
             services.AddAuthorization(options =>
             {
                 options.AddPolicy("EduEmail", policy => policy.Requirements.Add(new EduEmailRequirement()));
-                //options.AddPolicy("EduEmail", policy => policy.Requirements.Add(new EduEmailRequirement(".edu")));
             });
 
             services.AddScoped<IAuthorizationHandler, EduEmailRequirement>();
 
-            services.AddAuthorization(options =>
-            {
-                //options.AddPolicy("RiskTaker", policy => policy.Requirements.Add(new RiskTaker()));
-                options.AddPolicy("RiskTaker", policy => policy.Requirements.Add(new RiskTaker("true")));
-            });
+            //services.AddAuthorization(options =>
+            //{
+            //    //options.AddPolicy("RiskTaker", policy => policy.Requirements.Add(new RiskTaker()));
+            //    options.AddPolicy("RiskTaker", policy => policy.Requirements.Add(new RiskTaker("true")));
+            //});
             
+            //Not implemented.  May not get to it.
             //services.AddScoped<IAuthorizationHandler, RiskTaker>();
+
             services.AddScoped<IEmailSender, EmailSender>();
 
             //Services for twitter, Google, FaceBook, Microsoft Login
-            services.AddDefaultIdentity<IdentityUser>()
-                .AddDefaultUI(UIFramework.Bootstrap4)
-                .AddEntityFrameworkStores<ApplicationDbContext>();
-
+            //services.AddDefaultIdentity<IdentityUser>()
+            //    .AddDefaultUI(UIFramework.Bootstrap4)
+            //    .AddEntityFrameworkStores<ApplicationDbContext>();
+            
             services.AddAuthentication()
                 .AddTwitter(twitterOptions =>
             {
                 twitterOptions.ConsumerKey = Configuration["Authentication:Twitter:ConsumerKey"];
                 twitterOptions.ConsumerSecret = Configuration["Authentication:Twitter:ConsumerSecret"];
             })
-                .AddGoogle(google =>
+                .AddGoogle(googleOptions =>
             {
-                google.ClientId = Configuration["Authentication:Google:ClientId"];
-                google.ClientSecret = Configuration["Authentication:Google:ClientSecret"];
+                googleOptions.ClientId = Configuration["Authentication:Google:ClientId"];
+                googleOptions.ClientSecret = Configuration["Authentication:Google:ClientSecret"];
             })
-                .AddFacebook(facebook =>
+                .AddFacebook(facebookOptions =>
             {
-                facebook.AppId = Configuration["Authentication:Facebook:AppId"];
-                facebook.AppSecret = Configuration["Authentication:Facebook:AppSecret"];
+                facebookOptions.AppId = Configuration["Authentication:Facebook:AppId"];
+                facebookOptions.AppSecret = Configuration["Authentication:Facebook:AppSecret"];
             })
                 .AddMicrosoftAccount(microsoftOptions =>
             {
                 microsoftOptions.ClientId = Configuration["Authentication:Microsoft:ApplicationId"];
                 microsoftOptions.ClientSecret = Configuration["Authentication:Microsoft:Password"];
             });
+            
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
