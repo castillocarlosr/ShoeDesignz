@@ -13,12 +13,15 @@ namespace ShoeDesignz.Models.Interfaces
         Task UpdateOrder(Order order);
 
         // view order details
-        Task<List<OrderItems>> GetOrderDetails();
+        //Task<List<OrderItems>> GetOrderDetails();
 
         //Task<OrderItems> ConvertCartItem(CartItems orderItems);
 
         Task AddOrderItem(OrderItems orderItem);
 
+
+        Task <List<Order>> GetOrders(string username);
+                
 
         Task <Order> Getorder(string username);
 

@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using ShoeDesignz.Models;
 using ShoeDesignz.Models.Interfaces;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace ShoeDesignz.Controllers
@@ -14,15 +15,16 @@ namespace ShoeDesignz.Controllers
             _context = context;
         }
 
-        public async Task <IActionResult> Details()
-        {
-
+        public async Task <IActionResult> Details(int id)
+        {          
+            return View("Details", "Order");
         }
         public async Task <IActionResult> Index()
         {
             var email = User.Identity.Name;
-            Order order = await _context.Getorder(email);
-            return View(order);
+            List<Order> list = await _context.GetOrders(email);                  
+            return View(list);
         }
+        
     }
 }
