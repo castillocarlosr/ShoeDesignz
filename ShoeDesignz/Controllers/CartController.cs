@@ -28,7 +28,7 @@ namespace ShoeDesignz.Controllers
             OrderItems products = new OrderItems();
             products.InventoryID = id;
             products.Quantity = 1;
-            products.OrderID = id;
+            products.OrderID = order.ID;
             products.CartID = cart.ID;
             await _order.AddOrderItem(products);
             await _order.UpdateOrder(order);

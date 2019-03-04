@@ -11,6 +11,8 @@ namespace ShoeDesignz.Models.Services
     public class OrderService : IOrder
     {
         private ShoeDesignzDbContext _context { get; }
+        
+
 
         public OrderService(ShoeDesignzDbContext context)
         {
@@ -38,10 +40,11 @@ namespace ShoeDesignz.Models.Services
         }
         public async Task<List<Order>> GetOrders(string username)
         {
-            List<Order> list = new List<Order>();
-            Order order = await _context.Order.FirstOrDefaultAsync(e => e.UserID == username);            
-            list.Add(order);
-            return list;
+            
+            Cart cart =  await _context.Cart.FirstOrDefaultAsync(e => e.UserID == username);
+            List<Order> orders =  await _context.Order.Where(e => e.UserID == cart.UserID).ToListAsync();            
+          
+            return orders;
         }
         public async Task<List<Inventory>> GetInventories()
         {
@@ -69,7 +72,7 @@ namespace ShoeDesignz.Models.Services
 
             Order order = new Order();
             order.UserID = email;
-            order.DateCreated = DateTime.Now;
+            order.Now = DateTime.Now;
             _context.Order.Add(order);
             await _context.SaveChangesAsync();
             return order;

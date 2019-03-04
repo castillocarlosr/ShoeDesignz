@@ -10,7 +10,7 @@ using ShoeDesignz.Data;
 namespace ShoeDesignz.Migrations
 {
     [DbContext(typeof(ShoeDesignzDbContext))]
-    [Migration("20190304031233_newdb")]
+    [Migration("20190304194021_newdb")]
     partial class newdb
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -145,7 +145,7 @@ namespace ShoeDesignz.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<DateTime>("DateCreated");
+                    b.Property<DateTime>("Now");
 
                     b.Property<string>("UserID");
 
