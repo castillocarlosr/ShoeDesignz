@@ -6,6 +6,7 @@ using ShoeDesignz.Models.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Security.Claims;
+using System.Text;
 using System.Threading.Tasks;
 
 namespace ShoeDesignz.Controllers
@@ -57,7 +58,11 @@ namespace ShoeDesignz.Controllers
                     await _signInManager.SignInAsync(user, isPersistent: false);
 
                     //Email edge
-                    await _emailSender.SendEmailAsync(rvm.Email, "Thank you for Loggin In!", "<p>Thanks for being here</p>");
+                    StringBuilder sb = new StringBuilder();
+                    sb.Append("<h2>Congratulations on Registering</h2>");
+                    sb.AppendLine("<p>Please accept this introductory coupon for 0% off on your first purchase.</p>");
+                    sb.AppendLine("<p>We hope you continue to shop with us for your fabulous shoez needs!!</p>");
+                    await _emailSender.SendEmailAsync(rvm.Email, "Thank you for Registering with ShoeDesignz!", sb.ToString());
                     var ourUser = await _userManager.FindByEmailAsync(rvm.Email);
                     string id = ourUser.Id;
 
