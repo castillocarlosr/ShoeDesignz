@@ -10,8 +10,8 @@ using ShoeDesignz.Data;
 namespace ShoeDesignz.Migrations
 {
     [DbContext(typeof(ShoeDesignzDbContext))]
-    [Migration("20190302073756_newDB")]
-    partial class newDB
+    [Migration("20190304031233_newdb")]
+    partial class newdb
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -42,15 +42,17 @@ namespace ShoeDesignz.Migrations
 
                     b.Property<int>("CartID");
 
-                    b.Property<int>("OrderID");
+                    b.Property<int>("InventoryID");
 
-                    b.Property<int>("ProductID");
+                    b.Property<int>("OrderID");
 
                     b.Property<int>("Quantity");
 
                     b.HasKey("ID");
 
                     b.HasIndex("CartID");
+
+                    b.HasIndex("InventoryID");
 
                     b.ToTable("CartItems");
                 });
@@ -158,13 +160,19 @@ namespace ShoeDesignz.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("OrderID");
+                    b.Property<int>("CartID");
 
-                    b.Property<int>("ProductID");
+                    b.Property<int>("InventoryID");
+
+                    b.Property<int>("OrderID");
 
                     b.Property<int>("Quantity");
 
                     b.HasKey("ID");
+
+                    b.HasIndex("CartID");
+
+                    b.HasIndex("InventoryID");
 
                     b.HasIndex("OrderID");
 
@@ -173,15 +181,30 @@ namespace ShoeDesignz.Migrations
 
             modelBuilder.Entity("ShoeDesignz.Models.CartItems", b =>
                 {
-                    b.HasOne("ShoeDesignz.Models.Cart")
+                    b.HasOne("ShoeDesignz.Models.Cart", "Cart")
                         .WithMany("CartItems")
                         .HasForeignKey("CartID")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("ShoeDesignz.Models.Inventory", "Inventory")
+                        .WithMany()
+                        .HasForeignKey("InventoryID")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("ShoeDesignz.Models.OrderItems", b =>
                 {
-                    b.HasOne("ShoeDesignz.Models.Order")
+                    b.HasOne("ShoeDesignz.Models.Cart", "cart")
+                        .WithMany()
+                        .HasForeignKey("CartID")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("ShoeDesignz.Models.Inventory", "Inventory")
+                        .WithMany()
+                        .HasForeignKey("InventoryID")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("ShoeDesignz.Models.Order", "Order")
                         .WithMany("OrderItems")
                         .HasForeignKey("OrderID")
                         .OnDelete(DeleteBehavior.Cascade);

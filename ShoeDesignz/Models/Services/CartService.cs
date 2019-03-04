@@ -46,7 +46,6 @@ namespace ShoeDesignz.Models.Services
             _context.Cart.Add(cart);
             await _context.SaveChangesAsync();
             return cart;
-
         }
     }
 }

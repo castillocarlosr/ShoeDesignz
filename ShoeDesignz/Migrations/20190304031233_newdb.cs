@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace ShoeDesignz.Migrations
 {
-    public partial class newDB : Migration
+    public partial class newdb : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -62,7 +62,7 @@ namespace ShoeDesignz.Migrations
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     CartID = table.Column<int>(nullable: false),
                     OrderID = table.Column<int>(nullable: false),
-                    ProductID = table.Column<int>(nullable: false),
+                    InventoryID = table.Column<int>(nullable: false),
                     Quantity = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
@@ -74,6 +74,12 @@ namespace ShoeDesignz.Migrations
                         principalTable: "Cart",
                         principalColumn: "ID",
                         onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_CartItems_Shoes_InventoryID",
+                        column: x => x.InventoryID,
+                        principalTable: "Shoes",
+                        principalColumn: "ID",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -82,13 +88,26 @@ namespace ShoeDesignz.Migrations
                 {
                     ID = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    ProductID = table.Column<int>(nullable: false),
+                    InventoryID = table.Column<int>(nullable: false),
+                    CartID = table.Column<int>(nullable: false),
                     OrderID = table.Column<int>(nullable: false),
                     Quantity = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_OrderItems", x => x.ID);
+                    table.ForeignKey(
+                        name: "FK_OrderItems_Cart_CartID",
+                        column: x => x.CartID,
+                        principalTable: "Cart",
+                        principalColumn: "ID",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_OrderItems_Shoes_InventoryID",
+                        column: x => x.InventoryID,
+                        principalTable: "Shoes",
+                        principalColumn: "ID",
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_OrderItems_Order_OrderID",
                         column: x => x.OrderID,
@@ -115,6 +134,21 @@ namespace ShoeDesignz.Migrations
                 column: "CartID");
 
             migrationBuilder.CreateIndex(
+                name: "IX_CartItems_InventoryID",
+                table: "CartItems",
+                column: "InventoryID");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_OrderItems_CartID",
+                table: "OrderItems",
+                column: "CartID");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_OrderItems_InventoryID",
+                table: "OrderItems",
+                column: "InventoryID");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_OrderItems_OrderID",
                 table: "OrderItems",
                 column: "OrderID");
@@ -129,10 +163,10 @@ namespace ShoeDesignz.Migrations
                 name: "OrderItems");
 
             migrationBuilder.DropTable(
-                name: "Shoes");
+                name: "Cart");
 
             migrationBuilder.DropTable(
-                name: "Cart");
+                name: "Shoes");
 
             migrationBuilder.DropTable(
                 name: "Order");
