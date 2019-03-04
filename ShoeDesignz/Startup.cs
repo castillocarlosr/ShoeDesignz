@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authorization;
+﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.UI;
+using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -41,6 +38,8 @@ namespace ShoeDesignz
            services.AddDbContext<ApplicationDbContext>(options =>
            options.UseSqlServer(Configuration["ConnectionStrings:IdentityDefaultConnection"]));
 
+            //services.AddDbContext<ApplicationDbContext>(options =>
+            //options.UseSqlServer(Configuration["ConnectionStrings:IdentityProductionConnection"]));
             //services.AddDbContext<ShoeDesignzDbContext>(options =>
             //options.UseSqlServer(Configuration["ConnectionStrings:ProductionConnection"]));
 
@@ -54,19 +53,48 @@ namespace ShoeDesignz
             services.AddAuthorization(options =>
             {
                 options.AddPolicy("EduEmail", policy => policy.Requirements.Add(new EduEmailRequirement()));
-                //options.AddPolicy("EduEmail", policy => policy.Requirements.Add(new EduEmailRequirement(".edu")));
             });
 
             services.AddScoped<IAuthorizationHandler, EduEmailRequirement>();
 
-            services.AddAuthorization(options =>
+            //services.AddAuthorization(options =>
+            //{
+            //    //options.AddPolicy("RiskTaker", policy => policy.Requirements.Add(new RiskTaker()));
+            //    options.AddPolicy("RiskTaker", policy => policy.Requirements.Add(new RiskTaker("true")));
+            //});
+            
+            //Not implemented.  May not get to it.
+            //services.AddScoped<IAuthorizationHandler, RiskTaker>();
+
+            services.AddScoped<IEmailSender, EmailSender>();
+
+            //Services for twitter, Google, FaceBook, Microsoft Login
+            //services.AddDefaultIdentity<IdentityUser>()
+            //    .AddDefaultUI(UIFramework.Bootstrap4)
+            //    .AddEntityFrameworkStores<ApplicationDbContext>();
+            
+            services.AddAuthentication()
+            //    .AddTwitter(twitterOptions =>
+            //{
+            //    twitterOptions.ConsumerKey = Configuration["Authentication:Twitter:ConsumerKey"];
+            //    twitterOptions.ConsumerSecret = Configuration["Authentication:Twitter:ConsumerSecret"];
+            //})
+            //    .AddGoogle(googleOptions =>
+            //{
+            //    googleOptions.ClientId = Configuration["Authentication:Google:ClientId"];
+            //    googleOptions.ClientSecret = Configuration["Authentication:Google:ClientSecret"];
+            //})
+                .AddFacebook(facebookOptions =>
             {
-                //options.AddPolicy("RiskTaker", policy => policy.Requirements.Add(new RiskTaker()));
-                options.AddPolicy("RiskTaker", policy => policy.Requirements.Add(new RiskTaker("true")));
+                facebookOptions.AppId = Configuration["Authentication:Facebook:AppId"];
+                facebookOptions.AppSecret = Configuration["Authentication:Facebook:AppSecret"];
+            })
+                .AddMicrosoftAccount(microsoftOptions =>
+            {
+                microsoftOptions.ClientId = Configuration["Authentication:Microsoft:ApplicationId"];
+                microsoftOptions.ClientSecret = Configuration["Authentication:Microsoft:Password"];
             });
             
-            services.AddScoped<IAuthorizationHandler, RiskTaker>();
-
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

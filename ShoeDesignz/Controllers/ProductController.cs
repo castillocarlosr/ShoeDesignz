@@ -29,5 +29,8 @@ namespace ShoeDesignz.Controllers
             Inventory product = await _context.GetInventoryByID(id);
             return View("Details", product);
         }
+
+        //Set up payments here with http post
+
     }
 }

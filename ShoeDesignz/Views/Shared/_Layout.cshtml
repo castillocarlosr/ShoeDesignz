@@ -17,6 +17,9 @@
         @if (SignInManager.IsSignedIn(User))
         {
             <span>Welcome @User.Claims.First(m => m.Type == "FullName").Value</span>
+
+            <div><a asp-controller="Account" asp-action="Logout">Logout</a></div>
+
         }
         else
         {
