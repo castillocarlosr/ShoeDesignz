@@ -2,10 +2,12 @@
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using ShoeDesignz.Models;
+using ShoeDesignz.Models.Interfaces;
 using ShoeDesignz.Models.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Security.Claims;
+using System.Text;
 using System.Threading.Tasks;
 
 namespace ShoeDesignz.Controllers
@@ -15,12 +17,14 @@ namespace ShoeDesignz.Controllers
         private UserManager<ApplicationUser> _userManager;
         private SignInManager<ApplicationUser> _signInManager;
         private IEmailSender _emailSender;
+        private readonly ICart _context;
 
-        public AccountController(UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager, IEmailSender emailSender)
+        public AccountController(ICart context, UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager, IEmailSender emailSender)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _emailSender = emailSender;
+            _context = context;
         }
 
         [HttpGet]
@@ -41,10 +45,13 @@ namespace ShoeDesignz.Controllers
                     Birthday = rvm.Birthday
                 };
 
-
                 var result = await _userManager.CreateAsync(user, rvm.Password);
                 if (result.Succeeded)
                 {
+                    await _context.GetCartForUser(user.Email);
+                    
+                
+
                     Claim fullNameClaim = new Claim("FullName", $"{user.FirstName} {user.LastName}");
 
                     Claim birthdayClaim = new Claim(ClaimTypes.DateOfBirth, new DateTime(user.Birthday.Year, user.Birthday.Month, user.Birthday.Day).ToString("u"),
@@ -57,7 +64,11 @@ namespace ShoeDesignz.Controllers
                     await _signInManager.SignInAsync(user, isPersistent: false);
 
                     //Email edge
-                    await _emailSender.SendEmailAsync(rvm.Email, "Thank you for Loggin In!", "<p>Thanks for being here</p>");
+                    StringBuilder sb = new StringBuilder();
+                    sb.Append("<h2>Congratulations on Registering</h2>");
+                    sb.AppendLine("<p>Please accept this introductory coupon for 0% off on your first purchase.</p>");
+                    sb.AppendLine("<p>We hope you continue to shop with us for your fabulous shoez needs!!</p>");
+                    await _emailSender.SendEmailAsync(rvm.Email, "Thank you for Registering with ShoeDesignz!", sb.ToString());
                     var ourUser = await _userManager.FindByEmailAsync(rvm.Email);
                     string id = ourUser.Id;
 
@@ -69,6 +80,10 @@ namespace ShoeDesignz.Controllers
         }
         [HttpGet]
         public IActionResult Login() => View();
+        public IActionResult Login2()
+        {
+            return View();
+        }
 
         [HttpPost]
         public async Task<IActionResult> Login(LoginUser lvm)
@@ -80,19 +95,14 @@ namespace ShoeDesignz.Controllers
                 if (result.Succeeded)
                 {
                     //Send the user an email
-                    //Get the user email
+                    //Moved to registration because I will send an email after checkout.
                     //await _emailSender.SendEmailAsync(lvm.Email, "Thank you for Loggin In!", "<p>Thanks for being here</p>");
-
-                    //How do i get a users ID.  follow below.........
                     //var ourUser = await _userManager.FindByEmailAsync(lvm.Email);
                     //string id = ourUser.Id;
-
                     return RedirectToAction("Products", "Product");
                 }
             }
-
             ModelState.TryAddModelError(string.Empty, "Invalid Login Attempt");
-
             return View(lvm);          
         }
 
@@ -106,7 +116,7 @@ namespace ShoeDesignz.Controllers
         {
             return View();
         }
-        //********************twitter setup below**************//
+        //********************External Log In setup below**************//
         [HttpPost]
         public IActionResult ExternalLogin(string provider)
         {

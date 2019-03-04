@@ -48,36 +48,55 @@ namespace ShoeDesignz
 
 
             services.AddScoped<IInventory, InventoryManagementServices>();
+            services.AddScoped<ICart, CartService>();
+            services.AddScoped<IOrder, OrderService>();
 
-            
+
             services.AddAuthorization(options =>
             {
                 options.AddPolicy("EduEmail", policy => policy.Requirements.Add(new EduEmailRequirement()));
-                //options.AddPolicy("EduEmail", policy => policy.Requirements.Add(new EduEmailRequirement(".edu")));
             });
 
             services.AddScoped<IAuthorizationHandler, EduEmailRequirement>();
 
-            services.AddAuthorization(options =>
-            {
-                //options.AddPolicy("RiskTaker", policy => policy.Requirements.Add(new RiskTaker()));
-                options.AddPolicy("RiskTaker", policy => policy.Requirements.Add(new RiskTaker("true")));
-            });
+            //services.AddAuthorization(options =>
+            //{
+            //    //options.AddPolicy("RiskTaker", policy => policy.Requirements.Add(new RiskTaker()));
+            //    options.AddPolicy("RiskTaker", policy => policy.Requirements.Add(new RiskTaker("true")));
+            //});
             
+            //Not implemented.  May not get to it.
             //services.AddScoped<IAuthorizationHandler, RiskTaker>();
+
             services.AddScoped<IEmailSender, EmailSender>();
 
-            //Services for twitter Login
-            services.AddDefaultIdentity<IdentityUser>()
-                .AddDefaultUI(UIFramework.Bootstrap4)
-                .AddEntityFrameworkStores<ApplicationDbContext>();
-
-            services.AddAuthentication().AddTwitter(twitterOptions =>
+            //Services for twitter, Google, FaceBook, Microsoft Login
+            //services.AddDefaultIdentity<IdentityUser>()
+            //    .AddDefaultUI(UIFramework.Bootstrap4)
+            //    .AddEntityFrameworkStores<ApplicationDbContext>();
+            
+            services.AddAuthentication()
+            //    .AddTwitter(twitterOptions =>
+            //{
+            //    twitterOptions.ConsumerKey = Configuration["Authentication:Twitter:ConsumerKey"];
+            //    twitterOptions.ConsumerSecret = Configuration["Authentication:Twitter:ConsumerSecret"];
+            //})
+            //    .AddGoogle(googleOptions =>
+            //{
+            //    googleOptions.ClientId = Configuration["Authentication:Google:ClientId"];
+            //    googleOptions.ClientSecret = Configuration["Authentication:Google:ClientSecret"];
+            //})
+                .AddFacebook(facebookOptions =>
             {
-                twitterOptions.ConsumerKey = Configuration["Authentication:Twitter:ConsumerKey"];
-                twitterOptions.ConsumerSecret = Configuration["Authentication:Twitter:ConsumerSecret"];
+                facebookOptions.AppId = Configuration["Authentication:Facebook:AppId"];
+                facebookOptions.AppSecret = Configuration["Authentication:Facebook:AppSecret"];
+            })
+                .AddMicrosoftAccount(microsoftOptions =>
+            {
+                microsoftOptions.ClientId = Configuration["Authentication:Microsoft:ApplicationId"];
+                microsoftOptions.ClientSecret = Configuration["Authentication:Microsoft:Password"];
             });
-
+            
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

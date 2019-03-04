@@ -74,7 +74,7 @@ namespace ShoeDesignz.Data
                 {
                     ID = 6,
                     Name = "Shoe6",
-                    Sku = 123478901,
+                    Sku = 12347801,
                     Price = 234.56m,
                     DiscountPrice = 42.00m,
                     Gender = Genders.Female,
@@ -128,7 +128,10 @@ namespace ShoeDesignz.Data
                 );
         }
 
-
         public DbSet<Inventory> Shoes { get; set; }
+        public DbSet<Cart> Cart { get; set; }
+        public DbSet<CartItems> CartItems { get; set; }
+        public DbSet<Order> Order { get; set; }
+        public DbSet<OrderItems> OrderItems { get; set; }
     }
 }

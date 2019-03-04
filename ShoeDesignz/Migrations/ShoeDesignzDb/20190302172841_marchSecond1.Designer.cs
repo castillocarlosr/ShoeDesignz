@@ -6,11 +6,11 @@ using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ShoeDesignz.Data;
 
-namespace ShoeDesignz.Migrations
+namespace ShoeDesignz.Migrations.ShoeDesignzDb
 {
     [DbContext(typeof(ShoeDesignzDbContext))]
-    [Migration("20190228021359_five")]
-    partial class five
+    [Migration("20190302172841_marchSecond1")]
+    partial class marchSecond1
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -109,7 +109,7 @@ namespace ShoeDesignz.Migrations
                             Image = "https://via.placeholder.com/450",
                             Name = "Shoe6",
                             Price = 234.56m,
-                            Sku = 123478901
+                            Sku = 12347801
                         },
                         new
                         {

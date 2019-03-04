@@ -1,9 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace ShoeDesignz.Migrations
+namespace ShoeDesignz.Migrations.ShoeDesignzDb
 {
-    public partial class thhree : Migration
+    public partial class marchSecond1 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -36,7 +36,7 @@ namespace ShoeDesignz.Migrations
                     { 3, "These are ok.", 5.00m, 2, "https://via.placeholder.com/250", "Skech3rs", 33.33m, 144458901 },
                     { 4, "Cool Coool Coool", 5.00m, 0, "https://via.placeholder.com/150", "Jordans", 44.44m, 123472221 },
                     { 5, "Total Rip OFF!", 50.00m, 1, "https://via.placeholder.com/450", "Fake", 555.55m, 123471111 },
-                    { 6, "These are awesome", 42.00m, 1, "https://via.placeholder.com/450", "Shoe6", 234.56m, 123478901 },
+                    { 6, "These are awesome", 42.00m, 1, "https://via.placeholder.com/450", "Shoe6", 234.56m, 12347801 },
                     { 7, "These are GREAT!  I love them more than pizza!!!!", 25.00m, 2, "https://via.placeholder.com/350", "Shoe7", 222.22m, 9876543 },
                     { 8, "These are ok.", 5.00m, 2, "https://via.placeholder.com/250", "Shoe8", 33.33m, 144458901 },
                     { 9, "Cool Coool Coool", 5.00m, 0, "https://via.placeholder.com/150", "SHoe9", 44.44m, 123472221 },

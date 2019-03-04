@@ -5,7 +5,7 @@ Deployed on Azure
 [Shoez Design](shoedesignz.azurewebsites.net)
 
 # Project e-Commerce ShoeDesignz by Carlos & Regan
-#### you'll love it
+#### You'll love it
 
 ## Introduction
 Shoe Designz is a mock e-Commerce store for shoes built using ASP.NET Core using C#.
@@ -13,15 +13,23 @@ Shoe Designz is a mock e-Commerce store for shoes built using ASP.NET Core using
 A working progress.
 
 ## Product
-- Selling Shoez!
+* Selling Shoez!
 - This mock website will simulate a shoe e-commerce store which a user will be able to register and login.
+
 - Claims used are the user login/registration.
 * Reason: The user has a more interactive experience being logged in and are able to caputure any information used for policies.
-* The user is also able to add items to shopping cart withouth having to register before checkout.
-- Policies used are ".edu" email.
-* Reason:  The user that registers with a ".edu" email will be given access to a discount page on the site that has all shoe products marked 50% off!
-- Coming soon: be able to shoe shop and add items to their shopping cart.
-- The user would stay logged in during the shopping process.  
+
+- Policies enforced are the "edu" emails.
+* Reason: If the user registers with an ".edu" email (ex. student@class.edu) that user is given access to special student discounts.
+
+- OAUTH providers currently allowed are Facebook and Microsoft.
+* Twitter and Google might eventually be added.
+
+- The user is also able to add items to shopping cart.  Checkout coming soon.
+- Structure/Database Schema of the store is below
+![](ShoeDesignz/wwwroot/Images/image_pending.png?raw=true)
+* Explanation of database coming soon as well.
+
 - Coming Soon: The user will be able to make a simulated purchase with a simulated example credit card. 
 
 # Getting Started
@@ -29,7 +37,7 @@ Click on the link below to visit our e-commerce ShoeDesignZ:
 
 shoedesignz.azurewebsites.net
 
-You may also view at the source code in the folders above.
+You may also view at the source code in the folders below.
 
 # Build and Test
 xUnit tests coming......
