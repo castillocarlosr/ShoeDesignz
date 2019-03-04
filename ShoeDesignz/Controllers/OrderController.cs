@@ -16,7 +16,7 @@ namespace ShoeDesignz.Controllers
 
         public async Task <IActionResult> Details()
         {
-
+            
         }
         public async Task <IActionResult> Index()
         {
