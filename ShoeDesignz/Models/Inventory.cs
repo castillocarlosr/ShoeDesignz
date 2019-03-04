@@ -16,16 +16,7 @@ namespace ShoeDesignz.Models
         public decimal Price { get; set; }
 
         public decimal DiscountPrice { get; set; }
-        /*
-        public decimal DiscountPrice
-        {
-            get
-            {
-                return Price/4;
-            }
-            set { }
-        }
-        */    
+       
         public string Description { get; set; }
 
         public Genders Gender { get; set; }

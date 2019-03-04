@@ -1,4 +1,5 @@
 ﻿@import url('https://fonts.googleapis.com/css?family=Numans');
+
 .jumbotron-fluid {
     padding-right: 0;
     padding-left: 0;
@@ -13,6 +14,7 @@
 img.image-responsive {
     width: 25vw;
 }
+
 .row {
     padding-bottom: 12vw;
 }
@@ -20,9 +22,7 @@ img.image-responsive {
 
 
 html, body {
-    background-image: url('Images/converse.jpg');
-    background-size: cover;
-    background-repeat: no-repeat;
+    background-color: #779b96;
     height: 100%;
     font-family: 'Numans', sans-serif;
 }
@@ -114,4 +114,27 @@ input:focus {
 .links {
     color: white;
     padding-top: 5vw;
+}
+
+p {
+    color: white;
+}
+
+.carousel-item {
+    height: 500px;
+}
+
+.carousel-image {
+    width: 50%;
+    height: 30vw;
+    background-size: cover;
+    background-position: center;
+    margin: auto;
+}
+
+.carousel-caption {
+    background-color: rgba(0,0,0,0.5);
+    border-radius: 5px;
+    margin: auto;
+    width: 30%;
 }

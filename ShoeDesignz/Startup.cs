@@ -48,8 +48,10 @@ namespace ShoeDesignz
 
 
             services.AddScoped<IInventory, InventoryManagementServices>();
+            services.AddScoped<ICart, CartService>();
+            services.AddScoped<IOrder, OrderService>();
 
-            
+
             services.AddAuthorization(options =>
             {
                 options.AddPolicy("EduEmail", policy => policy.Requirements.Add(new EduEmailRequirement()));

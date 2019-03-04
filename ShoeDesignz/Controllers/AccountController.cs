@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using ShoeDesignz.Models;
+using ShoeDesignz.Models.Interfaces;
 using ShoeDesignz.Models.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -16,12 +17,14 @@ namespace ShoeDesignz.Controllers
         private UserManager<ApplicationUser> _userManager;
         private SignInManager<ApplicationUser> _signInManager;
         private IEmailSender _emailSender;
+        private readonly ICart _context;
 
-        public AccountController(UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager, IEmailSender emailSender)
+        public AccountController(ICart context, UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager, IEmailSender emailSender)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _emailSender = emailSender;
+            _context = context;
         }
 
         [HttpGet]
@@ -42,10 +45,13 @@ namespace ShoeDesignz.Controllers
                     Birthday = rvm.Birthday
                 };
 
-
                 var result = await _userManager.CreateAsync(user, rvm.Password);
                 if (result.Succeeded)
                 {
+                    await _context.GetCartForUser(user.Email);
+                    
+                
+
                     Claim fullNameClaim = new Claim("FullName", $"{user.FirstName} {user.LastName}");
 
                     Claim birthdayClaim = new Claim(ClaimTypes.DateOfBirth, new DateTime(user.Birthday.Year, user.Birthday.Month, user.Birthday.Day).ToString("u"),
@@ -89,19 +95,14 @@ namespace ShoeDesignz.Controllers
                 if (result.Succeeded)
                 {
                     //Send the user an email
-                    //Get the user email
+                    //Moved to registration because I will send an email after checkout.
                     //await _emailSender.SendEmailAsync(lvm.Email, "Thank you for Loggin In!", "<p>Thanks for being here</p>");
-
-                    //How do i get a users ID.  follow below.........
                     //var ourUser = await _userManager.FindByEmailAsync(lvm.Email);
                     //string id = ourUser.Id;
-
                     return RedirectToAction("Products", "Product");
                 }
             }
-
             ModelState.TryAddModelError(string.Empty, "Invalid Login Attempt");
-
             return View(lvm);          
         }
 
