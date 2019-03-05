@@ -8,7 +8,7 @@ namespace ShoeDesignz.Models
         public int ID { get; set; }
         public string UserID { get; set; }      
         public List<OrderItems> OrderItems { get; set; }
-        public DateTime DateCreated { get; set; }
+        public DateTime Now { get; set; }
 
         public string CreditCardNumber { get; set; }
 
