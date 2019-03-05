@@ -72,6 +72,12 @@ namespace ShoeDesignz.Controllers
                     var ourUser = await _userManager.FindByEmailAsync(rvm.Email);
                     string id = ourUser.Id;
 
+                    //Adding Amanda to Admin role
+                    if(user.Email == "amanda@codefellows.com")
+                    {
+                        await _userManager.AddToRoleAsync(user, ApplicationRoles.Admin);
+                    }
+
                     return RedirectToAction("Products", "Product");
                 }
             }
@@ -99,6 +105,14 @@ namespace ShoeDesignz.Controllers
                     //await _emailSender.SendEmailAsync(lvm.Email, "Thank you for Loggin In!", "<p>Thanks for being here</p>");
                     //var ourUser = await _userManager.FindByEmailAsync(lvm.Email);
                     //string id = ourUser.Id;
+
+                    //Adding user to admin role  Make Admin razor page carlos
+                    var user = await _userManager.FindByEmailAsync(lvm.Email);
+                    if(await _userManager.IsInRoleAsync(user, ApplicationRoles.Admin))
+                    {
+                        //return RedirectToAction("Index", "Admin");
+                        
+                    }
                     return RedirectToAction("Products", "Product");
                 }
             }

@@ -18,6 +18,16 @@ namespace ShoeDesignz.Models
             _configuration = configuration;
         }
 
+        public CreditCardList CreditList { get; set; }
+        public enum CreditCardList : long
+        {  
+            //Use 4 digit for top Amex card
+            Amex = 370000000000002,
+            Discover = 6011000000000012,
+            Visa = 4111111111111111,
+            Mastercard = 2223000010309703
+        }
+
         public string Run()
         {
             ApiOperationBase<ANetApiRequest, ANetApiResponse>.RunEnvironment = AuthorizeNet.Environment.SANDBOX;
@@ -36,7 +46,7 @@ namespace ShoeDesignz.Models
             {
                 cardNumber = "4111111111111111",
                 //Drop down or have user put in their own CC and check that it's for the future
-                expirationDate = "1020"
+                expirationDate = "1021"
             };
 
             customerAddressType billingAddress = new customerAddressType();
@@ -90,8 +100,8 @@ namespace ShoeDesignz.Models
         {
             customerAddressType address = new customerAddressType()
             {
-                firstName = "Pika",
-                lastName = "Chu"
+                firstName = "Pokemon",
+                lastName = "Pikachu"
             };
             return address;
         }

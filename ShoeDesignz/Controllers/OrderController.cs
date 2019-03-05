@@ -9,7 +9,6 @@ namespace ShoeDesignz.Controllers
     public class OrderController : Controller
     {
         private readonly IOrder _context;
-        private IConfiguration _configuration;
 
         public OrderController(IOrder context)
         {

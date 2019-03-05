@@ -55,6 +55,7 @@ namespace ShoeDesignz
             services.AddAuthorization(options =>
             {
                 options.AddPolicy("EduEmail", policy => policy.Requirements.Add(new EduEmailRequirement()));
+                options.AddPolicy("AdminOnly", policy => policy.RequireRole(ApplicationRoles.Admin));
             });
 
             services.AddScoped<IAuthorizationHandler, EduEmailRequirement>();
