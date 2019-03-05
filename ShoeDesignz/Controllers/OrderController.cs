@@ -14,11 +14,15 @@ namespace ShoeDesignz.Controllers
         {
             _context = context;
         }
-
+        [HttpGet]
+        [Route("order/details/{id}")]
         public async Task <IActionResult> Details(int id)
-        {          
-            return View("Details", "Order");
+        {
+            var email = User.Identity.Name;
+            Order order = await _context.GetOrder(id);
+            return View("Details",order);
         }
+
         public async Task <IActionResult> Index()
         {
             var email = User.Identity.Name;

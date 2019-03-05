@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using ShoeDesignz.Models;
 using ShoeDesignz.Models.Interfaces;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace ShoeDesignz.Controllers
@@ -25,12 +26,17 @@ namespace ShoeDesignz.Controllers
             string stringEmail = User.Identity.Name;
             Cart cart = await _inventory.GetCart(stringEmail);
             Order order = await _order.CreateOrderForUser(stringEmail);
-            OrderItems products = new OrderItems();
-            products.InventoryID = id;
-            products.Quantity = 1;
-            products.OrderID = order.ID;
-            products.CartID = cart.ID;
-            await _order.AddOrderItem(products);
+            order.OrderItems = new List<OrderItems>();
+            foreach (CartItems item in cart.CartItems)
+            {
+                OrderItems products = new OrderItems();
+                products.InventoryID = item.InventoryID;
+                products.Quantity = item.Quantity;
+                products.OrderID = order.ID;
+                products.CartID = cart.ID;
+                order.OrderItems.Add(products);
+            }
+            
             await _order.UpdateOrder(order);
             return RedirectToAction("Index", "Order", order);
         }

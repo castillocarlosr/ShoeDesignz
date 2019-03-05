@@ -23,7 +23,7 @@ namespace ShoeDesignz.Models.Interfaces
         Task <List<Order>> GetOrders(string username);
                 
 
-        Task <Order> Getorder(string username);
+        Task <Order> GetOrder(int id);
 
         Task<Order> CreateOrderForUser(string email);
 
