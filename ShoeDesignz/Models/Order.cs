@@ -10,6 +10,8 @@ namespace ShoeDesignz.Models
         public List<OrderItems> OrderItems { get; set; }
         public DateTime DateCreated { get; set; }
 
+        public string CreditCardNumber { get; set; }
+
      
     }
 }

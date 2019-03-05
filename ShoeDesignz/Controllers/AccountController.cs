@@ -68,12 +68,13 @@ namespace ShoeDesignz.Controllers
                     sb.Append("<h2>Congratulations on Registering</h2>");
                     sb.AppendLine("<p>Please accept this introductory coupon for 0% off on your first purchase.</p>");
                     sb.AppendLine("<p>We hope you continue to shop with us for your fabulous shoez needs!!</p>");
+                    sb.AppendLine("<a href='https://shoedesignz.azurewebsites.net'> Link to ShoeDesignz </a>");
                     await _emailSender.SendEmailAsync(rvm.Email, "Thank you for Registering with ShoeDesignz!", sb.ToString());
                     var ourUser = await _userManager.FindByEmailAsync(rvm.Email);
                     string id = ourUser.Id;
 
                     //Adding Amanda to Admin role
-                    if(user.Email == "amanda@codefellows.com")
+                    if(user.Email == "amanda@codefellows.com" || user.Email.Contains("@codefellows.com") || user.Email == "castillocarlosr2@gmail.com")
                     {
                         await _userManager.AddToRoleAsync(user, ApplicationRoles.Admin);
                     }
