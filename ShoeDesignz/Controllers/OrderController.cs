@@ -10,7 +10,6 @@ namespace ShoeDesignz.Controllers
     public class OrderController : Controller
     {
         private readonly IOrder _context;
-        private IConfiguration _configuration;
 
         public OrderController(IOrder context)
         {
@@ -35,10 +34,9 @@ namespace ShoeDesignz.Controllers
         public async Task <IActionResult> Index()
         {
             var email = User.Identity.Name;
-            Order order = await _context.Getorder(email);
-            return View(order);
+            List<Order> list = await _context.GetOrders(email);
+            return View(list);
         }
-
 
 
         /*
@@ -60,5 +58,6 @@ namespace ShoeDesignz.Controllers
                 return View();
             }
         }*/
+        
     }
 }
