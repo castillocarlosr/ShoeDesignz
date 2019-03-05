@@ -31,7 +31,9 @@
                     <td>@(item.Quantity * item.Inventory.Price)</td>
                 </tr>
             </tbody>
-        </table>   
-    }    
-    <div> <button type="submit" value="Checkout">Place Your Order</button></div>
+        </table>
+    }
+
+    <div> <button type="submit" value="Checkout">Place your order</button></div>
+     <a asp-controller="Cart" asp-action="GetCardInfo">Enter Card Info</a></td>
 </form>

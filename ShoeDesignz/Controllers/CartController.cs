@@ -20,6 +20,7 @@ namespace ShoeDesignz.Controllers
             _order = order;
         }            
 
+        // Use this method here once you get a button to complete order on checkout page
         [HttpPost]
         public async Task<IActionResult> Checkout(int id)
         {
@@ -38,7 +39,14 @@ namespace ShoeDesignz.Controllers
             }
             
             await _order.UpdateOrder(order);
+
             return RedirectToAction("Index", "Order", order);
+            //return RedirectToAction("Index", "CreditCard");
+        }
+
+        public IActionResult GetCardInfo()
+        {
+            return RedirectToAction("Index", "CreditCard");
         }
 
             //string stringEmail = User.Identity.Name;

@@ -35,16 +35,16 @@ namespace ShoeDesignz
                    .AddEntityFrameworkStores<ApplicationDbContext>()
                    .AddDefaultTokenProviders();
 
-           services.AddDbContext<ApplicationDbContext>(options =>
-           options.UseSqlServer(Configuration["ConnectionStrings:IdentityDefaultConnection"]));
+            services.AddDbContext<ApplicationDbContext>(options =>
+            options.UseSqlServer(Configuration["ConnectionStrings:IdentityDefaultConnection"]));
 
             //services.AddDbContext<ApplicationDbContext>(options =>
             //options.UseSqlServer(Configuration["ConnectionStrings:IdentityProductionConnection"]));
-            //services.AddDbContext<ShoeDesignzDbContext>(options =>
-            //options.UseSqlServer(Configuration["ConnectionStrings:ProductionConnection"]));
-
             services.AddDbContext<ShoeDesignzDbContext>(options =>
-            options.UseSqlServer(Configuration["ConnectionStrings:DefaultConnection"]));
+            options.UseSqlServer(Configuration["ConnectionStrings:ProductionConnection"]));
+
+            //services.AddDbContext<ShoeDesignzDbContext>(options =>
+            //options.UseSqlServer(Configuration["ConnectionStrings:DefaultConnection"]));
 
 
             services.AddScoped<IInventory, InventoryManagementServices>();
@@ -97,8 +97,7 @@ namespace ShoeDesignz
                 app.UseDeveloperExceptionPage();
             }
 
-            app.UseStaticFiles();
-        
+            app.UseStaticFiles();       
 
             app.UseMvc(route =>
             {
