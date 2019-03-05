@@ -27,6 +27,15 @@ namespace ShoeDesignz.Models
             Visa = 4111111111111111,
             Mastercard = 2223000010309703
         }
+        public Expiration ExpirationCard { get; set; }
+        public enum Expiration
+        {
+            Oct = 1020,
+            Nov = 1120,
+            Dec = 1222
+        }
+
+
 
         public string Run()
         {
@@ -44,9 +53,9 @@ namespace ShoeDesignz.Models
             //bring in a parameter
             var creditCard = new creditCardType
             {
-                cardNumber = "4111111111111111",
+                cardNumber = CreditList.ToString(),
                 //Drop down or have user put in their own CC and check that it's for the future
-                expirationDate = "1021"
+                expirationDate = ExpirationCard.ToString()
             };
 
             customerAddressType billingAddress = new customerAddressType();
@@ -58,7 +67,7 @@ namespace ShoeDesignz.Models
             transactionRequestType transactionRequest = new transactionRequestType
             {
                 transactionType = transactionTypeEnum.authCaptureTransaction.ToString(),
-                amount = 102.75m,
+                amount = 2.34m,
                 payment = paymentType,
                 billTo = billingAddress,  
                 //lineItems = lineItems,
