@@ -18,6 +18,7 @@ namespace ShoeDesignz.Models
     {
         public const string Member = "Member";
         public const string Admin = "Admin";
+        //This one is for bonus points from Amanda
         public const string CatLady = "CatLady";
     }
 }

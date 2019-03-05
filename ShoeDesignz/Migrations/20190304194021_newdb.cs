@@ -28,7 +28,7 @@ namespace ShoeDesignz.Migrations
                     ID = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     UserID = table.Column<string>(nullable: true),
-                    DateCreated = table.Column<DateTime>(nullable: false)
+                    Now = table.Column<DateTime>(nullable: false)
                 },
                 constraints: table =>
                 {

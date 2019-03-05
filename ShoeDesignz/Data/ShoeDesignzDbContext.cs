@@ -21,7 +21,7 @@ namespace ShoeDesignz.Data
                     Name = "Adidas",
                     Sku = 123478901,
                     Price = 11.11m,
-                    DiscountPrice = 1.11m,
+                    DiscountPrice = 2.00m,
                     Gender = Genders.Female,
                     Description = "These are awesome",
                     Image = "https://via.placeholder.com/450"
@@ -32,7 +32,7 @@ namespace ShoeDesignz.Data
                     Name = "Nike",
                     Sku = 9876543,
                     Price = 12.12m,
-                    DiscountPrice = 2.22m,
+                    DiscountPrice = 2.00m,
                     Gender = Genders.Neutral,
                     Description = "These are GREAT!  I love them more than pizza!!!!",
                     Image = "https://via.placeholder.com/350"
@@ -42,8 +42,8 @@ namespace ShoeDesignz.Data
                     ID = 3,
                     Name = "Skech3rs",
                     Sku = 144458901,
-                    Price = 13.13m,
-                    DiscountPrice = 3.3m,
+                    Price = 33.33m,
+                    DiscountPrice = 5.00m,
                     Gender = Genders.Neutral,
                     Description = "These are ok.",
                     Image = "https://via.placeholder.com/250"
@@ -53,8 +53,8 @@ namespace ShoeDesignz.Data
                     ID = 4,
                     Name = "Jordans",
                     Sku = 123472221,
-                    Price = 14.14m,
-                    DiscountPrice = 4.44m,
+                    Price = 44.44m,
+                    DiscountPrice = 5.00m,
                     Gender = Genders.Male,
                     Description = "Cool Coool Coool",
                     Image = "https://via.placeholder.com/150"
@@ -65,7 +65,7 @@ namespace ShoeDesignz.Data
                     Name = "Fake",
                     Sku = 123471111,
                     Price = 15.15m,
-                    DiscountPrice = 5.55m,
+                    DiscountPrice = 5.00m,
                     Gender = Genders.Female,
                     Description = "Total Rip OFF!",
                     Image = "https://via.placeholder.com/450"
@@ -76,7 +76,7 @@ namespace ShoeDesignz.Data
                     Name = "Shoe6",
                     Sku = 12347801,
                     Price = 16.16m,
-                    DiscountPrice = 6.66m,
+                    DiscountPrice = 4.00m,
                     Gender = Genders.Female,
                     Description = "These are awesome",
                     Image = "https://via.placeholder.com/450"
@@ -87,7 +87,7 @@ namespace ShoeDesignz.Data
                     Name = "Shoe7",
                     Sku = 9876543,
                     Price = 17.17m,
-                    DiscountPrice = 7.77m,
+                    DiscountPrice = 2.00m,
                     Gender = Genders.Neutral,
                     Description = "These are GREAT!  I love them more than pizza!!!!",
                     Image = "https://via.placeholder.com/350"
@@ -98,7 +98,7 @@ namespace ShoeDesignz.Data
                     Name = "Shoe8",
                     Sku = 144458901,
                     Price = 18.18m,
-                    DiscountPrice = 8.88m,
+                    DiscountPrice = 5.00m,
                     Gender = Genders.Neutral,
                     Description = "These are ok.",
                     Image = "https://via.placeholder.com/250"
@@ -109,7 +109,7 @@ namespace ShoeDesignz.Data
                     Name = "SHoe9",
                     Sku = 123472221,
                     Price = 19.19m,
-                    DiscountPrice = 9.99m,
+                    DiscountPrice = 5.00m,
                     Gender = Genders.Male,
                     Description = "Cool Coool Coool",
                     Image = "https://via.placeholder.com/150"
@@ -119,8 +119,8 @@ namespace ShoeDesignz.Data
                     ID = 10,
                     Name = "ShoeTen",
                     Sku = 123471111,
-                    Price = 21.21m,
-                    DiscountPrice = 10.00m,
+                    Price = 20.20m,
+                    DiscountPrice = 7.00m,
                     Gender = Genders.Female,
                     Description = "Total Rip OFF!",
                     Image = "https://via.placeholder.com/450"
