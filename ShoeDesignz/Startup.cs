@@ -60,22 +60,9 @@ namespace ShoeDesignz
 
             services.AddScoped<IAuthorizationHandler, EduEmailRequirement>();
 
-            //services.AddAuthorization(options =>
-            //{
-            //    //options.AddPolicy("RiskTaker", policy => policy.Requirements.Add(new RiskTaker()));
-            //    options.AddPolicy("RiskTaker", policy => policy.Requirements.Add(new RiskTaker("true")));
-            //});
-            
-            //Not implemented.  May not get to it.
-            //services.AddScoped<IAuthorizationHandler, RiskTaker>();
-
             services.AddScoped<IEmailSender, EmailSender>();
-
-            //Services for twitter, Google, FaceBook, Microsoft Login
-            //services.AddDefaultIdentity<IdentityUser>()
-            //    .AddDefaultUI(UIFramework.Bootstrap4)
-            //    .AddEntityFrameworkStores<ApplicationDbContext>();
             
+            //The Authentication key and secrets used to 3rd Party OAutho.  Twitter and Google coming soon.  
             services.AddAuthentication()
             //    .AddTwitter(twitterOptions =>
             //{

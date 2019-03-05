@@ -9,7 +9,7 @@ using ShoeDesignz.Models;
 namespace ShoeDesignz.Controllers
 {
     public class CompleteOrderController : Controller
-    {
+    {/*
         private IConfiguration _configuration;
 
         [HttpPost]
@@ -35,6 +35,6 @@ namespace ShoeDesignz.Controllers
         public IActionResult Index()
         {
             return View();
-        }
+        }*/
     }
 }
