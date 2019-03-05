@@ -2,6 +2,7 @@
 using Microsoft.Extensions.Configuration;
 using ShoeDesignz.Models;
 using ShoeDesignz.Models.Interfaces;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace ShoeDesignz.Controllers
@@ -16,10 +17,21 @@ namespace ShoeDesignz.Controllers
             _context = context;
         }
         
+
         //public async Task <IActionResult> Details()
         //{
 
         //}
+
+        [HttpGet]
+        [Route("order/details/{id}")]
+        public async Task <IActionResult> Details(int id)
+        {
+            var email = User.Identity.Name;
+            Order order = await _context.GetOrder(id);
+            return View("Details",order);
+        }
+
         public async Task <IActionResult> Index()
         {
             var email = User.Identity.Name;
@@ -48,6 +60,5 @@ namespace ShoeDesignz.Controllers
                 return View();
             }
         }*/
-        
     }
 }

@@ -18,7 +18,7 @@
         <tbody>
             <tr>
                 <th scope="row">@item.ID</th>
-                <td>@item.DateCreated</td>
+                <td>@item.Now.Month/@item.Now.Day/@item.Now.Year</td>
                 <td>@item.UserID</td>               
                 <td> <a asp-controller="Order" asp-route-id="@item.ID" asp-action="Details">View Order Details</a></td>
             </tr>

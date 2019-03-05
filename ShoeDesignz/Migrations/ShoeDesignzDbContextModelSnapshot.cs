@@ -143,7 +143,7 @@ namespace ShoeDesignz.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<DateTime>("DateCreated");
+                    b.Property<DateTime>("Now");
 
                     b.Property<string>("UserID");
 
