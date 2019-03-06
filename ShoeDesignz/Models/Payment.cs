@@ -4,6 +4,7 @@ using AuthorizeNet.Api.Controllers.Bases;
 using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -20,19 +21,34 @@ namespace ShoeDesignz.Models
 
         public CreditCardList CreditList { get; set; }
         public enum CreditCardList : long
-        {  
+        {
             //Use 4 digit for top Amex card
-            Amex = 370000000000002,
-            Discover = 6011000000000012,
-            Visa = 4111111111111111,
-            Mastercard = 2223000010309703
+            Amex_370000000000002 = 370000000000002,
+            Discover_6011000000000012 = 6011000000000012,
+            Visa_4111111111111111 = 4111111111111111,
+            Mastercard_2223000010309703 = 2223000010309703
         }
         public Expiration ExpirationCard { get; set; }
         public enum Expiration
         {
-            Oct = 1020,
+            [Display(Name = "11/19")]
+            Oct = 1119,
+            [Display(Name = "11/20")]
             Nov = 1120,
-            Dec = 1222
+            [Display(Name = "12/21")]
+            Dec = 1221
+        }
+        public CCV CCVNumber { get; set; }
+        public enum CCV
+        {
+            [Display(Name = "1234")]
+            Amex = 1234,
+            [Display(Name = "123")]
+            Discover = 123,
+            [Display(Name = "234")]
+            Visa = 123,
+            [Display(Name = "345")]
+            MasterCard = 123
         }
 
 
@@ -84,10 +100,10 @@ namespace ShoeDesignz.Models
             controller.Execute();
 
             //Response from call above
-            var response = controller.GetApiResponse();
-
+            var response = controller.GetApiResponse();            
             if(response != null)
             {
+                
                 if (response.messages.resultCode == messageTypeEnum.Ok)
                 {
                     if (response.transactionResponse != null)
@@ -103,6 +119,51 @@ namespace ShoeDesignz.Models
             }
 
             return "Does not works";
+            /*
+            // validate response
+            if (response != null)
+            {
+                if (response.messages.resultCode == messageTypeEnum.Ok)
+                {
+                    if (response.transactionResponse.messages != null)
+                    {
+                        Console.WriteLine("Successfully created transaction with Transaction ID: " + response.transactionResponse.transId);
+                        Console.WriteLine("Response Code: " + response.transactionResponse.responseCode);
+                        Console.WriteLine("Message Code: " + response.transactionResponse.messages[0].code);
+                        Console.WriteLine("Description: " + response.transactionResponse.messages[0].description);
+                        Console.WriteLine("Success, Auth Code : " + response.transactionResponse.authCode);
+                    }
+                    else
+                    {
+                        Console.WriteLine("Failed Transaction.");
+                        if (response.transactionResponse.errors != null)
+                        {
+                            Console.WriteLine("Error Code: " + response.transactionResponse.errors[0].errorCode);
+                            Console.WriteLine("Error message: " + response.transactionResponse.errors[0].errorText);
+                        }
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("Failed Transaction.");
+                    if (response.transactionResponse != null && response.transactionResponse.errors != null)
+                    {
+                        Console.WriteLine("Error Code: " + response.transactionResponse.errors[0].errorCode);
+                        Console.WriteLine("Error message: " + response.transactionResponse.errors[0].errorText);
+                    }
+                    else
+                    {
+                        Console.WriteLine("Error Code: " + response.messages.message[0].code);
+                        Console.WriteLine("Error message: " + response.messages.message[0].text);
+                    }
+                }
+            }
+            else
+            {
+                Console.WriteLine("Null Response.");
+            }
+
+            return "It was submitted.  That's all I can say";*/
         }
 
         private customerAddressType GetAddress()
