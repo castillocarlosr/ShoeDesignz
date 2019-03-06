@@ -16,11 +16,17 @@ namespace ShoeDesignz.Models.Services
             _context = context;
         }
    
-        public async Task DeleteCartItem(int id)
+        public async Task<Cart> DeleteCartItem(int id)
         {
-            CartItems DeleteCartItem = await _context.CartItems.FirstOrDefaultAsync(c => c.InventoryID== id);
-            _context.CartItems.Remove(DeleteCartItem);
+            Cart cart = await _context.Cart.Include(o => o.CartItems)
+                                             .ThenInclude(oi => oi.Inventory)
+                                             .FirstOrDefaultAsync(o => o.ID == id);
+            _context.Remove(cart);
             await _context.SaveChangesAsync();
+            return cart;
+            //CartItems DeleteCartItem = await _context.CartItems.FirstOrDefaultAsync(c => c.InventoryID== id);
+            //_context.CartItems.Remove(DeleteCartItem);
+            //await _context.SaveChangesAsync();
         }
 
         public Task<List<CartItems>> SendOrder()

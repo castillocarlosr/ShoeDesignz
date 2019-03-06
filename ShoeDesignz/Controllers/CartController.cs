@@ -39,9 +39,9 @@ namespace ShoeDesignz.Controllers
             }
             
             await _order.UpdateOrder(order);
-
+            await _context.DeleteCartItem(cart.ID);
             return RedirectToAction("Index", "Order", order);
-            //return RedirectToAction("Index", "CreditCard");
+            
         }
 
         public IActionResult GetCardInfo()

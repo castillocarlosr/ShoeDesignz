@@ -7,11 +7,11 @@ using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ShoeDesignz.Data;
 
-namespace ShoeDesignz.Migrations
+namespace ShoeDesignz.Migrations.ShoeDesignzDb
 {
     [DbContext(typeof(ShoeDesignzDbContext))]
-    [Migration("20190305031420_newdb")]
-    partial class newdb
+    [Migration("20190306002530_newdb2")]
+    partial class newdb2
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

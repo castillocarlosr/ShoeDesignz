@@ -12,7 +12,7 @@ namespace ShoeDesignz.Models.Interfaces
         Task UpdateCart(CartItems CartItems);
 
         //Remove a cart item
-        Task DeleteCartItem(int id);
+        Task <Cart>DeleteCartItem(int id);
 
         // Complete an order
         Task<List<CartItems>> SendOrder();

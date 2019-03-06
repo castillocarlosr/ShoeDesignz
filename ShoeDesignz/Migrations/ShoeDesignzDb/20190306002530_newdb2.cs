@@ -2,9 +2,9 @@
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace ShoeDesignz.Migrations
+namespace ShoeDesignz.Migrations.ShoeDesignzDb
 {
-    public partial class newdb : Migration
+    public partial class newdb2 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
