@@ -2,9 +2,9 @@
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace ShoeDesignz.Migrations
+namespace ShoeDesignz.Migrations.ShoeDesignzDb
 {
-    public partial class newdb : Migration
+    public partial class march5 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -28,7 +28,8 @@ namespace ShoeDesignz.Migrations
                     ID = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     UserID = table.Column<string>(nullable: true),
-                    Now = table.Column<DateTime>(nullable: false)
+                    Now = table.Column<DateTime>(nullable: false),
+                    CreditCardNumber = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -121,16 +122,16 @@ namespace ShoeDesignz.Migrations
                 columns: new[] { "ID", "Description", "DiscountPrice", "Gender", "Image", "Name", "Price", "Sku" },
                 values: new object[,]
                 {
-                    { 1, "These are awesome", 42.00m, 1, "https://via.placeholder.com/450", "Adidas", 234.56m, 123478901 },
-                    { 2, "These are GREAT!  I love them more than pizza!!!!", 25.00m, 2, "https://via.placeholder.com/350", "Nike", 222.22m, 9876543 },
+                    { 1, "These are awesome", 2.00m, 1, "https://via.placeholder.com/450", "Adidas", 11.11m, 123478901 },
+                    { 2, "These are GREAT!  I love them more than pizza!!!!", 2.00m, 2, "https://via.placeholder.com/350", "Nike", 12.12m, 9876543 },
                     { 3, "These are ok.", 5.00m, 2, "https://via.placeholder.com/250", "Skech3rs", 33.33m, 144458901 },
                     { 4, "Cool Coool Coool", 5.00m, 0, "https://via.placeholder.com/150", "Jordans", 44.44m, 123472221 },
-                    { 5, "Total Rip OFF!", 50.00m, 1, "https://via.placeholder.com/450", "Fake", 555.55m, 123471111 },
-                    { 6, "These are awesome", 42.00m, 1, "https://via.placeholder.com/450", "Shoe6", 234.56m, 12347801 },
-                    { 7, "These are GREAT!  I love them more than pizza!!!!", 25.00m, 2, "https://via.placeholder.com/350", "Shoe7", 222.22m, 9876543 },
-                    { 8, "These are ok.", 5.00m, 2, "https://via.placeholder.com/250", "Shoe8", 33.33m, 144458901 },
-                    { 9, "Cool Coool Coool", 5.00m, 0, "https://via.placeholder.com/150", "SHoe9", 44.44m, 123472221 },
-                    { 10, "Total Rip OFF!", 50.00m, 1, "https://via.placeholder.com/450", "ShoeTen", 555.55m, 123471111 }
+                    { 5, "Total Rip OFF!", 5.00m, 1, "https://via.placeholder.com/450", "Fake", 15.15m, 123471111 },
+                    { 6, "These are awesome", 4.00m, 1, "https://via.placeholder.com/450", "Shoe6", 16.16m, 12347801 },
+                    { 7, "These are GREAT!  I love them more than pizza!!!!", 2.00m, 2, "https://via.placeholder.com/350", "Shoe7", 17.17m, 9876543 },
+                    { 8, "These are ok.", 5.00m, 2, "https://via.placeholder.com/250", "Shoe8", 18.18m, 144458901 },
+                    { 9, "Cool Coool Coool", 5.00m, 0, "https://via.placeholder.com/150", "SHoe9", 19.19m, 123472221 },
+                    { 10, "Total Rip OFF!", 7.00m, 1, "https://via.placeholder.com/450", "ShoeTen", 20.20m, 123471111 }
                 });
 
             migrationBuilder.CreateIndex(

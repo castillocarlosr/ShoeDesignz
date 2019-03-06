@@ -6,3 +6,28 @@
 <h1>Show the form to take credit card info</h1>
 
 <div> <a asp-action="VerifyOrder" asp-controller="CreditCard">Finish your Order</a></div>
+
+<h1>Enter your credit card below</h1>
+<p></p>
+<h6>Since this is not a real website, you only have the option to use one of the testing-fake credit cards.</h6>
+<p>Choose one from the drop down menu.</p>
+<table class="table table-light">
+    <thead>
+        <tr>
+            <th scope="col">Card #</th>
+            <th scope="col">Expiration Date</th>
+            <th scope="col">CCV</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <th scope="row"><select asp-route-id="" class="form-control" asp-items="@Html.GetEnumSelectList<ShoeDesignz.Models.Payment.CreditCardList>()"></select></th>
+            <th scope="row"><select asp-route-id="" class="form-control" asp-items="@Html.GetEnumSelectList<ShoeDesignz.Models.Payment.Expiration>()"></select></th>
+            <th scope="row"><select asp-route-id="" class="form-control" asp-items="@Html.GetEnumSelectList<ShoeDesignz.Models.Payment.CCV>()"></select></th>
+        </tr>
+    </tbody>
+</table>
+
+<div> <a asp-action="VerifyOrder" asp-controller="CreditCard">Finish your Order</a></div>
+
+
