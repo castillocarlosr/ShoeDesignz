@@ -9,7 +9,16 @@ using ShoeDesignz.Models;
 namespace ShoeDesignz.Controllers
 {
     public class CompleteOrderController : Controller
-    {/*
+    {
+        /*
+        [HttpPost]
+        public ActionResult UpdateUser(User user)
+        {
+            UserModel user = new UserModel();
+            user.UpdateUser(user);
+        }
+
+        /*
         private IConfiguration _configuration;
 
         [HttpPost]
