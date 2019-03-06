@@ -14,6 +14,11 @@ namespace ShoeDesignz.Models
     {
         private IConfiguration _configuration;
 
+        public Payment()
+        {
+
+        }
+
         public Payment(IConfiguration configuration)
         {
             _configuration = configuration;
@@ -53,7 +58,7 @@ namespace ShoeDesignz.Models
 
 
 
-        public string Run()
+        public string Run(long creditCardPassInside, int experationCardIniside)
         {
             ApiOperationBase<ANetApiRequest, ANetApiResponse>.RunEnvironment = AuthorizeNet.Environment.SANDBOX;
 
@@ -69,9 +74,9 @@ namespace ShoeDesignz.Models
             //bring in a parameter
             var creditCard = new creditCardType
             {
-                cardNumber = CreditList.ToString(),
                 //Drop down or have user put in their own CC and check that it's for the future
-                expirationDate = ExpirationCard.ToString()
+                cardNumber = creditCardPassInside.ToString(),
+                expirationDate = experationCardIniside.ToString()
             };
 
             customerAddressType billingAddress = new customerAddressType();
@@ -109,11 +114,12 @@ namespace ShoeDesignz.Models
                     if (response.transactionResponse != null)
                     {
                         //Console.WriteLine("Success, Auth Code : " + response.transactionResponse.authCode);
-                        return "OK!";
+                        return "OK";
                     }
                 }
                 else
                 {
+                    Console.WriteLine("Transaction Error : " + response.transactionResponse.errors[0].errorCode + " " + response.transactionResponse.errors[0].errorText);
                     return "This is NOT ok!";
                 }
             }
@@ -171,28 +177,33 @@ namespace ShoeDesignz.Models
             customerAddressType address = new customerAddressType()
             {
                 firstName = "Pokemon",
-                lastName = "Pikachu"
+                lastName = "Pikachu",
+                address = "123 Pokemon",
+                city = "the palace",
+                zip = "98119"
             };
             return address;
         }
 
-        //private lineItemType[] GetLineItems(List<Post> products)
-        //{
-        //    lineItemType[] lineItems = new lineItemType[products.Count];
+        private lineItemType[] GetLineItems(List<ShoeDesignz.Models.CartItems> products)
+        {
+            lineItemType[] lineItems = new lineItemType[products.Count];
 
-        //    int count = 0;
+            int count = 0;
 
-        //    foreach (var item in products)
-        //    {
-        //        lineItems[count] = new lineItemType
-        //        {
-        //            //itemId = productsID
-        //            itemId = "1",
-        //            name = "SHoes"
-        //        };
-        //        count++;
-        //    }
-        //    return lineItems;
-        //}
+            foreach (var item in products)
+            {
+                lineItems[count] = new lineItemType
+                {
+                    //itemId = productsID
+                    itemId = "1",
+                    name = "SHoes",
+                    quantity = 2,
+                    unitPrice = new Decimal(4.00)
+                };
+                count++;
+            }
+            return lineItems;
+        }
     }
 }

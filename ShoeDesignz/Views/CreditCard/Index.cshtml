@@ -1,6 +1,9 @@
-﻿
+﻿@model ShoeDesignz.Models.Payment
+
 @{
     ViewData["Title"] = "Index";
+
+    Layout = "_Layout";
 }
 
 <h1>Show the form to take credit card info</h1>
@@ -11,23 +14,33 @@
 <p></p>
 <h6>Since this is not a real website, you only have the option to use one of the testing-fake credit cards.</h6>
 <p>Choose one from the drop down menu.</p>
-<table class="table table-light">
-    <thead>
-        <tr>
-            <th scope="col">Card #</th>
-            <th scope="col">Expiration Date</th>
-            <th scope="col">CCV</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <th scope="row"><select asp-route-id="" class="form-control" asp-items="@Html.GetEnumSelectList<ShoeDesignz.Models.Payment.CreditCardList>()"></select></th>
-            <th scope="row"><select asp-route-id="" class="form-control" asp-items="@Html.GetEnumSelectList<ShoeDesignz.Models.Payment.Expiration>()"></select></th>
-            <th scope="row"><select asp-route-id="" class="form-control" asp-items="@Html.GetEnumSelectList<ShoeDesignz.Models.Payment.CCV>()"></select></th>
-        </tr>
-    </tbody>
-</table>
 
-<div> <a asp-action="VerifyOrder" asp-controller="CreditCard">Finish your Order</a></div>
+<form method="post">
+    <table class="table table-light">
+        <thead>
+            <tr>
+                <th scope="col">Card #</th>
+                <th scope="col">Expiration Date</th>
+                <th scope="col">CCV</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <th scope="row"><select class="form-control" asp-for="CreditList" asp-items="@Html.GetEnumSelectList<ShoeDesignz.Models.Payment.CreditCardList>()"></select></th>
+                <th scope="row"><select class="form-control" asp-for="ExpirationCard" asp-items="@Html.GetEnumSelectList<ShoeDesignz.Models.Payment.Expiration>()"></select></th>
+                <th scope="row"><select class="form-control" asp-for="CCVNumber" asp-items="@Html.GetEnumSelectList<ShoeDesignz.Models.Payment.CCV>()"></select></th>             
+            </tr>
+        </tbody>
+    </table>
+    <button type="submit" asp-action="Run" asp-controller="CreditCard">Submit CC Card</button>
+</form>
+
+
+@*<form name="PrePage" method="post" action="https://scotest.authorize.net/payment/CatalogPayment.aspx">
+    <input type="hidden" name="LinkId" value="3e8cf61a-8ae3-4c40-b902-b574526954bb" />
+    <input type="image" src="//testcontent.authorize.net/images/buy-now-gold.gif" /> 
+</form>*@
+
+
 
 

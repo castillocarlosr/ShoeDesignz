@@ -34,18 +34,17 @@ namespace ShoeDesignz
             services.AddIdentity<ApplicationUser, IdentityRole>()
                    .AddEntityFrameworkStores<ApplicationDbContext>()
                    .AddDefaultTokenProviders();
-
+            //Local Strings
             services.AddDbContext<ApplicationDbContext>(options =>
-            options.UseSqlServer(Configuration["ConnectionStrings:IdentityDefaultConnection"]));
-
-            //services.AddDbContext<ApplicationDbContext>(options =>
-            //options.UseSqlServer(Configuration["ConnectionStrings:IdentityProductionConnection"]));
+            options.UseSqlServer(Configuration["ConnectionStrings:LocalUserConnection"]));
             services.AddDbContext<ShoeDesignzDbContext>(options =>
-            options.UseSqlServer(Configuration["ConnectionStrings:ProductionConnection"]));
+            options.UseSqlServer(Configuration["ConnectionStrings:DefaultConnection"]));
 
+            //Deployment Strings
+            //services.AddDbContext<ApplicationDbContext>(options =>
+            //options.UseSqlServer(Configuration["ConnectionStrings:IdentityDefaultConnection"]));
             //services.AddDbContext<ShoeDesignzDbContext>(options =>
-            //options.UseSqlServer(Configuration["ConnectionStrings:DefaultConnection"]));
-
+            //options.UseSqlServer(Configuration["ConnectionStrings:ProductionConnection"]));
 
             services.AddScoped<IInventory, InventoryManagementServices>();
             services.AddScoped<ICart, CartService>();
