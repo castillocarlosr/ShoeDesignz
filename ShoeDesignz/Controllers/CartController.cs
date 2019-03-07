@@ -39,7 +39,7 @@ namespace ShoeDesignz.Controllers
             }
             
             await _order.UpdateOrder(order);
-            await _context.DeleteCartItem(cart.ID);
+            await _context.DeleteCartItems(stringEmail);
             return RedirectToAction("Index", "Order", order);
             
         }

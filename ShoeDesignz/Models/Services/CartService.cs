@@ -16,17 +16,26 @@ namespace ShoeDesignz.Models.Services
             _context = context;
         }
    
-        public async Task<Cart> DeleteCartItem(int id)
+        public async Task<bool> DeleteCartItems(string username)
         {
-            Cart cart = await _context.Cart.Include(o => o.CartItems)
-                                             .ThenInclude(oi => oi.Inventory)
-                                             .FirstOrDefaultAsync(o => o.ID == id);
-            _context.Remove(cart);
-            await _context.SaveChangesAsync();
-            return cart;
-            //CartItems DeleteCartItem = await _context.CartItems.FirstOrDefaultAsync(c => c.InventoryID== id);
-            //_context.CartItems.Remove(DeleteCartItem);
-            //await _context.SaveChangesAsync();
+            try
+            {
+                Cart cart = await _context.Cart.FirstOrDefaultAsync(c => c.UserID == username);
+                // cart.CartItems = await _context.CartItems.Where(ci => ci. == ci.ID).Include("Inventory").ToListAsync();
+
+                //cart.CartItems = await _context.CartItems.Where(ci => ci.Cart.UserID == username).Include("Inventory").ToListAsync();
+                foreach (var cartItem in cart.CartItems)
+                {
+                    _context.CartItems.Remove(cartItem);
+                }
+
+                await _context.SaveChangesAsync();
+                return true;
+            }
+            catch(Exception ex)
+            {
+                return false;
+            }
         }
 
         public Task<List<CartItems>> SendOrder()

@@ -41,7 +41,7 @@ namespace ShoeDesignz
             //services.AddDbContext<ApplicationDbContext>(options =>
             //options.UseSqlServer(Configuration["ConnectionStrings:IdentityProductionConnection"]));
             services.AddDbContext<ShoeDesignzDbContext>(options =>
-            options.UseSqlServer(Configuration["ConnectionStrings:DefaultConnection"]));
+            options.UseSqlServer(Configuration["ConnectionStrings:ProductionConnection"]));
 
             //services.AddDbContext<ShoeDesignzDbContext>(options =>
             //options.UseSqlServer(Configuration["ConnectionStrings:DefaultConnection"]));
