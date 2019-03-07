@@ -33,7 +33,7 @@
             </tbody>
         </table>
     }
-
-    <div> <button type="submit" value="Checkout">Place your order</button></div>
-     <a asp-controller="Cart" asp-action="GetCardInfo">Enter Card Info</a>
+    <div> <button type="submit" value="Checkout">Place your order to email reciept</button></div>
+    <div><button asp-controller="Cart" asp-action="GetCardInfo">Checkout with Credit Card</button></div>
+    @*<a asp-controller="Cart" asp-action="GetCardInfo">Place CC</a>*@
 </form>

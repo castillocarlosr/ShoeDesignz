@@ -28,11 +28,14 @@
             <tr>
                 <th scope="row"><select class="form-control" asp-for="CreditList" asp-items="@Html.GetEnumSelectList<ShoeDesignz.Models.Payment.CreditCardList>()"></select></th>
                 <th scope="row"><select class="form-control" asp-for="ExpirationCard" asp-items="@Html.GetEnumSelectList<ShoeDesignz.Models.Payment.Expiration>()"></select></th>
-                <th scope="row"><select class="form-control" asp-for="CCVNumber" asp-items="@Html.GetEnumSelectList<ShoeDesignz.Models.Payment.CCV>()"></select></th>             
+                <th scope="row"><select class="form-control" asp-for="CCVNumber" asp-items="@Html.GetEnumSelectList<ShoeDesignz.Models.Payment.CCV>()"></select></th>
             </tr>
         </tbody>
     </table>
-    <button type="submit" asp-action="Run" asp-controller="CreditCard">Submit CC Card</button>
+    <div> <button type="submit" value="Checkout">Place your order</button></div>
+    <button type="submit" asp-action="Run" asp-controller="CreditCard">Submit Credit Card Payment</button>
+    @*<button type="submit" asp-action="Run" value="Checkout" asp-controller="CreditCard">Submit Credit Card Payment</button>*@
+    <p>Please wait for payment to process.  Do not back click or double click.</p>
 </form>
 
 

@@ -4,22 +4,20 @@
 @inject SignInManager<ApplicationUser> SignInManager
 
 @{
-    ViewData["Title"] = "Login2";
+    ViewData["Title"] = "Login";
     Layout = "_Layout";
 }
 
 <script src="https://apis.google.com/js/platform.js" async defer></script>
-@if (!SignInManager.IsSignedIn(User))
+
+@if(!SignInManager.IsSignedIn(User))
 {
 <section class="Outter">
     <div class="container">
         <div class="d-flex justify-content-center h-100">
             <div class="card">
                 <div class="card-header">
-                    <h3>Sign In</h3>
-                    <div>
-
-                    </div>
+                    <h4>Sign In</h4>
                 </div>
                 <div class="card-body">
                     <form method="post">

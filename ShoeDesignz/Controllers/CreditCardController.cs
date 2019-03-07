@@ -30,12 +30,12 @@ namespace ShoeDesignz.Controllers
 
             if(answer == "OK")
             {
+
                 return View("PaymentComplete");
-                //return RedirectToAction("PaymentComplete", "CreditCard");
             }
             else
             {
-                return RedirectToAction("PaymentError", "CreditCard");
+                return View("PaymentError");
             }
         }
     }
