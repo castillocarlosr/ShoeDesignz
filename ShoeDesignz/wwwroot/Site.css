@@ -19,8 +19,6 @@ img.image-responsive {
     padding-bottom: 12vw;
 }
 
-
-
 html, body {
     background-color: #779b96;
     height: 100%;
@@ -42,17 +40,15 @@ html, body {
     box-shadow: 3px 3px 8px whitesmoke;
 }
 
-
-
 .social_icon span {
     font-size: 60px;
     margin-left: 10px;
     color: #FFC312;
 }
 
-    .social_icon span:hover {
-        color: white;
-        cursor: pointer;
+.social_icon span:hover {
+    color: white;
+    cursor: pointer;
     }
 
 .card-header h3 {
@@ -81,12 +77,12 @@ input:focus {
     color: white;
 }
 
-    .remember input {
-        width: 20px;
-        height: 20px;
-        margin-left: 15px;
-        margin-right: 5px;
-    }
+.remember input {
+    width: 20px;
+    height: 20px;
+    margin-left: 15px;
+    margin-right: 5px;
+}
 
 .login_btn {
     color: black;
@@ -94,18 +90,18 @@ input:focus {
     width: 100px;
 }
 
-    .login_btn:hover {
-        color: black;
-        background-color: white;
-    }
+.login_btn:hover {
+    color: black;
+    background-color: white;
+}
 
 .links {
     color: white;
 }
 
-    .links a {
-        margin-left: 4px;
-    }
+.links a {
+    margin-left: 4px;
+}
 
 .card-body {
     color: white;
@@ -137,4 +133,24 @@ p {
     border-radius: 5px;
     margin: auto;
     width: 30%;
+}
+
+.cart-table th, .cart-table td{
+    text-align: left;
+    vertical-align: middle;
+}
+
+.cart-table tr > td:last-of-type, .cart-table tr > th:last-of-type {
+    text-align: right;
+}
+
+.cart-table tr td input {
+    width: 75px;
+}
+.cart-table tfoot {
+    font-weight: bold;
+}
+
+form {
+    margin: 5vw;
 }
