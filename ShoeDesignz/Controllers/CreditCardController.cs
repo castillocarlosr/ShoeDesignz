@@ -30,8 +30,8 @@ namespace ShoeDesignz.Controllers
 
             if(answer == "OK")
             {
-
-                return View("PaymentComplete");
+                return RedirectToAction("Index", "Order");
+                //return View("PaymentComplete");
             }
             else
             {
