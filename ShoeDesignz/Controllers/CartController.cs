@@ -1,7 +1,11 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.UI.Services;
+using Microsoft.AspNetCore.Mvc;
 using ShoeDesignz.Models;
 using ShoeDesignz.Models.Interfaces;
 using System.Collections.Generic;
+using System.Net.Mail;
+using System.Text;
 using System.Threading.Tasks;
 
 namespace ShoeDesignz.Controllers
@@ -11,13 +15,15 @@ namespace ShoeDesignz.Controllers
         private readonly ICart _context;
         private readonly IInventory _inventory;
         private readonly IOrder _order;
+        private readonly IEmailSender _emailSender;
 
 
-        public CartController(ICart context, IInventory inventory, IOrder order)
+        public CartController(ICart context, IInventory inventory, IOrder order, IEmailSender emailSender)
         {
             _context = context;
             _inventory = inventory;
             _order = order;
+            _emailSender = emailSender;
         }            
 
         // Use this method here once you get a button to complete order on checkout page
@@ -28,20 +34,43 @@ namespace ShoeDesignz.Controllers
             Cart cart = await _inventory.GetCart(stringEmail);
             Order order = await _order.CreateOrderForUser(stringEmail);
             order.OrderItems = new List<OrderItems>();
+
+            //Email edge
+            StringBuilder sb = new StringBuilder();
+            sb.Append("<h2>Your most recent order.</h2>");
+            sb.Append($"<p>{order.Now}<p>");
+            sb.Append(order.ID);
+            sb.Append("<ul>");
             foreach (CartItems item in cart.CartItems)
             {
                 OrderItems products = new OrderItems();
                 products.InventoryID = item.InventoryID;
+                //products.Inventory = item.Inventory;
                 products.Quantity = item.Quantity;
                 products.OrderID = order.ID;
                 products.CartID = cart.ID;
                 order.OrderItems.Add(products);
+                //sb.AppendLine($"order item shit{order}");
+                //sb.AppendLine($"order item date: {order.Now}");
+                //sb.AppendLine($"order item Order items: {order.OrderItems}");
+                //sb.AppendLine($"order item CC: {order.CreditCardNumber}");
+                //sb.AppendLine($"order item Product Inventory: {products.Inventory}");
+                //sb.AppendLine($"order item Product Cart Items: {cart.CartItems}");
+                //sb.AppendLine($"LINE BREAK");
             }
-            
+            sb.Append("</ul>");
+
+
             await _order.UpdateOrder(order);
 
-            return RedirectToAction("Index", "Order", order);
-            //return RedirectToAction("Index", "CreditCard");
+            sb.AppendLine($"Order Reciept:  {order}");
+            sb.AppendLine("<p>Thank you!  We hope you continue to shop with us for your fabulous shoez needs!!</p>");
+            sb.AppendLine("<p>_________________________________________________________________________________</p>");
+            sb.AppendLine("<div><a href='https://shoedesignz.azurewebsites.net'>ShoeDesignz  e-Store</a></div>");         
+            await _emailSender.SendEmailAsync(stringEmail, "Order Confirmation", sb.ToString());
+            //Reciepts go here
+            //return RedirectToAction("Index", "Order", order);
+            return RedirectToAction("Index", "CreditCard");
         }
 
         public IActionResult GetCardInfo()
@@ -49,39 +78,6 @@ namespace ShoeDesignz.Controllers
             return RedirectToAction("Index", "CreditCard");
         }
 
-            //string stringEmail = User.Identity.Name;
-            //Cart cart = await _inventory.GetCart(stringEmail);
-            //List<OrderItems> list = new List<OrderItems>();
-            //Order order = new Order();
-            //order.DateCreated = DateTime.UtcNow.Date;
-            //order.ID = id;
-            //order.OrderItems = list;
-            //order.UserID = stringEmail;
-            
-            //// feplace order items with cart id
-
-            //foreach (var item in cart.CartItems)
-            //{
-            //    OrderItems shoes = await _order.ConvertCartItem(item);
-
-            //    list.Add(shoes);
-            //}
-
-            //string stringEmail = User.Identity.Name;
-            //Cart cart = await _context.GetCart(stringEmail);
-
-            //CartItems product = new CartItems();
-            //product.InventoryID = id;
-            //product.Quantity = 1;
-            //product.CartID = cart.ID;
-            //await _context.AddCartItem(product);
-
-            //await _order.AddOrder(order);
-
-
-            // empty the current cart
-            // show page to thank for order
-            // link to view orders that contain order details
 
         public async Task <IActionResult> Index()
         {

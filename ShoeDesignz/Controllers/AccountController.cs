@@ -87,10 +87,7 @@ namespace ShoeDesignz.Controllers
         }
         [HttpGet]
         public IActionResult Login() => View();
-        public IActionResult Login2()
-        {
-            return View();
-        }
+
 
         [HttpPost]
         public async Task<IActionResult> Login(LoginUser lvm)
