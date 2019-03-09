@@ -50,7 +50,7 @@ namespace ShoeDesignz
             services.AddScoped<ICart, CartService>();
             services.AddScoped<IOrder, OrderService>();
 
-
+            //This is the Authorization used for the Admin and the people with the edu email policy to access certain parts of the website only.
             services.AddAuthorization(options =>
             {
                 options.AddPolicy("EduEmail", policy => policy.Requirements.Add(new EduEmailRequirement()));

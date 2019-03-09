@@ -41,10 +41,25 @@ namespace ShoeDesignz.Controllers
             await _context.AddCartItem(product);
    
          return RedirectToAction("Index", "Cart", product);
-  
         }
 
-        //Set up payments here with http post
+        [HttpGet]
+        public async Task<IActionResult> BuyDiscount(int id)
+        {
+            string stringEmail = User.Identity.Name;
+            Cart cart = await _context.GetCart(stringEmail);
 
+            CartItems product = new CartItems();
+            product.InventoryID = id;
+            product.Quantity = 1;
+            product.CartID = cart.ID;
+            await _context.AddCartItem(product);
+
+            return RedirectToAction("Discount", "Cart", product);
+        }
+
+
+
+        //Set up payments here with http post
     }
 }

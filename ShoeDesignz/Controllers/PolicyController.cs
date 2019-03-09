@@ -34,20 +34,5 @@ namespace ShoeDesignz.Controllers
             var product = GetAllProducts(shoeID);
             return View(product);
         }
-
-        //[Authorize]
-        //public IActionResult Education()
-        //{
-        //    return View();
-        //}
-
-        //[Authorize]
-        //public IActionResult RiskTaker()
-        //{
-        //    return View();
-        //}
-
-        //public IActionResult Login() => View();
-        //public IActionResult Logout() => View();
     }
 }
