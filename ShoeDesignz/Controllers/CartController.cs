@@ -26,7 +26,13 @@ namespace ShoeDesignz.Controllers
             _emailSender = emailSender;
         }            
 
-        // Use this method here once you get a button to complete order on checkout page
+        /// <summary>
+        /// This serves two functions.
+        /// One:  The checkout produces and a summary or your order before sending you to the credit card page to complete the order.
+        /// Two:  The summary is then stringify to be added to the email sender and send the user an email of the reciept.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpPost]
         public async Task<IActionResult> Checkout(int id)
         {
@@ -38,8 +44,8 @@ namespace ShoeDesignz.Controllers
             //Email edge
             StringBuilder sb = new StringBuilder();
             sb.Append("<h2>Your most recent order.</h2>");
+            sb.Append($"<p>  {User.Identity.Name} </p>");
             sb.Append($"<p>{order.Now}<p>");
-            sb.Append(order.ID);
             sb.Append("<ul>");
             foreach (CartItems item in cart.CartItems)
             {
@@ -50,7 +56,7 @@ namespace ShoeDesignz.Controllers
                 products.OrderID = order.ID;
                 products.CartID = cart.ID;
                 order.OrderItems.Add(products);
-                //sb.AppendLine($"order item shit{order}");
+                sb.AppendLine($"<div>order item shit{order.OrderItems}</div>");
                 //sb.AppendLine($"order item date: {order.Now}");
                 //sb.AppendLine($"order item Order items: {order.OrderItems}");
                 //sb.AppendLine($"order item CC: {order.CreditCardNumber}");
@@ -63,7 +69,8 @@ namespace ShoeDesignz.Controllers
 
             await _order.UpdateOrder(order);
 
-            sb.AppendLine($"Order Reciept:  {order}");
+            sb.AppendLine($"<div>Order Reciept:  {order}</div>");
+            sb.AppendLine("<p></p>");
             sb.AppendLine("<p>Thank you!  We hope you continue to shop with us for your fabulous shoez needs!!</p>");
             sb.AppendLine("<p>_________________________________________________________________________________</p>");
             sb.AppendLine("<div><a href='https://shoedesignz.azurewebsites.net'>ShoeDesignz  e-Store</a></div>");         
@@ -73,6 +80,11 @@ namespace ShoeDesignz.Controllers
             return RedirectToAction("Index", "CreditCard");
         }
 
+
+        /// <summary>
+        /// Nothing really
+        /// </summary>
+        /// <returns></returns>
         public IActionResult GetCardInfo()
         {
             return RedirectToAction("Index", "CreditCard");
@@ -85,6 +97,13 @@ namespace ShoeDesignz.Controllers
             Cart cart = await _inventory.GetCart(email);
             return View(cart);
         }
-       
+
+        public async Task<IActionResult> Discount()
+        {
+            var email = User.Identity.Name;
+            Cart cart = await _inventory.GetCart(email);
+            return View(cart);
+        }
+
     }
 }
