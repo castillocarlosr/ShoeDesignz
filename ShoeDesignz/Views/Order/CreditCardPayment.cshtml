@@ -1,0 +1,61 @@
+﻿@model List<ShoeDesignz.Models.Order>
+@{
+    ViewData["Title"] = "Index";
+    var products = this.ViewContext.RouteData.Values["id"];
+}
+
+@*WILL DELETE LATER ON----------------CARLOS*@
+
+
+
+
+
+
+
+
+
+
+
+
+<h1>Moved the view informaiont to the credit card folder Index  Will delete later after confimration it works  Carlos</h1>
+<h1>Enter your credit card below</h1>
+<p></p>
+<h6>Since this is not a real website, you only have the option to use one of the testing-fake credit cards.</h6>
+<p>Choose one from the drop down menu.</p>
+<table class="table table-light">
+    <thead>
+        <tr>
+            <th scope="col">Card #</th>
+            <th scope="col">Expiration Date</th>
+            <th scope="col">CCV</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            @*<th scope="row"><select asp-route-id="" class="form-control" asp-items="@Html.GetEnumSelectList<ShoeDesignz.Models.Payment.CreditCardList>()"></select></th>*@
+            
+        </tr>
+    </tbody>
+</table>
+
+
+@foreach (var item in Model)
+{
+    <table class="table table-dark">
+        <thead>
+            <tr>
+                <th scope="col">Order #</th>
+                <th scope="col">Date</th>
+                <th scope="col">Name</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <th scope="row">@item.ID</th>
+                <td>@item.Now.Month/@item.Now.Day/@item.Now.Year</td>
+                <td>@item.UserID</td>
+            </tr>
+        </tbody>
+    </table>
+}
+

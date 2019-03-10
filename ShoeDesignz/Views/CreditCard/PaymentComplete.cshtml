@@ -1,0 +1,18 @@
+﻿@using ShoeDesignz.Models;
+@using Microsoft.AspNetCore.Identity;
+@inject SignInManager<ApplicationUser> SignInManager
+@{
+    ViewData["Title"] = "PaymentComplete";
+    Layout = "_Layout";
+}
+
+
+
+<h1>PaymentComplete</h1>
+<h2>Congratulations on your order.</h2>
+<h4>Please check your email for a receipt of your order.</h4>
+
+
+<a asp-controller="Product" asp-action="Products">Back to the store.</a>
+
+<h6>Thank you for shopping at ShoeDesignz</h6>

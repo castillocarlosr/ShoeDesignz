@@ -2,7 +2,7 @@
 
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Discount";
     var products = this.ViewContext.RouteData.Values["id"];
     
 }
@@ -17,7 +17,7 @@
                 <tr>
                     <th scope="col">Order Number</th>
                     <th scope="col">Item Name</th>
-                    <th scope="col">Price</th>
+                    <th scope="col">DiscountPrice</th>
                     <th scope="col">Quantity</th>
                     <th scope="col">Total</th>
                 </tr>
@@ -26,9 +26,9 @@
                 <tr>
                     <th scope="row">@item.ID</th>
                     <td>@item.Inventory.Name</td>
-                    <td>@item.Inventory.Price</td>
+                    <td>@item.Inventory.DiscountPrice</td>
                     <td><input type="number" class="form-control" id="Quantity" placeholder="@item.Quantity"></td>
-                    <td>@(item.Quantity * item.Inventory.Price)</td>
+                    <td>@(item.Quantity * item.Inventory.DiscountPrice)</td>
                 </tr>
             </tbody>
         </table>

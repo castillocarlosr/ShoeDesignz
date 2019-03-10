@@ -34,24 +34,23 @@ namespace ShoeDesignz
             services.AddIdentity<ApplicationUser, IdentityRole>()
                    .AddEntityFrameworkStores<ApplicationDbContext>()
                    .AddDefaultTokenProviders();
-
-           services.AddDbContext<ApplicationDbContext>(options =>
-           options.UseSqlServer(Configuration["ConnectionStrings:IdentityDefaultConnection"]));
-
-            //services.AddDbContext<ApplicationDbContext>(options =>
-            //options.UseSqlServer(Configuration["ConnectionStrings:IdentityProductionConnection"]));
-            //services.AddDbContext<ShoeDesignzDbContext>(options =>
-            //options.UseSqlServer(Configuration["ConnectionStrings:ProductionConnection"]));
-
+            //Local Strings
+            services.AddDbContext<ApplicationDbContext>(options =>
+            options.UseSqlServer(Configuration["ConnectionStrings:LocalUserConnection"]));
             services.AddDbContext<ShoeDesignzDbContext>(options =>
             options.UseSqlServer(Configuration["ConnectionStrings:DefaultConnection"]));
 
+            //Deployment Strings
+            //services.AddDbContext<ApplicationDbContext>(options =>
+            //options.UseSqlServer(Configuration["ConnectionStrings:IdentityDefaultConnection"]));
+            //services.AddDbContext<ShoeDesignzDbContext>(options =>
+            //options.UseSqlServer(Configuration["ConnectionStrings:ProductionConnection"]));
 
             services.AddScoped<IInventory, InventoryManagementServices>();
             services.AddScoped<ICart, CartService>();
             services.AddScoped<IOrder, OrderService>();
 
-
+            //This is the Authorization used for the Admin and the people with the edu email policy to access certain parts of the website only.
             services.AddAuthorization(options =>
             {
                 options.AddPolicy("EduEmail", policy => policy.Requirements.Add(new EduEmailRequirement()));
@@ -97,8 +96,7 @@ namespace ShoeDesignz
                 app.UseDeveloperExceptionPage();
             }
 
-            app.UseStaticFiles();
-        
+            app.UseStaticFiles();       
 
             app.UseMvc(route =>
             {

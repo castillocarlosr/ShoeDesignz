@@ -1,0 +1,71 @@
+﻿@page
+@model ShoeDesignz.Pages.Admin.OrderModel
+@{
+    ViewData["Title"] = "Order";
+    Layout = "_Layout";
+}
+
+<h4>Last 10 orders in Shoe Designz</h4>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Shoe Name:
+            </th>
+            <th>
+                Shoe Sku:
+            </th>
+            <th>
+                Shoe Price:
+            </th>
+            <th>
+                Shoe Discount Price:
+            </th>
+            <th>
+                Shoe Gender:
+            </th>
+            <th>
+                Shoe Description:
+            </th>
+            <th>
+                Shoe Image:
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Orders)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ID)
+                </td>
+            </tr>
+            @foreach (var shoes in item.OrderItems)
+            {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => shoes.Inventory.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => shoes.Inventory.Sku)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => shoes.Inventory.Price)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => shoes.Inventory.DiscountPrice)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => shoes.Inventory.Gender)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => shoes.Inventory.Description)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => shoes.Inventory.Image)
+                </td>
+            </tr>
+            }
+        }
+    </tbody>
+</table>

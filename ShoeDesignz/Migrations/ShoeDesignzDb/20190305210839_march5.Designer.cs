@@ -10,8 +10,8 @@ using ShoeDesignz.Data;
 namespace ShoeDesignz.Migrations.ShoeDesignzDb
 {
     [DbContext(typeof(ShoeDesignzDbContext))]
-    [Migration("20190304224521_march4th")]
-    partial class march4th
+    [Migration("20190305210839_march5")]
+    partial class march5
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -86,22 +86,22 @@ namespace ShoeDesignz.Migrations.ShoeDesignzDb
                         {
                             ID = 1,
                             Description = "These are awesome",
-                            DiscountPrice = 42.00m,
+                            DiscountPrice = 2.00m,
                             Gender = 1,
                             Image = "https://via.placeholder.com/450",
                             Name = "Adidas",
-                            Price = 234.56m,
+                            Price = 11.11m,
                             Sku = 123478901
                         },
                         new
                         {
                             ID = 2,
                             Description = "These are GREAT!  I love them more than pizza!!!!",
-                            DiscountPrice = 25.00m,
+                            DiscountPrice = 2.00m,
                             Gender = 2,
                             Image = "https://via.placeholder.com/350",
                             Name = "Nike",
-                            Price = 222.22m,
+                            Price = 12.12m,
                             Sku = 9876543
                         },
                         new
@@ -130,33 +130,33 @@ namespace ShoeDesignz.Migrations.ShoeDesignzDb
                         {
                             ID = 5,
                             Description = "Total Rip OFF!",
-                            DiscountPrice = 50.00m,
+                            DiscountPrice = 5.00m,
                             Gender = 1,
                             Image = "https://via.placeholder.com/450",
                             Name = "Fake",
-                            Price = 555.55m,
+                            Price = 15.15m,
                             Sku = 123471111
                         },
                         new
                         {
                             ID = 6,
                             Description = "These are awesome",
-                            DiscountPrice = 42.00m,
+                            DiscountPrice = 4.00m,
                             Gender = 1,
                             Image = "https://via.placeholder.com/450",
                             Name = "Shoe6",
-                            Price = 234.56m,
+                            Price = 16.16m,
                             Sku = 12347801
                         },
                         new
                         {
                             ID = 7,
                             Description = "These are GREAT!  I love them more than pizza!!!!",
-                            DiscountPrice = 25.00m,
+                            DiscountPrice = 2.00m,
                             Gender = 2,
                             Image = "https://via.placeholder.com/350",
                             Name = "Shoe7",
-                            Price = 222.22m,
+                            Price = 17.17m,
                             Sku = 9876543
                         },
                         new
@@ -167,7 +167,7 @@ namespace ShoeDesignz.Migrations.ShoeDesignzDb
                             Gender = 2,
                             Image = "https://via.placeholder.com/250",
                             Name = "Shoe8",
-                            Price = 33.33m,
+                            Price = 18.18m,
                             Sku = 144458901
                         },
                         new
@@ -178,18 +178,18 @@ namespace ShoeDesignz.Migrations.ShoeDesignzDb
                             Gender = 0,
                             Image = "https://via.placeholder.com/150",
                             Name = "SHoe9",
-                            Price = 44.44m,
+                            Price = 19.19m,
                             Sku = 123472221
                         },
                         new
                         {
                             ID = 10,
                             Description = "Total Rip OFF!",
-                            DiscountPrice = 50.00m,
+                            DiscountPrice = 7.00m,
                             Gender = 1,
                             Image = "https://via.placeholder.com/450",
                             Name = "ShoeTen",
-                            Price = 555.55m,
+                            Price = 20.20m,
                             Sku = 123471111
                         });
                 });
@@ -199,6 +199,8 @@ namespace ShoeDesignz.Migrations.ShoeDesignzDb
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("CreditCardNumber");
 
                     b.Property<DateTime>("Now");
 

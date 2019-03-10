@@ -27,9 +27,18 @@ namespace ShoeDesignz.Controllers
             _context = context;
         }
 
+        /// <summary>
+        /// Will get the view page from the Register view page.
+        /// </summary>
+        /// <returns>A very awesome register page for new users.</returns>
         [HttpGet]
         public IActionResult Register() => View();
 
+        /// <summary>
+        /// Will send the new user registered information to a database to keep track of their shopping and be able to log back in.
+        /// </summary>
+        /// <param name="rvm"></param>
+        /// <returns>An awesome thanks for registering page.</returns>
         [HttpPost]
         public async Task<IActionResult> Register(RegisterUser rvm)
         {
@@ -68,7 +77,7 @@ namespace ShoeDesignz.Controllers
                     sb.Append("<h2>Congratulations on Registering</h2>");
                     sb.AppendLine("<p>Please accept this introductory coupon for 0% off on your first purchase.</p>");
                     sb.AppendLine("<p>We hope you continue to shop with us for your fabulous shoez needs!!</p>");
-                    sb.AppendLine("<a href='https://shoedesignz.azurewebsites.net'> Link to ShoeDesignz </a>");
+                    //sb.AppendLine("<a href='https://shoedesignz.azurewebsites.net'> Link to ShoeDesignz </a>");
                     await _emailSender.SendEmailAsync(rvm.Email, "Thank you for Registering with ShoeDesignz!", sb.ToString());
                     var ourUser = await _userManager.FindByEmailAsync(rvm.Email);
                     string id = ourUser.Id;
@@ -78,20 +87,26 @@ namespace ShoeDesignz.Controllers
                     {
                         await _userManager.AddToRoleAsync(user, ApplicationRoles.Admin);
                     }
-
+                    //Will redirect to new page
                     return RedirectToAction("Products", "Product");
                 }
             }
 
             return View(rvm);
         }
+        /// <summary>
+        /// Gets the view from the login view page
+        /// </summary>
+        /// <returns>An awesome login page</returns>
         [HttpGet]
         public IActionResult Login() => View();
-        public IActionResult Login2()
-        {
-            return View();
-        }
 
+        /// <summary>
+        /// One:  This is where the login enters their email and password.
+        /// Two:  3rd-party OAtuho is implemented to allow for Facebook and Microsoft login.
+        /// </summary>
+        /// <param name="lvm"></param>
+        /// <returns></returns>
         [HttpPost]
         public async Task<IActionResult> Login(LoginUser lvm)
         {
@@ -103,16 +118,16 @@ namespace ShoeDesignz.Controllers
                 {
                     //Send the user an email
                     //Moved to registration because I will send an email after checkout.
-                    //await _emailSender.SendEmailAsync(lvm.Email, "Thank you for Loggin In!", "<p>Thanks for being here</p>");
-                    //var ourUser = await _userManager.FindByEmailAsync(lvm.Email);
                     //string id = ourUser.Id;
 
                     //Adding user to admin role  Make Admin razor page carlos
                     var user = await _userManager.FindByEmailAsync(lvm.Email);
                     if(await _userManager.IsInRoleAsync(user, ApplicationRoles.Admin))
                     {
-                        //return RedirectToAction("Index", "Admin");
-                        
+                        await _emailSender.SendEmailAsync(lvm.Email, "Admin Login", "<h2>Admin has logged in.</h2> <h6>Thanks for looking at out ShoeDesignz store.</h6>");
+                        var ourUser = await _userManager.FindByEmailAsync(lvm.Email);
+                        return RedirectToPage("/Admin/Index");
+
                     }
                     return RedirectToAction("Products", "Product");
                 }
@@ -127,11 +142,20 @@ namespace ShoeDesignz.Controllers
             return RedirectToAction("Index", "Home");
         }
 
+        /// <summary>
+        /// This will redirect to a page that displays that the user does not have the necessary Policy .edu email requirement.
+        /// </summary>
+        /// <returns>A big WARNING that you are not allowed without an EDU email.</returns>
         public IActionResult AccessDenied()
         {
             return View();
         }
         //********************External Log In setup below**************//
+        /// <summary>
+        /// Will send the external login information up to the necessary provider.
+        /// </summary>
+        /// <param name="provider"></param>
+        /// <returns>Facebook or Microsoft for now.</returns>
         [HttpPost]
         public IActionResult ExternalLogin(string provider)
         {
