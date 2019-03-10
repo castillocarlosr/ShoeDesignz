@@ -300,7 +300,7 @@ namespace ShoeDeignzTDDTests
             }
         }
 
-        //***********************************Order in DB Tests**********************************************
+        //************************************Order in DB Tests**********************************************
         /// <summary>
         /// Tests for Cart Items in DB
         /// </summary>
@@ -336,6 +336,7 @@ namespace ShoeDeignzTDDTests
                 var updateOrderID = await context.Order.FirstOrDefaultAsync(c => c.ID == orderID.ID);
                 Assert.Equal(22, updateOrderID.ID);
                 */
+
             }
         }
     }
