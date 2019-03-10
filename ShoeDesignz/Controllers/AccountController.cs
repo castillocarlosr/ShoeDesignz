@@ -108,7 +108,6 @@ namespace ShoeDesignz.Controllers
         /// <param name="lvm"></param>
         /// <returns></returns>
         [HttpPost]
-
         public async Task<IActionResult> Login(LoginUser lvm)
         {
             if (ModelState.IsValid)
