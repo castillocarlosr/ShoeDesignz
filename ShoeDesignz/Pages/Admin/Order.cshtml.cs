@@ -29,7 +29,7 @@ namespace ShoeDesignz.Pages.Admin
         /// <returns>Returns past orders</returns>
         public async Task OnGetAsync()
         {
-            Orders = await _order.GetOrders("");
+            Orders = await _order.GetOrders("ID");
             //Orders = await _order.GetOrder();
         }
     }  
