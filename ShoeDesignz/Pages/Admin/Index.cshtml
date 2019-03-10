@@ -2,7 +2,6 @@
 @model ShoeDesignz.Pages.Admin.IndexModel
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 @{
-    //ViewData["Title"] = "Login";
     ViewData["Title"] = "Index";
     Layout = "_Layout";
 }
@@ -11,6 +10,9 @@
 
 <p>
     <a asp-page="Create">Create New</a>
+</p>
+<p>
+    <a asp-page="Order">Past ten Orders</a>
 </p>
 <table class="table">
     <thead>
@@ -35,7 +37,7 @@
             <th>
                 @Html.DisplayNameFor(model => model.Inventories[0].Image)
             </th>
-            <th>________________________________________</th>
+            <th>CRUD Options</th>
             <th></th>
         </tr>
     </thead>
@@ -73,3 +75,5 @@
         }
     </tbody>
 </table>
+
+

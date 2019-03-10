@@ -125,9 +125,9 @@ namespace ShoeDesignz.Controllers
                     var user = await _userManager.FindByEmailAsync(lvm.Email);
                     if(await _userManager.IsInRoleAsync(user, ApplicationRoles.Admin))
                     {
-                        await _emailSender.SendEmailAsync(lvm.Email, "<h2>Admin has logged in.</h2>", "<h6>Thanks for looking at out ShoeDesignz store.</h6>");
+                        await _emailSender.SendEmailAsync(lvm.Email, "Admin Login", "<h2>Admin has logged in.</h2> <h6>Thanks for looking at out ShoeDesignz store.</h6>");
                         var ourUser = await _userManager.FindByEmailAsync(lvm.Email);
-                        return RedirectToPage("Index", "Admin");
+                        return RedirectToPage("/Admin/Index");
 
                     }
                     return RedirectToAction("Products", "Product");
