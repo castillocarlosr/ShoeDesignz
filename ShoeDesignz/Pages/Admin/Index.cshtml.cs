@@ -27,6 +27,10 @@ namespace ShoeDesignz.Pages.Admin
 
         public IList<Inventory> Inventories { get; set; }
 
+        /// <summary>
+        /// GET endpoint for the main page with all the Shoes for admin dashboard
+        /// </summary>
+        /// <returns></returns>
         public async Task OnGetAsync()
         {
             Inventories = await _context.Shoes.ToListAsync();
