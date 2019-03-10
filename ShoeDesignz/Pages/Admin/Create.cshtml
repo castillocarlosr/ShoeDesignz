@@ -4,3 +4,44 @@
     ViewData["Title"] = "Create";
     Layout = "_Layout";
 }
+
+<body>
+    <h1>Admin</h1>
+    <h3>Create a Shoe</h3>
+    <h6><button type="button"><a asp-page="Index">Back to Admin Dashboard</a></button></h6>
+
+    <form method="post">
+        <div>
+            <label asp-for="Inventory.Name"></label>
+            <input asp-for="Inventory.Name" />
+            <span asp-validation-for="Inventory.Name"></span>
+
+            <label asp-for="Inventory.Sku"></label>
+            <input asp-for="Inventory.Sku" />
+            <span asp-validation-for="Inventory.Sku"></span>
+
+            <label asp-for="Inventory.Price"></label>
+            <input asp-for="Inventory.Price" />
+            <span asp-validation-for="Inventory.Price"></span>
+
+            <label asp-for="Inventory.DiscountPrice"></label>
+            <input asp-for="Inventory.DiscountPrice" />
+            <span asp-validation-for="Inventory.DiscountPrice"></span>
+
+            <label asp-for="Inventory.Gender"></label>
+            <select asp-for="Inventory.Gender" class="form-group" asp-items="@Html.GetEnumSelectList<ShoeDesignz.Models.Inventory.Genders>()"></select>
+            <span asp-validation-for="Inventory.Gender"></span>
+
+            <label asp-for="Inventory.Description"></label>
+            <textarea rows="4" asp-for="Inventory.Description"></textarea>
+            <span asp-validation-for="Inventory.Description"></span>
+
+            <label asp-for="Inventory.Image"></label>
+            <input asp-for="Inventory.Image" type="file" />
+        </div>
+
+        <div class="form-group">
+            <input type="submit" value="Create" />
+        </div>
+    </form>
+</body>

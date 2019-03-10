@@ -4,3 +4,44 @@
     ViewData["Title"] = "Edit";
     Layout = "_Layout";
 }
+
+<body>
+    <h1>Create</h1>
+    <h3>Admin Manage</h3>
+
+    <p> You can create, delete, and edit the shoes.</p>
+    <h2><button type="button"><a asp-page="Index">Back Home</a></button></h2>
+
+    <form method="post" enctype="multipart/form-data">
+        <div>
+            <label asp-for="Inventory.Name"></label>
+            <input asp-for="Inventory.Name" />
+
+            <label asp-for="Inventory.Sku"></label>
+            <input asp-for="Inventory.Sku" />
+
+            <label asp-for="Inventory.Price"></label>
+            <input asp-for="Inventory.Price" />
+
+            <label asp-for="Inventory.DiscountPrice"></label>
+            <input asp-for="Inventory.DiscountPrice" />
+
+            <label asp-for="Inventory.Gender"></label>
+            <select asp-for="Inventory.Gender" asp-items="@Html.GetEnumSelectList<ShoeDesignz.Models.Inventory.Genders>()" />
+
+            <label asp-for="Inventory.Description"></label>
+            <input rows="4" asp-for="Inventory.Description" />
+
+            <label asp-for="Inventory.Image"></label>
+            <input asp-for="Inventory.Image" type="file"/>
+        </div>
+
+        <div>
+            <button type="submit">SAVE</button>
+        </div>
+
+        <div>
+            <button type="submit" asp-page-handler="Delete" onclick="alert('You have successfully DELETED a single Shoe!')">DELETE</button>
+        </div>
+    </form>
+</body>

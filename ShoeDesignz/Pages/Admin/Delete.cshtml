@@ -4,3 +4,70 @@
     ViewData["Title"] = "Delete";
     Layout = "_Layout";
 }
+
+
+<body>
+    <h1>Admin</h1>
+    <h3>Delete a Shoe</h3>
+    <h6><button type="button"><a asp-page="./Index">Back to Admin Dashboard</a></button></h6>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Inventory.Name)
+                <th>
+                    @Html.DisplayNameFor(model => model.Inventory.Sku)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Inventory.Price)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Inventory.DiscountPrice)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Inventory.Gender)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Inventory.Description)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Inventory.Image)
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>
+                    @Html.DisplayFor(model => model.Inventory.Name)
+                </td>
+                <td>
+                    @Html.DisplayNameFor(model => model.Inventory.Sku)
+                </td>
+                <td>
+                    @Html.DisplayNameFor(model => model.Inventory.Price)
+                </td>
+                <td>
+                    @Html.DisplayNameFor(model => model.Inventory.DiscountPrice)
+                </td>
+                <td>
+                    @Html.DisplayNameFor(model => model.Inventory.Gender)
+                </td>
+                <td>
+                    @Html.DisplayNameFor(model => model.Inventory.Description)
+                </td>
+                <td>
+                    @Html.DisplayNameFor(model => model.Inventory.Image)
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <form method="post">
+        <div class="btn">
+            <input type="hidden" asp-for="Inventory.ID" />
+            <input type="submit" value="Delete" class="btn btn-default" onclick="alert('You have successfully DELETED a single Shoe!')" />
+        </div>
+    </form>
+
+</body>
+
