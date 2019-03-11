@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using ShoeDesignz.Data;
 using ShoeDesignz.Models;
 using ShoeDesignz.Models.Interfaces;
 
@@ -29,8 +30,9 @@ namespace ShoeDesignz.Pages.Admin
         /// <returns>Returns past orders</returns>
         public async Task OnGetAsync()
         {
-            Orders = await _order.GetOrders("ID");
+            Orders = await _order.GetOrders("0");
             //Orders = await _order.GetOrder();
         }
+        
     }  
 }
