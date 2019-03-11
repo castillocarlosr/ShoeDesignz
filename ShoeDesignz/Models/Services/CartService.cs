@@ -21,14 +21,12 @@ namespace ShoeDesignz.Models.Services
             try
             {
                 Cart cart = await _context.Cart.FirstOrDefaultAsync(c => c.UserID == username);
-                // cart.CartItems = await _context.CartItems.Where(ci => ci. == ci.ID).Include("Inventory").ToListAsync();
-
-                //cart.CartItems = await _context.CartItems.Where(ci => ci.Cart.UserID == username).Include("Inventory").ToListAsync();
+               
                 foreach (var cartItem in cart.CartItems)
                 {
                     _context.CartItems.Remove(cartItem);
                 }
-
+                
                 await _context.SaveChangesAsync();
                 return true;
             }
@@ -36,25 +34,19 @@ namespace ShoeDesignz.Models.Services
             {
                 return false;
             }
-        }    
-
-        public async Task<bool> DeleteItem(string username, int id)
-        {
-            try
-            {
-                Cart cart = await _context.Cart.FirstOrDefaultAsync(c => c.UserID == username);
-                cart.CartItems = await _context.CartItems.Where(ci => ci.ID != id).ToListAsync();
-                _context.Update(cart);
-                await _context.SaveChangesAsync();
-                return true;
-            }
-            catch (Exception ex)
-            {
-                return false;
-            }
         }
 
-        public async Task<bool> UpdateCartItems(CartItems cartItems)
+        public async Task<CartItems> DeleteItem(int id)
+        {
+            CartItems item = await _context.CartItems.Include(o => o.Inventory)                                      
+                                           .FirstOrDefaultAsync(o => o.ID == id);
+
+            _context.Remove(item);
+            await _context.SaveChangesAsync();
+            return item;
+        }
+
+            public async Task<bool> UpdateCartItems(CartItems cartItems)
         {
             try
             {
@@ -73,15 +65,7 @@ namespace ShoeDesignz.Models.Services
             return _context.Shoes.Any(e => e.ID == id);
         }
 
-        //public IEnumerable<Cart> GetCartItems()
-        //{
-        //    var items = from h in _context.Cart
-        //                select h;
-        //    foreach (Cart item in items)
-        //    {
-
-        //    }
-        //}
+      
         public async Task<Cart> GetCartForUser(string email)
         {
             Cart cart = new Cart();

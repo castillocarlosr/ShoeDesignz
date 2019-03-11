@@ -7,7 +7,7 @@ namespace ShoeDesignz.Models.Interfaces
         // Update quantity in cart
         Task<bool> UpdateCartItems(CartItems cartItems);
 
-        Task<bool> DeleteItem(string username, int id);
+        Task<CartItems> DeleteItem(int id);
 
         //Remove a cart item
         Task<bool> DeleteCartItems(string username);
