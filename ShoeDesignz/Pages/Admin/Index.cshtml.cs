@@ -14,6 +14,7 @@ namespace ShoeDesignz.Pages.Admin
     [Authorize(Policy = "AdminOnly")]
     public class IndexModel : PageModel
     {
+        
         private readonly ShoeDesignzDbContext _context;
 
         /// <summary>
@@ -35,5 +36,7 @@ namespace ShoeDesignz.Pages.Admin
         {
             Inventories = await _context.Shoes.ToListAsync();
         }
+        
+        
     }
 }
