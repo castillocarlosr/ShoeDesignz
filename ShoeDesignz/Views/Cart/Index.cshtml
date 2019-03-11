@@ -1,39 +1,57 @@
 ﻿@model ShoeDesignz.Models.Cart
 
-
 @{
-    ViewData["Title"] = "Index";
-    var products = this.ViewContext.RouteData.Values["id"];
-    
+    ViewData["Title"] = "Cart";
+    Layout = "_Layout";
+    decimal totalPrice = 0;
 }
-
 <h1>Welcome to your shopping cart!</h1>
+<form method="post" asp-controller="Cart">
+    <table class="table table-dark cart-table">
+        <thead>
+            <tr>
+                <th scope="col">Order Number</th>
+                <th scope="col">Item Name</th>
+                <th scope="col">Price</th>
+                <th scope="col">Quantity</th>           
+                <th scope="col">Total</th>
+            </tr>
+        </thead>
+        <tbody>
+            @for (int i = 0; i < Model.CartItems.Count(); i++)
+            {
+                totalPrice += Model.CartItems[i].Quantity * Model.CartItems[i].Inventory.Price;
 
-<form method="post" asp-controller="Cart" asp-action="Checkout" asp-route-id="@Model.ID">
-    @foreach (var item in Model.CartItems)
-    {
-        <table class="table table-dark">
-            <thead>
-                <tr>
-                    <th scope="col">Order Number</th>
-                    <th scope="col">Item Name</th>
-                    <th scope="col">Price</th>
-                    <th scope="col">Quantity</th>
-                    <th scope="col">Total</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <th scope="row">@item.ID</th>
-                    <td>@item.Inventory.Name</td>
-                    <td>@item.Inventory.Price</td>
-                    <td><input type="number" class="form-control" id="Quantity" placeholder="@item.Quantity"></td>
-                    <td>@(item.Quantity * item.Inventory.Price)</td>
-                </tr>
-            </tbody>
-        </table>
-    }
+            <tr>
+                <td>@Model.CartItems[i].ID</td>
+                <td>@Model.CartItems[i].Inventory.Name</td>
+                <td>@Model.CartItems[i].Inventory.Price</td>
+                <td>
+                    <input asp-for="CartItems[i].Quantity" placeholder="@Model.CartItems[i].Quantity" />
+                </td>
+                <td>
+                    <button type="submit" asp-action="Delete" asp-route-id=@Model.CartItems[i].ID>Delete</button>
+                </td>
+                <td>
+                    <button type="submit" asp-action="Update" asp-for="Quantity" asp-route-id="@Model.CartItems[i].ID">Update Cart</button>
+
+                </td>
+                <td>@(Model.CartItems[i].Quantity * Model.CartItems[i].Inventory.Price)</td>
+            </tr>
+            }
+        </tbody>
+        <tfoot>          
+            <tr>
+                <td colspan="5">@totalPrice</td>
+            </tr>
+        </tfoot>
+    </table>
+    
     <div> <button type="submit" value="Checkout">Place your order to email reciept</button></div>
     @*<div><button asp-controller="Cart" asp-action="GetCardInfo">Checkout with Credit Card</button></div>*@
     @*<a asp-controller="Cart" asp-action="GetCardInfo">Place CC</a>*@
+    @*<div>
+        <button type="submit" asp-action="Checkout" asp-route-id="@Model.ID">Place Your Order</button>
+    </div>*@
+    @*<a asp-controller="Cart" asp-action="GetCardInfo">Enter Card Info</a>*@
 </form>
