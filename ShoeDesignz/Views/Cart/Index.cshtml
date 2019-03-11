@@ -32,6 +32,10 @@
                 <td>
                     <button type="submit" asp-action="Delete" asp-route-id=@Model.CartItems[i].ID>Delete</button>
                 </td>
+                <td>
+                    <button type="submit" asp-action="Update" asp-for="Quantity" asp-route-id="@Model.CartItems[i].ID">Update Cart</button>
+
+                </td>
                 <td>@(Model.CartItems[i].Quantity * Model.CartItems[i].Inventory.Price)</td>
             </tr>
             }
@@ -44,8 +48,7 @@
     </table>
 
     <div>
-        <button type="submit" asp-action="Update" asp-route-id="@Model">Update Cart</button>
-        <button type="submit" asp-action="Checkout" asp-route-id="@Model">Place Your Order</button>
+        <button type="submit" asp-action="Checkout" asp-route-id="@Model.ID">Place Your Order</button>
     </div>
     @*<a asp-controller="Cart" asp-action="GetCardInfo">Enter Card Info</a>*@
 </form>

@@ -46,25 +46,21 @@ namespace ShoeDesignz.Models.Services
             return item;
         }
 
-            public async Task<bool> UpdateCartItems(CartItems cartItems)
+       public async Task<Cart> UpdateCartItems(int id, string email)
         {
-            try
-            {
-                 _context.CartItems.Update(cartItems);
-                await _context.SaveChangesAsync();
-                return true;
-            }
-            catch(Exception ex)
-            {
-                return false;
-            }
+            Cart cart = await _context.Cart.Include(ci => ci.CartItems)
+                                            .ThenInclude(oi => oi.Inventory)
+                                            .FirstOrDefaultAsync(c => c.UserID == email);            
+
+            _context.Update(cart);
+            await _context.SaveChangesAsync();
+            return cart;
         }
 
         private bool CartItemExists(int id)
         {
             return _context.Shoes.Any(e => e.ID == id);
         }
-
       
         public async Task<Cart> GetCartForUser(string email)
         {
