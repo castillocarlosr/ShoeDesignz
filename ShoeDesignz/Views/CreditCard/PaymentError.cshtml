@@ -1,0 +1,15 @@
+﻿@using ShoeDesignz.Models;
+@using Microsoft.AspNetCore.Identity;
+@inject SignInManager<ApplicationUser> SignInManager
+@{
+    ViewData["Title"] = "PaymentError";
+    Layout = "_Layout";
+}
+
+<h1>PaymentError</h1>
+
+<h2>I'm sorry.  Something went wrong with the payment.</h2>
+<h3>The good news is we are moving over to bitcoin!</h3>
+
+<a asp-controller="Cart" asp-action="Index">View Cart</a>
+

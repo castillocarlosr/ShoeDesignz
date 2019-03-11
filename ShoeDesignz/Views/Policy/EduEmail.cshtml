@@ -1,0 +1,45 @@
+﻿@model IEnumerable<ShoeDesignz.Models.Inventory>
+
+@using Microsoft.AspNetCore.Identity;
+@using ShoeDesignz.Models;
+@inject SignInManager<ApplicationUser> SignInManager
+
+@{
+    ViewData["Title"] = "EduEmail";
+    Layout = "_Layout";
+    var products = this.ViewContext.RouteData.Values["id"];
+}
+
+<h4>Products</h4>
+<h1>All Student Discount Products 50% OFF!</h1>
+@foreach (var item in Model)
+{
+    <section class="outter-box">
+        <div class="row">
+            <div class="column">
+                <div class="card" style="width: 18rem;">
+                    <img src="~/Images/Image from iOS.jpg" class="card-img-top" alt="...">
+
+                </div>
+            </div>
+            <div class="column">
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item"><h1>@item.Name</h1></li>
+                    <li class="list-group-item"><h2>Sku: @item.Sku</h2></li>
+
+                    <li class="list-group-item"><h2>Price: $@item.Price</h2></li>
+                    <li class="list-group-item"><h2>Price Discount: $@item.DiscountPrice</h2></li>
+                    <li class="list-group-item"><a asp-controller="Product" asp-route-id="@item.ID" asp-action="Details">View Details</a></li>
+                    <li class="list-group-item"><h2><a asp-controller="Product" asp-route-id="@item.ID" asp-action="BuyDiscount">Buy Now</a></h2></li>
+                </ul>
+                
+
+                <div class="tab-content" id="myTabContent">
+                    <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">@item.Description</div>
+                    <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">...</div>
+                    <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">...</div>
+                </div>
+            </div>
+        </div>
+    </section>
+}
