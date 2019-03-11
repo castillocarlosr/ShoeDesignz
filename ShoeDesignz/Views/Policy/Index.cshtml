@@ -1,0 +1,29 @@
+﻿@model IEnumerable<ShoeDesignz.Models.Inventory>
+
+@using Microsoft.AspNetCore.Identity;
+@using ShoeDesignz.Models;
+@inject SignInManager<ApplicationUser> SignInManager
+
+@{
+    ViewData["Title"] = "Products";
+    Layout = "_Layout";
+    //var products = this.ViewContext.RouteData.Values["id"];
+}
+
+<h1>Index for EDU amil</h1>
+<h1>This is where you would get an education discount!  90% OFF</h1>
+<h2>This is the Index cshtml page</h2>
+<p></p>
+<p></p>
+<p></p>
+<p></p>
+
+<h4> We hope you enjoy this special discount.  </h4>
+
+<div>
+    <nav>
+        <a class="btn btn-primary btn-lg" role="button" asp-controller="Policy" asp-action="EduEmail">Enter for Discount</a>
+        <a asp-controller="Policy" asp-action="EduEmail">View Products</a>
+    </nav>
+</div>
+

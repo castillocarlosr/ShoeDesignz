@@ -1,0 +1,34 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title> Credit Card</title>
+</head>
+<body>
+    <div class="col-md-8 order-md-3">
+        <form>
+            <h4 class="mb-3">Payment</h4>
+            <div class="d-block my-3">
+                <div class="custom-control custom-radio">
+                    <input id="credit" name="paymentMethod" type="radio" class="custom-control-input">
+                    <label class="custom-control-label" for="credit">Credit card</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <label for="cc-number">Credit card number</label>
+                    <select type="text" class="form-control" name="CreditCardNumber" id="cc-number">
+                        <option value="370000000000002">American Express</option>
+                        <option value="6011000000000012">Discover</option>
+                        <option value="4007000000027">Visa</option>
+                        <option value="4111111111111111">4111111111111111</option>
+                        <option value="5424000000000015">Master Card</option>
+                        <option value="2223000010309711">2223000010309711</option>
+                    </select>
+                </div>
+            </div>
+            <hr class="mb-4" />
+            <button class="btn btn-primary btn-lg btn-block" type="submit">Checkout</button>
+        </form>
+    </div>
+</body>
+</html>
