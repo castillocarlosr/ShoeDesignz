@@ -1,92 +1,51 @@
 ﻿@model ShoeDesignz.Models.Cart
 
-
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Cart";
     Layout = "_Layout";
-    var products = this.ViewContext.RouteData.Values["id"];
     decimal totalPrice = 0;
 }
-
 <h1>Welcome to your shopping cart!</h1>
-
-<form method="post" asp-controller="Cart" asp-action="Checkout" asp-route-id="@Model.ID">
+<form method="post" asp-controller="Cart">
     <table class="table table-dark cart-table">
         <thead>
             <tr>
                 <th scope="col">Order Number</th>
                 <th scope="col">Item Name</th>
                 <th scope="col">Price</th>
-                <th scope="col">Quantity</th>
+                <th scope="col">Quantity</th>           
                 <th scope="col">Total</th>
             </tr>
         </thead>
         <tbody>
-            @foreach (var item in Model.CartItems)
+            @for (int i = 0; i < Model.CartItems.Count(); i++)
             {
-                totalPrice += item.Quantity * item.Inventory.Price;
+                totalPrice += Model.CartItems[i].Quantity * Model.CartItems[i].Inventory.Price;
 
-                <tr>
-                    <td>@item.ID</td>
-                    <td>@item.Inventory.Name</td>
-                    <td>@item.Inventory.Price</td>
-                    <td><input type="number" class="form-control" id="Quantity" placeholder="@item.Quantity"></td>
-                    <td>@(item.Quantity * item.Inventory.Price)</td>
-                </tr>
+            <tr>
+                <td>@Model.CartItems[i].ID</td>
+                <td>@Model.CartItems[i].Inventory.Name</td>
+                <td>@Model.CartItems[i].Inventory.Price</td>
+                <td>
+                    <input asp-for="CartItems[i].Quantity" placeholder="@Model.CartItems[i].Quantity" />
+                </td>
+                <td>
+                    <button type="submit" asp-action="Delete" asp-route-id=@Model.CartItems[i].ID>Delete</button>
+                </td>
+                <td>@(Model.CartItems[i].Quantity * Model.CartItems[i].Inventory.Price)</td>
+            </tr>
             }
         </tbody>
-        <tfoot>
-            <tr>
-                <td colspan="5">
-                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bd-example-modal-xl">Update Cart</button>
-                </td>
-            </tr>
+        <tfoot>          
             <tr>
                 <td colspan="5">@totalPrice</td>
             </tr>
         </tfoot>
     </table>
 
-    <div> <button type="submit" value="Checkout">Place your order</button></div>
+    <div>
+        <button type="submit" asp-action="Update" asp-route-id="@Model">Update Cart</button>
+        <button type="submit" asp-action="Checkout" asp-route-id="@Model">Place Your Order</button>
+    </div>
     @*<a asp-controller="Cart" asp-action="GetCardInfo">Enter Card Info</a>*@
 </form>
-
-<div class="modal fade bd-example-modal-xl" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-xl">
-        <div class="modal-content">
-
-            <form method="post" asp-controller="Cart" asp-action="Checkout" asp-route-id="@Model.ID">
-                <table class="table table-dark cart-table">
-                    <thead>
-                        <tr>
-                            <th scope="col">Order Number</th>
-                            <th scope="col">Item Name</th>
-                            <th scope="col">Price</th>
-                            <th scope="col">Quantity</th>
-                            <th scope="col">Total</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach (var item in Model.CartItems)
-                        {
-                            totalPrice += item.Quantity * item.Inventory.Price;
-
-                            <tr>
-                                <td>@item.ID</td>
-                                <td>@item.Inventory.Name</td>
-                                <td>@item.Inventory.Price</td>
-                                <td><input type="number" class="form-control" id="Quantity" placeholder="@item.Quantity"></td>
-                                <td>@(item.Quantity * item.Inventory.Price)</td>
-                            </tr>
-                        }
-                    </tbody>
-                    <tfoot>
-                </table>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Update Cart</button>
-                </div>
-            </form>
-</div>
-    </div>
-</div>

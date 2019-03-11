@@ -36,17 +36,36 @@ namespace ShoeDesignz.Models.Services
             {
                 return false;
             }
+        }    
+
+        public async Task<bool> DeleteItem(string username, int id)
+        {
+            try
+            {
+                Cart cart = await _context.Cart.FirstOrDefaultAsync(c => c.UserID == username);
+                cart.CartItems = await _context.CartItems.Where(ci => ci.ID != id).ToListAsync();
+                _context.Update(cart);
+                await _context.SaveChangesAsync();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
         }
 
-        public Task<List<CartItems>> SendOrder()
+        public async Task<bool> UpdateCartItems(CartItems cartItems)
         {
-            throw new NotImplementedException();
-        }
-
-        public async Task UpdateCart(CartItems CartItems)
-        {
-            _context.CartItems.Update(CartItems);
-            await _context.SaveChangesAsync();          
+            try
+            {
+                 _context.CartItems.Update(cartItems);
+                await _context.SaveChangesAsync();
+                return true;
+            }
+            catch(Exception ex)
+            {
+                return false;
+            }
         }
 
         private bool CartItemExists(int id)
@@ -54,6 +73,15 @@ namespace ShoeDesignz.Models.Services
             return _context.Shoes.Any(e => e.ID == id);
         }
 
+        //public IEnumerable<Cart> GetCartItems()
+        //{
+        //    var items = from h in _context.Cart
+        //                select h;
+        //    foreach (Cart item in items)
+        //    {
+
+        //    }
+        //}
         public async Task<Cart> GetCartForUser(string email)
         {
             Cart cart = new Cart();

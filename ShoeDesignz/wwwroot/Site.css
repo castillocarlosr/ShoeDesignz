@@ -20,7 +20,7 @@ img.image-responsive {
 }
 
 html, body {
-    background-color: #779b96;
+    background-image:url('Images/backgroundImage.jpg');
     height: 100%;
     font-family: 'Numans', sans-serif;
 }
@@ -151,6 +151,46 @@ p {
     font-weight: bold;
 }
 
-form {
+/*form {
     margin: 5vw;
+}*/
+h1.display-4 {
+    text-align: center;
+    padding-top: 8vw;
+}
+
+/*section {
+    text-align: center;
+    font-size: 2vw;
+}*/
+.logo {
+    text-align: center;
+}
+
+.main-header {
+    text-align: center;
+    font-size: 3vw;
+
+}
+.navbar {
+   
+    position: fixed;
+    top: 0;
+    width: 100%;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    -ms-flex-align: center;
+    align-items: center;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    padding: .5rem 1rem;
+}
+.carousel-item-next, .carousel-item-prev, .carousel-item.active {
+    display: block;
+    margin-top: 10vw;
+}
+nav.navbar.navbar-expand-lg.navbar-light.bg-light {
+    border-bottom: 4px solid black;
 }

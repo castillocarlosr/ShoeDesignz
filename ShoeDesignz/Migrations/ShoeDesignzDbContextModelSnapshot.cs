@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ShoeDesignz.Data;
 
-namespace ShoeDesignz.Migrations.ShoeDesignzDb
+namespace ShoeDesignz.Migrations
 {
     [DbContext(typeof(ShoeDesignzDbContext))]
     partial class ShoeDesignzDbContextModelSnapshot : ModelSnapshot
