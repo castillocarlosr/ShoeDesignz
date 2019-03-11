@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using ShoeDesignz.Models;
 using ShoeDesignz.Models.Interfaces;
 using System.Collections.Generic;
@@ -51,23 +52,15 @@ namespace ShoeDesignz.Controllers
             {
                 OrderItems products = new OrderItems();
                 products.InventoryID = item.InventoryID;
-                //products.Inventory = item.Inventory;
                 products.Quantity = item.Quantity;
                 products.OrderID = order.ID;
                 products.CartID = cart.ID;
                 order.OrderItems.Add(products);
                 sb.AppendLine($"<div>order item shit{order.OrderItems}</div>");
-                //sb.AppendLine($"order item date: {order.Now}");
-                //sb.AppendLine($"order item Order items: {order.OrderItems}");
-                //sb.AppendLine($"order item CC: {order.CreditCardNumber}");
-                //sb.AppendLine($"order item Product Inventory: {products.Inventory}");
-                //sb.AppendLine($"order item Product Cart Items: {cart.CartItems}");
-                //sb.AppendLine($"LINE BREAK");
             }
             sb.Append("</ul>");
-
-
             await _order.UpdateOrder(order);
+            await _context.DeleteCartItems(stringEmail);
 
             sb.AppendLine($"<div>Order Reciept:  {order}</div>");
             sb.AppendLine("<p></p>");
@@ -75,11 +68,32 @@ namespace ShoeDesignz.Controllers
             sb.AppendLine("<p>_________________________________________________________________________________</p>");
             sb.AppendLine("<div><a href='https://shoedesignz.azurewebsites.net'>ShoeDesignz  e-Store</a></div>");         
             await _emailSender.SendEmailAsync(stringEmail, "Order Confirmation", sb.ToString());
-            //Reciepts go here
             //return RedirectToAction("Index", "Order", order);
             return RedirectToAction("Index", "CreditCard");
         }
 
+        [HttpPost]
+        public async Task<IActionResult> Delete(int id)
+        {         
+            await _context.DeleteItem(id);
+            return RedirectToAction("Index", "Cart");
+        }
+
+      
+        [HttpPost]
+        public async Task<IActionResult> Update(int id)
+        {
+            var email = User.Identity.Name;
+            await _context.UpdateCartItems(id, email);
+            return RedirectToAction("Index", "Cart");         
+        }
+
+        public async Task<IActionResult> Edit()
+        {
+            var email = User.Identity.Name;
+            Cart cart =  await _inventory.GetCart(email);
+            return View("Edit", cart);                     
+        }
 
         /// <summary>
         /// Nothing really
@@ -89,7 +103,6 @@ namespace ShoeDesignz.Controllers
         {
             return RedirectToAction("Index", "CreditCard");
         }
-
 
         public async Task <IActionResult> Index()
         {
@@ -104,6 +117,5 @@ namespace ShoeDesignz.Controllers
             Cart cart = await _inventory.GetCart(email);
             return View(cart);
         }
-
     }
 }
