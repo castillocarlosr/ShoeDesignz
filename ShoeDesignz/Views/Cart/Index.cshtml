@@ -47,11 +47,11 @@
         </tfoot>
     </table>
     
-    <div> <button type="submit" value="Checkout">Place your order to email reciept</button></div>
+    @*<div> <button type="submit" value="Checkout">Place your order to email reciept</button></div>*@
     @*<div><button asp-controller="Cart" asp-action="GetCardInfo">Checkout with Credit Card</button></div>*@
     @*<a asp-controller="Cart" asp-action="GetCardInfo">Place CC</a>*@
-    @*<div>
+    <div>
         <button type="submit" asp-action="Checkout" asp-route-id="@Model.ID">Place Your Order</button>
-    </div>*@
+    </div>
     @*<a asp-controller="Cart" asp-action="GetCardInfo">Enter Card Info</a>*@
 </form>

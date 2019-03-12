@@ -68,8 +68,8 @@ namespace ShoeDesignz.Controllers
             sb.AppendLine("<p>_________________________________________________________________________________</p>");
             sb.AppendLine("<div><a href='https://shoedesignz.azurewebsites.net'>ShoeDesignz  e-Store</a></div>");         
             await _emailSender.SendEmailAsync(stringEmail, "Order Confirmation", sb.ToString());
-            //return RedirectToAction("Index", "Order", order);
-            return RedirectToAction("Index", "CreditCard");
+            return RedirectToAction("Index", "Order", order);
+            //return RedirectToAction("Index", "CreditCard");
         }
 
         [HttpPost]
