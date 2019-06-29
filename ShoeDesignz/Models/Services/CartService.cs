@@ -14,24 +14,47 @@ namespace ShoeDesignz.Models.Services
         public CartService(ShoeDesignzDbContext context)
         {
             _context = context;
-        }
-   
-        public async Task DeleteCartItem(int id)
+        }     
+
+        public async Task<bool> DeleteCartItems(string username)
         {
-            CartItems DeleteCartItem = await _context.CartItems.FirstOrDefaultAsync(c => c.InventoryID== id);
-            _context.CartItems.Remove(DeleteCartItem);
+            try
+            {
+                Cart cart = await _context.Cart.FirstOrDefaultAsync(c => c.UserID == username);
+               
+                foreach (var cartItem in cart.CartItems)
+                {
+                    _context.CartItems.Remove(cartItem);
+                }
+                
+                await _context.SaveChangesAsync();
+                return true;
+            }
+            catch(Exception ex)
+            {
+                return false;
+            }
+        }
+
+        public async Task<CartItems> DeleteItem(int id)
+        {
+            CartItems item = await _context.CartItems.Include(o => o.Inventory)                                      
+                                           .FirstOrDefaultAsync(o => o.ID == id);
+
+            _context.Remove(item);
             await _context.SaveChangesAsync();
+            return item;
         }
 
-        public Task<List<CartItems>> SendOrder()
+       public async Task<Cart> UpdateCartItems(int id, string email)
         {
-            throw new NotImplementedException();
-        }
+            Cart cart = await _context.Cart.Include(ci => ci.CartItems)
+                                            .ThenInclude(oi => oi.Inventory)
+                                            .FirstOrDefaultAsync(c => c.UserID == email);            
 
-        public async Task UpdateCart(CartItems CartItems)
-        {
-            _context.CartItems.Update(CartItems);
-            await _context.SaveChangesAsync();          
+            _context.Update(cart);
+            await _context.SaveChangesAsync();
+            return cart;
         }
 
         private bool CartItemExists(int id)

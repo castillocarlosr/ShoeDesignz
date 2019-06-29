@@ -13,6 +13,7 @@
 }
 
 <header>
+<<<<<<< HEAD
     <div class="jumbotron jumbotron-fluid">
 
         @if (!SignInManager.IsSignedIn(User))
@@ -41,6 +42,33 @@ Here all products will show
 </div>
 
 
+=======
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="#">ShoeDesignz</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div class="navbar-nav">
+                <a class="nav-item nav-link" asp-controller="Cart" asp-action="Index">View Cart<span class="sr-only"></span></a>
+                <a class="nav-item nav-link" asp-controller="Product" asp-action="Products">View Products</a>
+                <a class="nav-item nav-link" asp-controller="Order" asp-action="Index">View Past Orders</a>
+                <a class="nav-item nav-link" role="button" asp-controller="Policy" asp-action="Index">Student .edu Email Discount</a>
+                <customErrors mode="On" redirectMode="ResponseRewrite">
+                    <error statusCode="404" redirect="Error404" />
+            </div>
+        </div>
+    </nav>   
+</header>
+
+<div>
+    <nav>
+        @*<a class="btn btn-primary btn-lg" role="button" asp-controller="Policy" asp-action="Index">Student edu Discount</a>*@
+     
+    </nav>
+</div>
+
+>>>>>>> c9ad48cb158b60310ec2168a7e981331cec40265
     <div id="productCarousel" class="carousel slide" data-ride="carousel">
         <ol class="carousel-indicators">
             @for (int i = 0; i < numOfProducts; i++)
@@ -67,7 +95,10 @@ Here all products will show
                     </div>
                 </div>
             }
+<<<<<<< HEAD
 
+=======
+>>>>>>> c9ad48cb158b60310ec2168a7e981331cec40265
         </div>
         <a class="carousel-control-prev" href="#productCarousel" role="button" data-slide="prev">
             <span class="carousel-control-prev-icon" aria-hidden="true"></span>

@@ -12,12 +12,19 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="~/Site.css" />
 </head>
+<<<<<<< HEAD
+=======
+<
+>>>>>>> c9ad48cb158b60310ec2168a7e981331cec40265
 <body>  
     <section>
         @if (SignInManager.IsSignedIn(User))
         {
             <span>Welcome @User.Claims.First(m => m.Type == "FullName").Value</span>
+<<<<<<< HEAD
 
+=======
+>>>>>>> c9ad48cb158b60310ec2168a7e981331cec40265
             <div><a asp-controller="Account" asp-action="Logout">Logout</a></div>
 
         }
