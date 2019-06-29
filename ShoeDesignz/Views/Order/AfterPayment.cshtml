@@ -1,10 +1,8 @@
 ﻿@model List<ShoeDesignz.Models.Order>
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "AfterPayment";
     var products = this.ViewContext.RouteData.Values["id"];
 }
-<<<<<<< HEAD
-=======
 <script>
     function hideFunction() {
         var x = document.getElementById("myHide");
@@ -15,9 +13,9 @@
         }
     } 
 </script>
->>>>>>> c9ad48cb158b60310ec2168a7e981331cec40265
 
 <h1>Order History</h1>
+<h3>Payment Sent</h3>
 @foreach (var item in Model)
 {
     <table class="table table-dark">
@@ -39,21 +37,14 @@
         </tbody>
     </table>
 }
-<<<<<<< HEAD
-<h4>Please check your email for a receipt of your order.</h4>
-
-<a asp-controller="Product" asp-action="Products">Back to the store.</a>
-
-=======
-<h4>Please finish your order with a credit card payment.  Click the button below.</h4>
+<h4>Please check your email for a receipt.</h4>
 
 <div id="myHide">
-    <button onclick="hideFunction()"><a class="nav-item nav-link" role="button" asp-controller="CreditCard" asp-action="Index">Enter Payment Information Here</a></button>
+    <button onclick="hideFunction()"> Payment Submitted </button>
 </div>
 
 <p><br /></p>
 <p><br /></p>
 <a asp-controller="Product" asp-action="Products">Back to the store.</a>
->>>>>>> c9ad48cb158b60310ec2168a7e981331cec40265
 <h6>Thank you for shopping at ShoeDesignz</h6>
 

@@ -34,9 +34,16 @@ A working progress.
 
 # Getting Started
 Click on the link below to visit our e-commerce ShoeDesignZ:
+<<<<<<< HEAD
 
 shoedesignz.azurewebsites.net
 
+=======
+```
+shoedesignz.azurewebsites.net
+```
+* Website currently down.  Will rebuild again sometime in the future.  Last update June 28, 2019
+>>>>>>> c9ad48cb158b60310ec2168a7e981331cec40265
 You may also view at the source code in the folders below.
 
 # Build and Test

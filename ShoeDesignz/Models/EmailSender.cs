@@ -21,7 +21,6 @@ namespace ShoeDesignz.Models
 
             msg.SetFrom("noreply@ShoeDesignz.com", "ShoezDesign eCommerce Store");
 
-            //msg.AddTo("castillocarlosr2@gmail.com");
             msg.AddTo(email);
             msg.SetSubject("Welcome to the Shoez Store");
             msg.AddContent(MimeType.Html, htmlMessage);

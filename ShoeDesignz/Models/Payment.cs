@@ -28,6 +28,8 @@ namespace ShoeDesignz.Models
         public enum CreditCardList : long
         {
             //Use 4 digit for top Amex card
+            //These numbers are test numbers used by the testing company to verify that transactions work.
+            //NOT real credit card numbers!
             Amex_370000000000002 = 370000000000002,
             Discover_6011000000000012 = 6011000000000012,
             Visa_4111111111111111 = 4111111111111111,

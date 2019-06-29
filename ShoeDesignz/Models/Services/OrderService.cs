@@ -40,9 +40,9 @@ namespace ShoeDesignz.Models.Services
         }
 
         public async Task<List<Order>> GetOrders(string username)
-        {            
-            Cart cart =  await _context.Cart.FirstOrDefaultAsync(e => e.UserID == username);
-            List<Order> orders =  await _context.Order.Where(e => e.UserID == cart.UserID).ToListAsync();     
+        {
+            Cart cart = await _context.Cart.FirstOrDefaultAsync(e => e.UserID == username);
+            List<Order> orders = await _context.Order.Where(e => e.UserID == cart.UserID).ToListAsync();
             return orders;
         }
 
